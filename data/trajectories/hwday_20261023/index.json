@@ -1,0 +1,527 @@
+[
+  {
+    "file": "00_hold_home.npz",
+    "name": "hold_home",
+    "purpose": "Static hold at HOME 20 s: sensor noise, gravity currents at home, temperature baseline",
+    "duration_s": 20.0,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.49,
+      "tcp": 0.49
+    }
+  },
+  {
+    "file": "01_steps_base.npz",
+    "name": "steps_base",
+    "purpose": "Goal steps +-0.1/+-0.2 rad on base at HOME: profile + PID identification",
+    "duration_s": 22.5,
+    "max_abs_dq": [
+      0.455,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      3.469,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      -11.5,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_max_deg": [
+      11.5,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.49,
+      "tcp": 0.49
+    }
+  },
+  {
+    "file": "02_steps_shoulder.npz",
+    "name": "steps_shoulder",
+    "purpose": "Goal steps +-0.1/+-0.2 rad on shoulder at HOME: profile + PID identification",
+    "duration_s": 22.5,
+    "max_abs_dq": [
+      0.0,
+      0.455,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      3.469,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      -11.5,
+      0.0,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      11.5,
+      0.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.473,
+      "wrist": 0.423,
+      "tcp": 0.394
+    }
+  },
+  {
+    "file": "03_steps_elbow.npz",
+    "name": "steps_elbow",
+    "purpose": "Goal steps +-0.1/+-0.2 rad on elbow at HOME: profile + PID identification",
+    "duration_s": 22.5,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.455,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      3.469,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      0.0,
+      -11.5,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      0.0,
+      11.5,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.44,
+      "tcp": 0.411
+    }
+  },
+  {
+    "file": "04_steps_wrist.npz",
+    "name": "steps_wrist",
+    "purpose": "Goal steps +-0.1/+-0.2 rad on wrist at HOME: profile + PID identification",
+    "duration_s": 22.5,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.0,
+      0.455
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      0.0,
+      3.469
+    ],
+    "q_min_deg": [
+      0.0,
+      0.0,
+      0.0,
+      -11.5
+    ],
+    "q_max_deg": [
+      0.0,
+      0.0,
+      0.0,
+      11.5
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.49,
+      "tcp": 0.49
+    }
+  },
+  {
+    "file": "05_sine_base.npz",
+    "name": "sine_base",
+    "purpose": "Sine sweep 0.1-0.45 Hz on base at HOME: frequency response, inertia/damping",
+    "duration_s": 65.67,
+    "max_abs_dq": [
+      0.378,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.747,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      -12.2,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_max_deg": [
+      12.2,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.49,
+      "tcp": 0.49
+    }
+  },
+  {
+    "file": "06_sine_shoulder.npz",
+    "name": "sine_shoulder",
+    "purpose": "Sine sweep 0.1-0.45 Hz on shoulder at HOME: frequency response, inertia/damping",
+    "duration_s": 65.67,
+    "max_abs_dq": [
+      0.0,
+      0.378,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.747,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      -12.2,
+      0.0,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      12.2,
+      0.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.472,
+      "wrist": 0.419,
+      "tcp": 0.387
+    }
+  },
+  {
+    "file": "07_sine_elbow.npz",
+    "name": "sine_elbow",
+    "purpose": "Sine sweep 0.1-0.45 Hz on elbow at HOME: frequency response, inertia/damping",
+    "duration_s": 65.67,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.378,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      0.747,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      0.0,
+      -12.2,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      0.0,
+      12.2,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.437,
+      "tcp": 0.406
+    }
+  },
+  {
+    "file": "08_sine_wrist.npz",
+    "name": "sine_wrist",
+    "purpose": "Sine sweep 0.1-0.45 Hz on wrist at HOME: frequency response, inertia/damping",
+    "duration_s": 65.67,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.0,
+      0.378
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      0.0,
+      0.747
+    ],
+    "q_min_deg": [
+      0.0,
+      0.0,
+      0.0,
+      -12.2
+    ],
+    "q_max_deg": [
+      0.0,
+      0.0,
+      0.0,
+      12.2
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.49,
+      "tcp": 0.49
+    }
+  },
+  {
+    "file": "09_gravity_poses.npz",
+    "name": "gravity_poses",
+    "purpose": "33 static poses, 4 s holds: gravity parameters + Kt",
+    "duration_s": 237.67,
+    "max_abs_dq": [
+      0.0,
+      0.419,
+      0.419,
+      0.628
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.42,
+      0.42,
+      0.412
+    ],
+    "q_min_deg": [
+      0.0,
+      -50.0,
+      -80.0,
+      -90.0
+    ],
+    "q_max_deg": [
+      0.0,
+      50.0,
+      65.0,
+      90.0
+    ],
+    "z_min": {
+      "elbow": 0.327,
+      "wrist": 0.202,
+      "tcp": 0.127
+    }
+  },
+  {
+    "file": "10_fourier_A.npz",
+    "name": "fourier_A",
+    "purpose": "Fourier excitation (seed 38), 40 s: dynamic identification set",
+    "duration_s": 39.99,
+    "max_abs_dq": [
+      0.501,
+      0.286,
+      0.267,
+      0.536
+    ],
+    "max_abs_ddq": [
+      0.56,
+      0.383,
+      0.484,
+      0.733
+    ],
+    "q_min_deg": [
+      -43.4,
+      -26.2,
+      -22.9,
+      -50.7
+    ],
+    "q_max_deg": [
+      54.0,
+      21.0,
+      17.9,
+      27.6
+    ],
+    "z_min": {
+      "elbow": 0.449,
+      "wrist": 0.409,
+      "tcp": 0.361
+    }
+  },
+  {
+    "file": "11_fourier_B.npz",
+    "name": "fourier_B",
+    "purpose": "Fourier excitation (seed 32), 40 s: VALIDATION set (not used for fitting)",
+    "duration_s": 39.99,
+    "max_abs_dq": [
+      0.53,
+      0.44,
+      0.257,
+      0.397
+    ],
+    "max_abs_ddq": [
+      0.598,
+      0.733,
+      0.289,
+      0.683
+    ],
+    "q_min_deg": [
+      -45.9,
+      -23.4,
+      -16.7,
+      -48.1
+    ],
+    "q_max_deg": [
+      51.2,
+      24.8,
+      21.7,
+      27.5
+    ],
+    "z_min": {
+      "elbow": 0.437,
+      "wrist": 0.363,
+      "tcp": 0.319
+    }
+  },
+  {
+    "file": "12_cartesian_square.npz",
+    "name": "cartesian_square",
+    "purpose": "TCP square 15 x 24 cm at z = 0.30 m via IK: task-space accuracy (compare camera / ruler)",
+    "duration_s": 20.04,
+    "max_abs_dq": [
+      0.5,
+      0.239,
+      0.269,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.496,
+      0.256,
+      0.297,
+      0.0
+    ],
+    "q_min_deg": [
+      -21.8,
+      -16.6,
+      16.8,
+      0.0
+    ],
+    "q_max_deg": [
+      21.8,
+      9.5,
+      44.9,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.477,
+      "wrist": 0.366,
+      "tcp": 0.3
+    }
+  },
+  {
+    "file": "13_gripper_cycles.npz",
+    "name": "gripper_cycles",
+    "purpose": "Gripper 0.1 <-> 0.9 three times at HOME: closing direction, gripper current",
+    "duration_s": 20.0,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.49,
+      "wrist": 0.49,
+      "tcp": 0.49
+    }
+  },
+  {
+    "file": "99_park.npz",
+    "name": "park",
+    "purpose": "Park at SLEEP-like pose (5 deg inside limits) before closing the connection",
+    "duration_s": 3.0,
+    "max_abs_dq": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_abs_ddq": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "q_min_deg": [
+      0.0,
+      -80.0,
+      70.0,
+      0.0
+    ],
+    "q_max_deg": [
+      0.0,
+      -80.0,
+      70.0,
+      0.0
+    ],
+    "z_min": {
+      "elbow": 0.25,
+      "wrist": 0.293,
+      "tcp": 0.319
+    }
+  }
+]
