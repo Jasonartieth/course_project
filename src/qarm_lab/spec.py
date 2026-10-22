@@ -56,6 +56,10 @@ GRIP_TAU_INST, GRIP_TAU_CONT = 1.9, 0.5
 GRIP_I_INST, GRIP_I_CONT = 1.4, 0.35
 # Nominal output torque constant from stall data (tau_stall / i_stall @ 12 V). Real2sim will re-calibrate this.
 KT_NOMINAL = TAU_INST / I_INST                    # ~2.41, 2.41, 2.41, 1.78 N*m/A
+# No-load output speed @ 12 V (ROBOTIS): XM540-W270 30 rpm, XM430-W350 46 rpm (shoulder: 2 motors, same speed)
+NO_LOAD_SPEED = np.array([30.0, 30.0, 30.0, 46.0]) * 2 * np.pi / 60    # rad/s
+# Back-EMF damping of a PWM-driven servo at the output: tau_stall / omega_no_load
+BACK_EMF_DAMPING = TAU_INST / NO_LOAD_SPEED                            # ~3.4, 6.7, 3.4, 0.85 N*m*s/rad
 TEMP_MAX_C = 50.0                                 # manual: never exceed 50 degC
 
 # pal's position-loop gains written on open (QUARC double properties 128..141)
