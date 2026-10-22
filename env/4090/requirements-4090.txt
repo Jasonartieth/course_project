@@ -1,0 +1,7 @@
+# 4090 machine (Ubuntu 24.04): simulation + real-arm runtime. torch is installed separately (cu128 index).
+genesis-world
+numpy
+scipy
+matplotlib
+pytest
+cffi          # needed by Quanser's python API (quanser.hardware), which itself comes from apt
