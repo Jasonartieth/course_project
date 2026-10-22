@@ -225,10 +225,11 @@ def workspace_points(phi):
 
 
 def check_trajectory(traj, margin=spec.LIMIT_MARGIN, vel_frac=1.0, acc_frac=1.0, min_z=spec.TCP_MIN_Z,
-                     base_keepout=(0.22, 0.20), tol=1.02):
+                     base_keepout=(0.22, 0.20), tol=1.02, limit_tol=1e-9):
     """Offline checks before anything is sent to the arm. Returns CheckResult(ok, problems, stats).
 
-    - joint goals inside [Q_MIN + margin, Q_MAX - margin]
+    - joint goals inside [Q_MIN + margin - limit_tol, Q_MAX - margin + limit_tol]
+      (limit_tol > 0 only for approach moves, which start wherever the arm rests, possibly on a limit)
     - velocity/acceleration <= frac * limits on the raw goals; for goal-step trajectories only the velocity of
       the profile-filtered path is checked (the profile itself bounds the acceleration)
     - elbow / wrist / TCP above min_z, and TCP outside the cylinder (r < base_keepout[0], z < base_keepout[1])
@@ -239,9 +240,9 @@ def check_trajectory(traj, margin=spec.LIMIT_MARGIN, vel_frac=1.0, acc_frac=1.0,
     q, dt = traj.q, float(traj.t[1] - traj.t[0])
     lo, hi = spec.Q_MIN + margin, spec.Q_MAX - margin
     for j in range(4):
-        if q[:, j].min() < lo[j] - 1e-9 or q[:, j].max() > hi[j] + 1e-9:
-            problems.append(f"joint {spec.JOINT_NAMES[j]} range [{q[:, j].min():.3f}, {q[:, j].max():.3f}] "
-                            f"outside [{lo[j]:.3f}, {hi[j]:.3f}] (margin {np.rad2deg(margin):.0f} deg)")
+        if q[:, j].min() < lo[j] - limit_tol or q[:, j].max() > hi[j] + limit_tol:
+            problems.append(f"joint {spec.JOINT_NAMES[j]} range [{q[:, j].min():.5f}, {q[:, j].max():.5f}] "
+                            f"outside [{lo[j]:.5f}, {hi[j]:.5f}] (margin {np.rad2deg(margin):.0f} deg)")
     steps = bool(traj.meta.get("goal_steps"))
     q_exec = profile.filter_path(q, dt) if steps else q
     dq = np.gradient(q_exec, dt, axis=0)

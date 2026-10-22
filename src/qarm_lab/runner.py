@@ -37,11 +37,12 @@ def traj_hash(traj):
 
 
 def _approach_ok(app, q_start):
-    """Approach starts wherever the arm is (possibly folded near the base), so only require that it never goes
+    """Approach starts wherever the arm is (possibly folded near the base or resting on a joint limit), so:
+    joint limits with no margin and a tolerance equal to the safety monitor's pos_tol, and the path may not go
     lower than where it starts (minus 1 cm) or below TCP_MIN_Z, whichever is lower."""
     z0 = min(p[2] for p in workspace_points(q_start).values())
-    res = check_trajectory(app, margin=0.0, min_z=min(spec.TCP_MIN_Z, z0 - 0.01), base_keepout=(0.0, 0.0))
-    return res
+    return check_trajectory(app, margin=0.0, min_z=min(spec.TCP_MIN_Z, z0 - 0.01), base_keepout=(0.0, 0.0),
+                            limit_tol=SafetyConfig().pos_tol)
 
 
 def run_trajectory(backend, traj, out_dir=None, approach_speed=0.25, settle_s=1.0, tail_s=1.0,
