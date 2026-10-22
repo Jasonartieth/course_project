@@ -1,0 +1,53 @@
+{
+  "trajectory": "steps_elbow",
+  "trajectory_hash": "34c3bd72a2f5",
+  "trajectory_meta": {
+    "goal_steps": true,
+    "joint": 2,
+    "steps": [
+      0.1,
+      0.0,
+      -0.1,
+      0.0,
+      0.2,
+      0.0,
+      -0.2,
+      0.0
+    ],
+    "hold_s": 2.5,
+    "purpose": "Goal steps +-0.1/+-0.2 rad on elbow at HOME: profile + PID identification"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 0.51,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    4.509410302944161e-07,
+    0.007757895160466433,
+    0.011689112521708012,
+    -2.651624527061358e-05
+  ],
+  "notes": "",
+  "started": "2026-10-22T22:05:35",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-22T22:05:43",
+  "wall_time_s": 8.324,
+  "sim_or_nominal_time_s": 25.01,
+  "loop_dt_ms": {
+    "median": 0.661,
+    "p99": 0.801,
+    "max": 1.95
+  },
+  "git_commit": "3bababd"
+}

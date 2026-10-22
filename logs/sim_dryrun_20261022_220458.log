@@ -1,0 +1,461 @@
+check 00_hold_home                 OK     20.0 s  
+check 01_steps_base                OK     22.5 s  
+check 02_steps_shoulder            OK     22.5 s  
+check 03_steps_elbow               OK     22.5 s  
+check 04_steps_wrist               OK     22.5 s  
+check 05_sine_base                 OK     65.7 s  
+check 06_sine_shoulder             OK     65.7 s  
+check 07_sine_elbow                OK     65.7 s  
+check 08_sine_wrist                OK     65.7 s  
+check 09_gravity_poses             OK    237.7 s  
+check 10_fourier_A                 OK     40.0 s  
+check 11_fourier_B                 OK     40.0 s  
+check 12_cartesian_square          OK     20.0 s  
+check 13_gripper_cycles            OK     20.0 s  
+check 99_park                      OK      3.0 s  
+
+
+
+[hold_home] t=   0.0/29.1s approach q=[  0. -85.  75.  -0.] I=[-0.    0.03 -0.02  0.  ] T=30C
+[hold_home] t=   2.0/29.1s approach q=[ -0.  -75.4  66.7  -0. ] I=[ 0.    0.75 -0.55  0.  ] T=30C
+[hold_home] t=   4.0/29.1s approach q=[ -0.  -37.2  33.1  -0. ] I=[ 0.    0.21 -0.55  0.  ] T=30C
+[hold_home] t=   6.0/29.1s approach q=[ 0.  -2.7  3.4 -0. ] I=[-0.   -0.53 -0.55  0.  ] T=30C
+[hold_home] t=   8.0/29.1s settle   q=[ 0.   0.5  0.8 -0. ] I=[-0.   -0.62 -0.53  0.  ] T=30C
+[hold_home] t=  10.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+[hold_home] t=  12.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  14.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  16.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  18.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  20.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  22.0/29.1s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  24.0/29.1s traj     q=[-0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  26.0/29.1s traj     q=[-0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[hold_home] t=  28.0/29.1s traj     q=[-0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/00_hold_home  (completed)
+{"trajectory": "hold_home", "aborted": null, "max_track_err_deg": [0.0, 0.49, 0.76, 0.0], "max_abs_current_A": [0.0, 0.67, 0.53, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.641, "p99": 0.76, "max": 1.782}}
+[steps_base] t=   0.0/25.0s approach q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[steps_base] t=   2.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.   -0.7  -0.52  0.  ] T=30C
+[steps_base] t=   4.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.   -0.68 -0.51  0.  ] T=30C
+[steps_base] t=   6.0/25.0s traj     q=[ 5.7  0.5  0.7 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=   8.0/25.0s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.02 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  10.0/25.0s traj     q=[-5.7  0.5  0.7 -0. ] I=[-0.02 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  12.0/25.0s traj     q=[-0.9  0.5  0.7 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  14.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  16.0/25.0s traj     q=[11.4  0.5  0.7 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  18.0/25.0s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.02 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  20.0/25.0s traj     q=[-11.4   0.5   0.7  -0. ] I=[-0.03 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  22.0/25.0s traj     q=[-5.5  0.5  0.7 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[steps_base] t=  24.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/01_steps_base  (completed)
+{"trajectory": "steps_base", "aborted": null, "max_track_err_deg": [0.94, 0.51, 0.73, 0.0], "max_abs_current_A": [0.08, 0.71, 0.52, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.642, "p99": 0.776, "max": 1.435}}
+[steps_shoulder] t=   0.0/25.0s approach q=[-0.   0.5  0.7 -0. ] I=[ 0.   -0.67 -0.51  0.  ] T=30C
+[steps_shoulder] t=   2.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.   -0.7  -0.52  0.  ] T=30C
+[steps_shoulder] t=   4.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.   -0.68 -0.51  0.  ] T=30C
+[steps_shoulder] t=   6.0/25.0s traj     q=[-0.   6.3  0.7 -0. ] I=[ 0.   -0.77 -0.51  0.  ] T=30C
+[steps_shoulder] t=   8.0/25.0s traj     q=[-0.   0.5  0.7 -0. ] I=[ 0.   -0.69 -0.51  0.  ] T=30C
+[steps_shoulder] t=  10.0/25.0s traj     q=[ 0.  -5.3  0.7 -0. ] I=[ 0.   -0.57 -0.51  0.  ] T=30C
+[steps_shoulder] t=  12.0/25.0s traj     q=[ 0.  -0.4  0.7 -0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[steps_shoulder] t=  14.0/25.0s traj     q=[ 0.   0.4  0.7 -0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+[steps_shoulder] t=  16.0/25.0s traj     q=[ 0.  12.1  0.7 -0. ] I=[-0.   -0.89 -0.5   0.  ] T=30C
+[steps_shoulder] t=  18.0/25.0s traj     q=[ 0.   0.5  0.7 -0. ] I=[ 0.   -0.69 -0.51  0.  ] T=30C
+[steps_shoulder] t=  20.0/25.0s traj     q=[  0.  -11.2   0.7  -0. ] I=[ 0.   -0.44 -0.51  0.  ] T=30C
+[steps_shoulder] t=  22.0/25.0s traj     q=[-0.  -5.   0.7 -0. ] I=[ 0.   -0.49 -0.5   0.  ] T=30C
+[steps_shoulder] t=  24.0/25.0s traj     q=[ 0.   0.4  0.7 -0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/02_steps_shoulder  (completed)
+{"trajectory": "steps_shoulder", "aborted": null, "max_track_err_deg": [0.0, 1.52, 0.71, 0.0], "max_abs_current_A": [0.0, 1.1, 0.52, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.662, "p99": 0.777, "max": 1.835}}
+[steps_elbow] t=   0.0/25.0s approach q=[ 0.   0.4  0.7 -0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[steps_elbow] t=   2.0/25.0s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.7  -0.52  0.  ] T=30C
+[steps_elbow] t=   4.0/25.0s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.68 -0.51  0.  ] T=30C
+[steps_elbow] t=   6.0/25.0s traj     q=[ 0.   0.4  6.4 -0. ] I=[-0.   -0.67 -0.5   0.  ] T=30C
+[steps_elbow] t=   8.0/25.0s traj     q=[ 0.   0.4  0.7 -0. ] I=[-0.   -0.67 -0.53  0.  ] T=30C
+[steps_elbow] t=  10.0/25.0s traj     q=[ 0.   0.4 -5.  -0. ] I=[ 0.   -0.67 -0.53  0.  ] T=30C
+[steps_elbow] t=  12.0/25.0s traj     q=[ 0.   0.4 -0.1 -0. ] I=[ 0.   -0.67 -0.49  0.  ] T=30C
+[steps_elbow] t=  14.0/25.0s traj     q=[ 0.   0.4  0.6 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[steps_elbow] t=  16.0/25.0s traj     q=[ 0.   0.4 12.1 -0. ] I=[-0.   -0.66 -0.49  0.  ] T=30C
+[steps_elbow] t=  18.0/25.0s traj     q=[ 0.   0.4  0.7 -0. ] I=[ 0.   -0.66 -0.53  0.  ] T=30C
+[steps_elbow] t=  20.0/25.0s traj     q=[  0.    0.4 -10.8  -0. ] I=[ 0.   -0.67 -0.53  0.  ] T=30C
+[steps_elbow] t=  22.0/25.0s traj     q=[ 0.   0.4 -4.4 -0. ] I=[ 0.   -0.66 -0.49  0.  ] T=30C
+[steps_elbow] t=  24.0/25.0s traj     q=[ 0.   0.4  0.6 -0. ] I=[-0.   -0.67 -0.5   0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/03_steps_elbow  (completed)
+{"trajectory": "steps_elbow", "aborted": null, "max_track_err_deg": [0.0, 0.48, 1.58, 0.0], "max_abs_current_A": [0.0, 0.71, 0.58, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.661, "p99": 0.801, "max": 1.95}}
+[steps_wrist] t=   0.0/25.0s approach q=[ 0.   0.4  0.6 -0. ] I=[ 0.   -0.67 -0.51  0.  ] T=30C
+[steps_wrist] t=   2.0/25.0s traj     q=[ 0.   0.5  0.7 -0. ] I=[-0.   -0.7  -0.52  0.  ] T=30C
+[steps_wrist] t=   4.0/25.0s traj     q=[ 0.   0.4  0.6 -0. ] I=[-0.   -0.68 -0.51  0.  ] T=30C
+[steps_wrist] t=   6.0/25.0s traj     q=[0.  0.4 0.6 5.7] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[steps_wrist] t=   8.0/25.0s traj     q=[0.  0.4 0.6 0. ] I=[ 0.   -0.67 -0.51 -0.  ] T=30C
+[steps_wrist] t=  10.0/25.0s traj     q=[ 0.   0.4  0.6 -5.7] I=[ 0.   -0.67 -0.51 -0.01] T=30C
+[steps_wrist] t=  12.0/25.0s traj     q=[-0.   0.4  0.6 -0.6] I=[ 0.   -0.67 -0.51  0.02] T=30C
+[steps_wrist] t=  14.0/25.0s traj     q=[ 0.   0.4  0.6 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+[steps_wrist] t=  16.0/25.0s traj     q=[ 0.   0.4  0.6 11.4] I=[-0.   -0.67 -0.51  0.01] T=30C
+[steps_wrist] t=  18.0/25.0s traj     q=[0.  0.4 0.6 0. ] I=[ 0.   -0.67 -0.51 -0.01] T=30C
+[steps_wrist] t=  20.0/25.0s traj     q=[ -0.    0.4   0.6 -11.4] I=[ 0.   -0.67 -0.51 -0.02] T=30C
+[steps_wrist] t=  22.0/25.0s traj     q=[-0.   0.4  0.6 -4.5] I=[ 0.   -0.67 -0.51  0.02] T=30C
+[steps_wrist] t=  24.0/25.0s traj     q=[ 0.   0.4  0.6 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/04_steps_wrist  (completed)
+{"trajectory": "steps_wrist", "aborted": null, "max_track_err_deg": [0.0, 0.46, 0.67, 0.64], "max_abs_current_A": [0.0, 0.71, 0.52, 0.04], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.652, "p99": 0.752, "max": 2.388}}
+[sine_base] t=   0.0/68.2s approach q=[ 0.   0.4  0.6 -0. ] I=[ 0.   -0.67 -0.51  0.  ] T=30C
+[sine_base] t=   2.0/68.2s traj     q=[ 0.   0.4  0.6 -0. ] I=[ 0.01 -0.7  -0.52  0.  ] T=30C
+[sine_base] t=   4.0/68.2s traj     q=[ 1.7  0.4  0.6 -0. ] I=[ 0.04 -0.68 -0.51  0.  ] T=30C
+[sine_base] t=   6.0/68.2s traj     q=[ 1.8  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=   8.0/68.2s traj     q=[-6.7  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  10.0/68.2s traj     q=[-9.6  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  12.0/68.2s traj     q=[ 2.9  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  14.0/68.2s traj     q=[12.1  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  16.0/68.2s traj     q=[ 4.5  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  18.0/68.2s traj     q=[-9.4  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  20.0/68.2s traj     q=[-10.2   0.4   0.6  -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  22.0/68.2s traj     q=[ 2.9  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  24.0/68.2s traj     q=[10.5  0.4  0.6 -0. ] I=[-0.05 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  26.0/68.2s traj     q=[ 2.6  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  28.0/68.2s traj     q=[-2.6  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  30.0/68.2s traj     q=[-0.6  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  32.0/68.2s traj     q=[-0.   0.4  0.6 -0. ] I=[ 0.03 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  34.0/68.2s traj     q=[ 2.2  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  36.0/68.2s traj     q=[-8.2  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  38.0/68.2s traj     q=[ 4.9  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  40.0/68.2s traj     q=[ 2.4  0.4  0.6 -0. ] I=[-0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  42.0/68.2s traj     q=[-8.6  0.4  0.6 -0. ] I=[ 0.05 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  44.0/68.2s traj     q=[ 9.7  0.4  0.6 -0. ] I=[-0.05 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  46.0/68.2s traj     q=[-2.6  0.4  0.6 -0. ] I=[ 0.05 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  48.0/68.2s traj     q=[-0.   0.4  0.6 -0. ] I=[ 0.03 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  50.0/68.2s traj     q=[ 2.   0.4  0.6 -0. ] I=[-0.05 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  52.0/68.2s traj     q=[-0.4  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  54.0/68.2s traj     q=[-5.9  0.4  0.6 -0. ] I=[-0.03 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  56.0/68.2s traj     q=[ 9.8  0.4  0.6 -0. ] I=[-0.02 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  58.0/68.2s traj     q=[-0.8  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  60.0/68.2s traj     q=[ 0.4  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  62.0/68.2s traj     q=[ 1.7  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  64.0/68.2s traj     q=[-1.1  0.4  0.6 -0. ] I=[ 0.05 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  66.0/68.2s traj     q=[-0.1  0.4  0.6 -0. ] I=[ 0.04 -0.67 -0.51  0.  ] T=30C
+[sine_base] t=  68.0/68.2s tail     q=[-0.   0.4  0.6 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/05_sine_base  (completed)
+{"trajectory": "sine_base", "aborted": null, "max_track_err_deg": [0.73, 0.45, 0.64, 0.0], "max_abs_current_A": [0.09, 0.71, 0.52, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.668, "p99": 0.775, "max": 1.351}}
+[sine_shoulder] t=   0.0/68.2s approach q=[-0.   0.4  0.6 -0. ] I=[ 0.01 -0.67 -0.51  0.  ] T=30C
+[sine_shoulder] t=   2.0/68.2s traj     q=[-0.   0.4  0.6 -0. ] I=[ 0.   -0.67 -0.52  0.  ] T=30C
+[sine_shoulder] t=   4.0/68.2s traj     q=[-0.   2.1  0.6 -0. ] I=[ 0.   -0.62 -0.51  0.  ] T=30C
+[sine_shoulder] t=   6.0/68.2s traj     q=[ 0.   2.2  0.6 -0. ] I=[ 0.   -0.79 -0.51  0.  ] T=30C
+[sine_shoulder] t=   8.0/68.2s traj     q=[ 0.  -6.4  0.6 -0. ] I=[ 0.   -0.6  -0.51  0.  ] T=30C
+[sine_shoulder] t=  10.0/68.2s traj     q=[ 0.  -9.4  0.6 -0. ] I=[ 0.   -0.36 -0.5   0.  ] T=30C
+[sine_shoulder] t=  12.0/68.2s traj     q=[ 0.   3.4  0.6 -0. ] I=[ 0.   -0.65 -0.51  0.  ] T=30C
+[sine_shoulder] t=  14.0/68.2s traj     q=[ 0.  12.7  0.5 -0. ] I=[-0.   -0.84 -0.5   0.  ] T=30C
+[sine_shoulder] t=  16.0/68.2s traj     q=[ 0.   5.   0.5 -0. ] I=[-0.   -0.85 -0.5   0.  ] T=30C
+[sine_shoulder] t=  18.0/68.2s traj     q=[ 0.  -9.2  0.6 -0. ] I=[-0.   -0.53 -0.51  0.  ] T=30C
+[sine_shoulder] t=  20.0/68.2s traj     q=[  0.  -10.    0.5  -0. ] I=[ 0.   -0.35 -0.5   0.  ] T=30C
+[sine_shoulder] t=  22.0/68.2s traj     q=[ 0.   3.3  0.6 -0. ] I=[ 0.   -0.65 -0.51  0.  ] T=30C
+[sine_shoulder] t=  24.0/68.2s traj     q=[ 0.  11.   0.5 -0. ] I=[-0.   -0.99 -0.5   0.  ] T=30C
+[sine_shoulder] t=  26.0/68.2s traj     q=[ 0.   3.1  0.5 -0. ] I=[-0.   -0.81 -0.51  0.  ] T=30C
+[sine_shoulder] t=  28.0/68.2s traj     q=[ 0.  -2.3  0.5 -0. ] I=[ 0.   -0.68 -0.51  0.  ] T=30C
+[sine_shoulder] t=  30.0/68.2s traj     q=[ 0.  -0.3  0.5 -0. ] I=[-0.   -0.57 -0.51  0.  ] T=30C
+[sine_shoulder] t=  32.0/68.2s traj     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.61 -0.51  0.  ] T=30C
+[sine_shoulder] t=  34.0/68.2s traj     q=[ 0.   2.6  0.5 -0. ] I=[-0.   -0.64 -0.51  0.  ] T=30C
+[sine_shoulder] t=  36.0/68.2s traj     q=[ 0.  -8.   0.5 -0. ] I=[-0.   -0.55 -0.51  0.  ] T=30C
+[sine_shoulder] t=  38.0/68.2s traj     q=[ 0.   5.3  0.5 -0. ] I=[ 0.   -0.7  -0.51  0.  ] T=30C
+[sine_shoulder] t=  40.0/68.2s traj     q=[ 0.   2.8  0.5 -0. ] I=[-0.   -0.81 -0.51  0.  ] T=30C
+[sine_shoulder] t=  42.0/68.2s traj     q=[ 0.  -8.3  0.5 -0. ] I=[ 0.   -0.37 -0.5   0.  ] T=30C
+[sine_shoulder] t=  44.0/68.2s traj     q=[ 0.  10.2  0.5 -0. ] I=[-0.   -0.97 -0.51  0.  ] T=30C
+[sine_shoulder] t=  46.0/68.2s traj     q=[ 0.  -2.2  0.5 -0. ] I=[ 0.   -0.51 -0.51  0.  ] T=30C
+[sine_shoulder] t=  48.0/68.2s traj     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.61 -0.51  0.  ] T=30C
+[sine_shoulder] t=  50.0/68.2s traj     q=[ 0.   2.4  0.5 -0. ] I=[-0.   -0.82 -0.51  0.  ] T=30C
+[sine_shoulder] t=  52.0/68.2s traj     q=[ 0.  -0.1  0.5 -0. ] I=[ 0.   -0.56 -0.5   0.  ] T=30C
+[sine_shoulder] t=  54.0/68.2s traj     q=[ 0.  -5.6  0.5 -0. ] I=[-0.   -0.6  -0.51  0.  ] T=30C
+[sine_shoulder] t=  56.0/68.2s traj     q=[ 0.  10.3  0.5 -0. ] I=[-0.   -0.93 -0.51  0.  ] T=30C
+[sine_shoulder] t=  58.0/68.2s traj     q=[ 0.  -0.4  0.5 -0. ] I=[ 0.   -0.57 -0.51  0.  ] T=30C
+[sine_shoulder] t=  60.0/68.2s traj     q=[ 0.   0.7  0.5 -0. ] I=[ 0.   -0.59 -0.51  0.  ] T=30C
+[sine_shoulder] t=  62.0/68.2s traj     q=[ 0.   2.1  0.5 -0. ] I=[ 0.   -0.63 -0.51  0.  ] T=30C
+[sine_shoulder] t=  64.0/68.2s traj     q=[ 0.  -0.8  0.5 -0. ] I=[ 0.   -0.54 -0.51  0.  ] T=30C
+[sine_shoulder] t=  66.0/68.2s traj     q=[ 0.   0.2  0.5 -0. ] I=[-0.   -0.59 -0.51  0.  ] T=30C
+[sine_shoulder] t=  68.0/68.2s tail     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.64 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/06_sine_shoulder  (completed)
+{"trajectory": "sine_shoulder", "aborted": null, "max_track_err_deg": [0.01, 1.11, 0.59, 0.0], "max_abs_current_A": [0.0, 1.11, 0.52, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.67, "p99": 0.8, "max": 3.268}}
+[sine_elbow] t=   0.0/68.2s approach q=[ 0.   0.3  0.5 -0. ] I=[ 0.   -0.64 -0.51  0.  ] T=30C
+[sine_elbow] t=   2.0/68.2s traj     q=[ 0.   0.4  0.5 -0. ] I=[-0.   -0.7  -0.51  0.  ] T=30C
+[sine_elbow] t=   4.0/68.2s traj     q=[ 0.   0.4  2.2 -0. ] I=[-0.   -0.68 -0.47  0.  ] T=30C
+[sine_elbow] t=   6.0/68.2s traj     q=[ 0.   0.3  2.3 -0. ] I=[-0.   -0.67 -0.55  0.  ] T=30C
+[sine_elbow] t=   8.0/68.2s traj     q=[ 0.   0.3 -6.2 -0. ] I=[-0.   -0.67 -0.55  0.  ] T=30C
+[sine_elbow] t=  10.0/68.2s traj     q=[ 0.   0.3 -9.1 -0. ] I=[-0.   -0.66 -0.46  0.  ] T=30C
+[sine_elbow] t=  12.0/68.2s traj     q=[ 0.   0.3  3.4 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  14.0/68.2s traj     q=[ 0.   0.3 12.6 -0. ] I=[-0.   -0.66 -0.46  0.  ] T=30C
+[sine_elbow] t=  16.0/68.2s traj     q=[ 0.   0.3  5.  -0. ] I=[-0.   -0.66 -0.55  0.  ] T=30C
+[sine_elbow] t=  18.0/68.2s traj     q=[ 0.   0.3 -8.9 -0. ] I=[-0.   -0.66 -0.55  0.  ] T=30C
+[sine_elbow] t=  20.0/68.2s traj     q=[ 0.   0.3 -9.7 -0. ] I=[-0.   -0.66 -0.46  0.  ] T=30C
+[sine_elbow] t=  22.0/68.2s traj     q=[ 0.   0.3  3.4 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  24.0/68.2s traj     q=[ 0.   0.3 11.  -0. ] I=[-0.   -0.66 -0.55  0.  ] T=30C
+[sine_elbow] t=  26.0/68.2s traj     q=[ 0.   0.3  3.1 -0. ] I=[-0.   -0.66 -0.55  0.  ] T=30C
+[sine_elbow] t=  28.0/68.2s traj     q=[ 0.   0.3 -2.1 -0. ] I=[-0.   -0.67 -0.55  0.  ] T=30C
+[sine_elbow] t=  30.0/68.2s traj     q=[ 0.   0.3 -0.1 -0. ] I=[-0.   -0.67 -0.47  0.  ] T=30C
+[sine_elbow] t=  32.0/68.2s traj     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.67 -0.49  0.  ] T=30C
+[sine_elbow] t=  34.0/68.2s traj     q=[ 0.   0.3  2.7 -0. ] I=[-0.   -0.67 -0.47  0.  ] T=30C
+[sine_elbow] t=  36.0/68.2s traj     q=[ 0.   0.3 -7.7 -0. ] I=[-0.   -0.67 -0.54  0.  ] T=30C
+[sine_elbow] t=  38.0/68.2s traj     q=[ 0.   0.3  5.4 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  40.0/68.2s traj     q=[ 0.   0.3  2.9 -0. ] I=[-0.   -0.66 -0.55  0.  ] T=30C
+[sine_elbow] t=  42.0/68.2s traj     q=[ 0.   0.3 -8.1 -0. ] I=[-0.   -0.66 -0.46  0.  ] T=30C
+[sine_elbow] t=  44.0/68.2s traj     q=[ 0.   0.3 10.2 -0. ] I=[-0.   -0.66 -0.55  0.  ] T=30C
+[sine_elbow] t=  46.0/68.2s traj     q=[ 0.   0.3 -2.1 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  48.0/68.2s traj     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.67 -0.49  0.  ] T=30C
+[sine_elbow] t=  50.0/68.2s traj     q=[ 0.   0.3  2.5 -0. ] I=[-0.   -0.67 -0.56  0.  ] T=30C
+[sine_elbow] t=  52.0/68.2s traj     q=[ 0.   0.3  0.1 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  54.0/68.2s traj     q=[ 0.   0.3 -5.4 -0. ] I=[-0.   -0.67 -0.55  0.  ] T=30C
+[sine_elbow] t=  56.0/68.2s traj     q=[ 0.   0.3 10.3 -0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+[sine_elbow] t=  58.0/68.2s traj     q=[ 0.   0.3 -0.3 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  60.0/68.2s traj     q=[ 0.   0.3  0.9 -0. ] I=[-0.   -0.67 -0.47  0.  ] T=30C
+[sine_elbow] t=  62.0/68.2s traj     q=[ 0.   0.3  2.2 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  64.0/68.2s traj     q=[ 0.   0.3 -0.7 -0. ] I=[-0.   -0.66 -0.47  0.  ] T=30C
+[sine_elbow] t=  66.0/68.2s traj     q=[ 0.   0.3  0.3 -0. ] I=[-0.   -0.67 -0.47  0.  ] T=30C
+[sine_elbow] t=  68.0/68.2s tail     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/07_sine_elbow  (completed)
+{"trajectory": "sine_elbow", "aborted": null, "max_track_err_deg": [0.0, 0.38, 1.21, 0.0], "max_abs_current_A": [0.0, 0.71, 0.58, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.664, "p99": 0.798, "max": 1.629}}
+[sine_wrist] t=   0.0/68.2s approach q=[ 0.   0.3  0.5 -0. ] I=[ 0.   -0.67 -0.51  0.  ] T=30C
+[sine_wrist] t=   2.0/68.2s traj     q=[0.  0.3 0.5 0. ] I=[-0.   -0.7  -0.52  0.01] T=30C
+[sine_wrist] t=   4.0/68.2s traj     q=[0.  0.3 0.5 1.6] I=[-0.   -0.68 -0.51  0.03] T=30C
+[sine_wrist] t=   6.0/68.2s traj     q=[0.  0.3 0.5 1.8] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=   8.0/68.2s traj     q=[ 0.   0.3  0.5 -6.7] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  10.0/68.2s traj     q=[ 0.   0.3  0.5 -9.6] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  12.0/68.2s traj     q=[0.  0.3 0.5 3. ] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  14.0/68.2s traj     q=[ 0.   0.3  0.5 12.1] I=[-0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  16.0/68.2s traj     q=[0.  0.3 0.5 4.5] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  18.0/68.2s traj     q=[ 0.   0.3  0.5 -9.4] I=[ 0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  20.0/68.2s traj     q=[  0.    0.3   0.5 -10.2] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  22.0/68.2s traj     q=[0.  0.3 0.5 3. ] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  24.0/68.2s traj     q=[ 0.   0.3  0.5 10.5] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  26.0/68.2s traj     q=[0.  0.3 0.5 2.6] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  28.0/68.2s traj     q=[ 0.   0.3  0.5 -2.6] I=[ 0.   -0.67 -0.51 -0.02] T=30C
+[sine_wrist] t=  30.0/68.2s traj     q=[ 0.   0.3  0.5 -0.7] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  32.0/68.2s traj     q=[ 0.   0.3  0.5 -0. ] I=[-0.   -0.67 -0.51  0.01] T=30C
+[sine_wrist] t=  34.0/68.2s traj     q=[0.  0.3 0.5 2.2] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  36.0/68.2s traj     q=[ 0.   0.3  0.5 -8.3] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  38.0/68.2s traj     q=[0.  0.3 0.5 5.1] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  40.0/68.2s traj     q=[0.  0.3 0.5 2.2] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  42.0/68.2s traj     q=[ 0.   0.3  0.4 -8.4] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  44.0/68.2s traj     q=[0.  0.3 0.4 9.7] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  46.0/68.2s traj     q=[ 0.   0.3  0.4 -2.5] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  48.0/68.2s traj     q=[ 0.   0.3  0.4 -0. ] I=[-0.   -0.67 -0.51  0.01] T=30C
+[sine_wrist] t=  50.0/68.2s traj     q=[0.  0.3 0.4 2. ] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  52.0/68.2s traj     q=[ 0.   0.3  0.4 -0.2] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  54.0/68.2s traj     q=[ 0.   0.3  0.4 -6.1] I=[-0.   -0.67 -0.51 -0.03] T=30C
+[sine_wrist] t=  56.0/68.2s traj     q=[0.  0.3 0.4 9.8] I=[-0.   -0.67 -0.51  0.02] T=30C
+[sine_wrist] t=  58.0/68.2s traj     q=[ 0.   0.3  0.4 -0.8] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  60.0/68.2s traj     q=[0.  0.3 0.4 0.4] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  62.0/68.2s traj     q=[0.  0.3 0.4 1.9] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  64.0/68.2s traj     q=[ 0.   0.3  0.4 -1. ] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  66.0/68.2s traj     q=[ 0.   0.3  0.4 -0.1] I=[ 0.   -0.67 -0.51  0.03] T=30C
+[sine_wrist] t=  68.0/68.2s tail     q=[ 0.   0.3  0.4 -0. ] I=[-0.   -0.67 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/08_sine_wrist  (completed)
+{"trajectory": "sine_wrist", "aborted": null, "max_track_err_deg": [0.0, 0.35, 0.5, 0.5], "max_abs_current_A": [0.0, 0.71, 0.52, 0.04], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.661, "p99": 0.797, "max": 1.2}}
+[gravity_poses] t=   0.0/246.4s approach q=[ 0.   0.3  0.4 -0. ] I=[ 0.   -0.67 -0.51  0.  ] T=30C
+[gravity_poses] t=   2.0/246.4s approach q=[  0.   -6.6 -10.   -0. ] I=[ 0.   -0.59 -0.54  0.  ] T=30C
+[gravity_poses] t=   4.0/246.4s approach q=[  0.  -32.3 -49.6  -0. ] I=[-0.    0.38 -0.11  0.  ] T=30C
+[gravity_poses] t=   6.0/246.4s approach q=[  0.  -50.4 -79.7   0. ] I=[-0.    1.12  0.29 -0.  ] T=30C
+[gravity_poses] t=   8.0/246.4s traj     q=[  0.  -51.1 -80.8   0. ] I=[-0.    1.18  0.33 -0.  ] T=30C
+[gravity_poses] t=  10.0/246.4s traj     q=[  0.  -51.1 -80.8   0. ] I=[-0.    1.2   0.34 -0.  ] T=30C
+[gravity_poses] t=  12.0/246.4s traj     q=[  0.  -51.1 -80.7   0. ] I=[-0.    1.21  0.39 -0.  ] T=30C
+[gravity_poses] t=  14.0/246.4s traj     q=[  0.  -51.  -52.4   0. ] I=[-0.    1.05  0.15 -0.  ] T=30C
+[gravity_poses] t=  16.0/246.4s traj     q=[  0.  -50.9 -50.5   0. ] I=[-0.    0.99  0.11 -0.  ] T=30C
+[gravity_poses] t=  18.0/246.4s traj     q=[  0.  -50.9 -50.5   0. ] I=[-0.    0.98  0.1  -0.  ] T=30C
+[gravity_poses] t=  20.0/246.4s traj     q=[  0.  -50.8 -33.7   0. ] I=[ 0.    0.9  -0.01 -0.  ] T=30C
+[gravity_poses] t=  22.0/246.4s traj     q=[  0.  -50.7 -20.1   0. ] I=[-0.    0.74 -0.15  0.  ] T=30C
+[gravity_poses] t=  24.0/246.4s traj     q=[  0.  -50.7 -20.1   0. ] I=[-0.    0.71 -0.17  0.  ] T=30C
+[gravity_poses] t=  26.0/246.4s traj     q=[  0.  -50.7 -15.3   0. ] I=[ 0.    0.7  -0.16  0.  ] T=30C
+[gravity_poses] t=  28.0/246.4s traj     q=[  0.  -50.6  10.2   0. ] I=[-0.    0.53 -0.36  0.  ] T=30C
+[gravity_poses] t=  30.0/246.4s traj     q=[  0.  -50.5  10.3   0. ] I=[-0.    0.49 -0.39  0.  ] T=30C
+[gravity_poses] t=  32.0/246.4s traj     q=[  0.  -50.5  10.3   0. ] I=[-0.    0.48 -0.34  0.  ] T=30C
+[gravity_poses] t=  34.0/246.4s traj     q=[  0.  -50.5  37.7  -0. ] I=[-0.    0.43 -0.47  0.  ] T=30C
+[gravity_poses] t=  36.0/246.4s traj     q=[  0.  -50.4  40.4  -0. ] I=[-0.    0.38 -0.5   0.  ] T=30C
+[gravity_poses] t=  38.0/246.4s traj     q=[  0.  -50.4  40.4  -0. ] I=[-0.    0.37 -0.5   0.  ] T=30C
+[gravity_poses] t=  40.0/246.4s traj     q=[  0.  -50.4  55.5  -0. ] I=[-0.    0.36 -0.47  0.  ] T=30C
+[gravity_poses] t=  42.0/246.4s traj     q=[  0.  -50.4  65.4  -0. ] I=[-0.    0.37 -0.48  0.  ] T=30C
+[gravity_poses] t=  44.0/246.4s traj     q=[  0.  -50.4  65.4  -0. ] I=[-0.    0.37 -0.49  0.  ] T=30C
+[gravity_poses] t=  46.0/246.4s traj     q=[  0.  -42.9  65.4  -0. ] I=[ 0.    0.35 -0.49  0.  ] T=30C
+[gravity_poses] t=  48.0/246.4s traj     q=[  0.  -30.3  65.3  -0. ] I=[-0.    0.13 -0.43  0.  ] T=30C
+[gravity_poses] t=  50.0/246.4s traj     q=[  0.  -30.2  65.3  -0. ] I=[-0.    0.09 -0.42  0.  ] T=30C
+[gravity_poses] t=  52.0/246.4s traj     q=[  0.  -30.2  60.7  -0. ] I=[-0.    0.08 -0.49  0.  ] T=30C
+[gravity_poses] t=  54.0/246.4s traj     q=[  0.  -30.2  40.5  -0. ] I=[-0.    0.03 -0.53  0.  ] T=30C
+[gravity_poses] t=  56.0/246.4s traj     q=[  0.  -30.2  40.4  -0. ] I=[-0.    0.   -0.51  0.  ] T=30C
+[gravity_poses] t=  58.0/246.4s traj     q=[  0.  -30.2  39.8  -0. ] I=[-0.   -0.01 -0.55  0.  ] T=30C
+[gravity_poses] t=  60.0/246.4s traj     q=[  0.  -30.2  11.   -0. ] I=[-0.   -0.   -0.51  0.  ] T=30C
+[gravity_poses] t=  62.0/246.4s traj     q=[  0.  -30.2  10.4  -0. ] I=[-0.    0.01 -0.49  0.  ] T=30C
+[gravity_poses] t=  64.0/246.4s traj     q=[  0.  -30.2  10.4  -0. ] I=[-0.    0.01 -0.48  0.  ] T=30C
+[gravity_poses] t=  66.0/246.4s traj     q=[  0.  -30.2  -9.2  -0. ] I=[-0.    0.03 -0.44  0.  ] T=30C
+[gravity_poses] t=  68.0/246.4s traj     q=[  0.  -30.3 -19.8   0. ] I=[ 0.    0.13 -0.34  0.  ] T=30C
+[gravity_poses] t=  70.0/246.4s traj     q=[  0.  -30.3 -19.8   0. ] I=[-0.    0.16 -0.33  0.  ] T=30C
+[gravity_poses] t=  72.0/246.4s traj     q=[  0.  -30.3 -26.7   0. ] I=[-0.    0.17 -0.33  0.  ] T=30C
+[gravity_poses] t=  74.0/246.4s traj     q=[  0.  -30.4 -50.2   0. ] I=[ 0.    0.37 -0.11  0.  ] T=30C
+[gravity_poses] t=  76.0/246.4s traj     q=[  0.  -30.4 -50.2   0. ] I=[-0.    0.4  -0.09  0.  ] T=30C
+[gravity_poses] t=  78.0/246.4s traj     q=[  0.  -30.5 -50.6   0. ] I=[-0.    0.41 -0.13  0.  ] T=30C
+[gravity_poses] t=  80.0/246.4s traj     q=[  0.  -30.6 -79.4   0. ] I=[ 0.    0.61  0.14 -0.  ] T=30C
+[gravity_poses] t=  82.0/246.4s traj     q=[  0.  -30.6 -80.6   0. ] I=[ 0.    0.67  0.18 -0.  ] T=30C
+[gravity_poses] t=  84.0/246.4s traj     q=[  0.  -30.6 -80.6   0. ] I=[-0.    0.68  0.18 -0.  ] T=30C
+[gravity_poses] t=  86.0/246.4s traj     q=[  0.  -13.7 -80.4   0. ] I=[ 0.    0.23  0.07 -0.  ] T=30C
+[gravity_poses] t=  88.0/246.4s traj     q=[  0.  -10.2 -80.3   0. ] I=[-0.    0.1   0.01 -0.  ] T=30C
+[gravity_poses] t=  90.0/246.4s traj     q=[  0.  -10.2 -80.3   0. ] I=[-0.    0.08  0.01 -0.  ] T=30C
+[gravity_poses] t=  92.0/246.4s traj     q=[  0.  -10.2 -65.7   0. ] I=[ 0.    0.03 -0.08  0.  ] T=30C
+[gravity_poses] t=  94.0/246.4s traj     q=[  0. -10. -50.   0.] I=[-0.   -0.15 -0.24  0.  ] T=30C
+[gravity_poses] t=  96.0/246.4s traj     q=[  0.  -10.  -49.9   0. ] I=[-0.   -0.18 -0.25  0.  ] T=30C
+[gravity_poses] t=  98.0/246.4s traj     q=[  0.  -10.  -46.5   0. ] I=[ 0.   -0.18 -0.23  0.  ] T=30C
+[gravity_poses] t= 100.0/246.4s traj     q=[  0.   -9.9 -19.7  -0. ] I=[-0.   -0.32 -0.41  0.  ] T=30C
+[gravity_poses] t= 102.0/246.4s traj     q=[  0.   -9.9 -19.7  -0. ] I=[-0.   -0.36 -0.44  0.  ] T=30C
+[gravity_poses] t= 104.0/246.4s traj     q=[  0.   -9.9 -19.7  -0. ] I=[-0.   -0.37 -0.43  0.  ] T=30C
+[gravity_poses] t= 106.0/246.4s traj     q=[ 0.  -9.8  6.2 -0. ] I=[-0.   -0.4  -0.48  0.  ] T=30C
+[gravity_poses] t= 108.0/246.4s traj     q=[ 0.  -9.8 10.4 -0. ] I=[-0.   -0.43 -0.5   0.  ] T=30C
+[gravity_poses] t= 110.0/246.4s traj     q=[ 0.  -9.8 10.4 -0. ] I=[-0.   -0.44 -0.51  0.  ] T=30C
+[gravity_poses] t= 112.0/246.4s traj     q=[ 0.  -9.8 23.5 -0. ] I=[-0.   -0.44 -0.45  0.  ] T=30C
+[gravity_poses] t= 114.0/246.4s traj     q=[ 0.  -9.8 40.3 -0. ] I=[-0.   -0.4  -0.42  0.  ] T=30C
+[gravity_poses] t= 116.0/246.4s traj     q=[ 0.  -9.9 40.3 -0. ] I=[-0.   -0.38 -0.44  0.  ] T=30C
+[gravity_poses] t= 118.0/246.4s traj     q=[ 0.  -6.9 40.3 -0. ] I=[ 0.   -0.32 -0.44  0.  ] T=30C
+[gravity_poses] t= 120.0/246.4s traj     q=[ 0.  10.3 40.2  0. ] I=[-0.   -0.64 -0.35  0.  ] T=30C
+[gravity_poses] t= 122.0/246.4s traj     q=[ 0.  10.4 40.2  0. ] I=[-0.   -0.68 -0.33  0.  ] T=30C
+[gravity_poses] t= 124.0/246.4s traj     q=[ 0.  10.4 39.   0. ] I=[-0.   -0.69 -0.38  0.  ] T=30C
+[gravity_poses] t= 126.0/246.4s traj     q=[ 0.  10.4 10.6 -0. ] I=[-0.   -0.77 -0.51  0.  ] T=30C
+[gravity_poses] t= 128.0/246.4s traj     q=[ 0.  10.5 10.4 -0. ] I=[-0.   -0.82 -0.48  0.  ] T=30C
+[gravity_poses] t= 130.0/246.4s traj     q=[ 0.  10.5 10.4 -0. ] I=[-0.   -0.84 -0.48  0.  ] T=30C
+[gravity_poses] t= 132.0/246.4s traj     q=[  0.   10.5 -10.9  -0. ] I=[-0.   -0.86 -0.55  0.  ] T=30C
+[gravity_poses] t= 134.0/246.4s traj     q=[  0.   10.5 -19.6  -0. ] I=[-0.   -0.87 -0.52  0.  ] T=30C
+[gravity_poses] t= 136.0/246.4s traj     q=[  0.   10.5 -19.6  -0. ] I=[-0.   -0.88 -0.51  0.  ] T=30C
+[gravity_poses] t= 138.0/246.4s traj     q=[  0.   10.5 -28.   -0. ] I=[-0.   -0.88 -0.53  0.  ] T=30C
+[gravity_poses] t= 140.0/246.4s traj     q=[  0.   10.4 -49.7  -0. ] I=[ 0.   -0.81 -0.42  0.  ] T=30C
+[gravity_poses] t= 142.0/246.4s traj     q=[  0.   10.4 -49.8   0. ] I=[-0.   -0.78 -0.4   0.  ] T=30C
+[gravity_poses] t= 144.0/246.4s traj     q=[  0.   10.4 -50.6   0. ] I=[-0.   -0.77 -0.44  0.  ] T=30C
+[gravity_poses] t= 146.0/246.4s traj     q=[  0.   10.3 -79.6   0. ] I=[ 0.   -0.61 -0.21  0.  ] T=30C
+[gravity_poses] t= 148.0/246.4s traj     q=[  0.   10.3 -80.1   0. ] I=[ 0.   -0.56 -0.18  0.  ] T=30C
+[gravity_poses] t= 150.0/246.4s traj     q=[  0.   10.2 -80.1   0. ] I=[-0.   -0.55 -0.18  0.  ] T=30C
+[gravity_poses] t= 152.0/246.4s traj     q=[  0.   28.4 -79.9   0. ] I=[ 0.   -1.   -0.29  0.  ] T=30C
+[gravity_poses] t= 154.0/246.4s traj     q=[  0.   30.6 -79.9   0. ] I=[-0.   -1.08 -0.33  0.  ] T=30C
+[gravity_poses] t= 156.0/246.4s traj     q=[  0.   30.6 -79.9   0. ] I=[-0.   -1.09 -0.33  0.  ] T=30C
+[gravity_poses] t= 158.0/246.4s traj     q=[  0.   30.7 -63.4   0. ] I=[ 0.   -1.12 -0.39  0.  ] T=30C
+[gravity_poses] t= 160.0/246.4s traj     q=[  0.   30.7 -49.7  -0. ] I=[-0.   -1.21 -0.47  0.  ] T=30C
+[gravity_poses] t= 162.0/246.4s traj     q=[  0.   30.7 -49.6  -0. ] I=[-0.   -1.24 -0.48  0.  ] T=30C
+[gravity_poses] t= 164.0/246.4s traj     q=[  0.   30.7 -45.   -0. ] I=[ 0.   -1.24 -0.45  0.  ] T=30C
+[gravity_poses] t= 166.0/246.4s traj     q=[  0.   30.8 -19.7  -0. ] I=[-0.   -1.26 -0.47  0.  ] T=30C
+[gravity_poses] t= 168.0/246.4s traj     q=[  0.   30.8 -19.6  -0. ] I=[-0.   -1.27 -0.5   0.  ] T=30C
+[gravity_poses] t= 170.0/246.4s traj     q=[  0.   30.7 -19.6  -0. ] I=[-0.   -1.27 -0.45  0.  ] T=30C
+[gravity_poses] t= 172.0/246.4s traj     q=[ 0.  30.7  7.4 -0. ] I=[-0.   -1.23 -0.37  0.  ] T=30C
+[gravity_poses] t= 174.0/246.4s traj     q=[ 0.  30.7 10.2  0. ] I=[-0.   -1.17 -0.38  0.  ] T=30C
+[gravity_poses] t= 176.0/246.4s traj     q=[ 0.  30.7 10.2  0. ] I=[-0.   -1.16 -0.38  0.  ] T=30C
+[gravity_poses] t= 178.0/246.4s traj     q=[ 0.  41.3 -4.7  0. ] I=[ 0.   -1.26 -0.45  0.  ] T=30C
+[gravity_poses] t= 180.0/246.4s traj     q=[  0.   50.9 -19.7  -0. ] I=[-0.   -1.44 -0.45  0.  ] T=30C
+[gravity_poses] t= 182.0/246.4s traj     q=[  0.   50.9 -19.7  -0. ] I=[-0.   -1.48 -0.44  0.  ] T=30C
+[gravity_poses] t= 184.0/246.4s traj     q=[  0.   50.9 -23.4  -0. ] I=[-0.  -1.5 -0.5  0. ] T=30C
+[gravity_poses] t= 186.0/246.4s traj     q=[  0.   50.9 -49.6  -0. ] I=[-0.   -1.54 -0.54  0.  ] T=30C
+[gravity_poses] t= 188.0/246.4s traj     q=[  0.   50.9 -49.6  -0. ] I=[-0.   -1.56 -0.52  0.  ] T=30C
+[gravity_poses] t= 190.0/246.4s traj     q=[  0.   50.9 -49.6  -0. ] I=[-0.   -1.57 -0.54  0.  ] T=30C
+[gravity_poses] t= 192.0/246.4s traj     q=[  0.   50.9 -75.9  -0. ] I=[-0.   -1.56 -0.5   0.  ] T=30C
+[gravity_poses] t= 194.0/246.4s traj     q=[  0.   50.9 -79.7  -0. ] I=[-0.   -1.52 -0.46  0.  ] T=30C
+[gravity_poses] t= 196.0/246.4s traj     q=[  0.   50.9 -79.7  -0. ] I=[-0.   -1.51 -0.45  0.  ] T=30C
+[gravity_poses] t= 198.0/246.4s traj     q=[  0.   42.4 -71.3  12. ] I=[ 0.   -1.49 -0.41  0.03] T=30C
+[gravity_poses] t= 200.0/246.4s traj     q=[  0.    0.7 -30.1  72. ] I=[-0.   -0.67 -0.4   0.04] T=30C
+[gravity_poses] t= 202.0/246.4s traj     q=[  0.   -9.9 -19.7  89.9] I=[-0.   -0.42 -0.42  0.02] T=30C
+[gravity_poses] t= 204.0/246.4s traj     q=[  0.   -9.9 -19.7  90. ] I=[-0.   -0.39 -0.44  0.01] T=30C
+[gravity_poses] t= 206.0/246.4s traj     q=[  0.   -9.9 -19.7  89.3] I=[-0.   -0.38 -0.44 -0.01] T=30C
+[gravity_poses] t= 208.0/246.4s traj     q=[  0.   -9.9 -19.7  66.1] I=[-0.   -0.37 -0.44 -0.02] T=30C
+[gravity_poses] t= 210.0/246.4s traj     q=[  0.   -9.9 -19.7   7.8] I=[-0.   -0.37 -0.44 -0.03] T=30C
+[gravity_poses] t= 212.0/246.4s traj     q=[  0.   -9.9 -19.7 -58.6] I=[ 0.   -0.38 -0.44 -0.04] T=30C
+[gravity_poses] t= 214.0/246.4s traj     q=[  0.   -9.9 -19.7 -89.3] I=[ 0.   -0.37 -0.44 -0.04] T=30C
+[gravity_poses] t= 216.0/246.4s traj     q=[  0.   -9.9 -19.7 -90. ] I=[ 0.   -0.37 -0.44 -0.02] T=30C
+[gravity_poses] t= 218.0/246.4s traj     q=[  0.   -9.9 -19.7 -90. ] I=[ 0.   -0.37 -0.44 -0.01] T=30C
+[gravity_poses] t= 220.0/246.4s traj     q=[  0.   -9.1 -20.4 -86.1] I=[ 0.   -0.31 -0.48  0.02] T=30C
+[gravity_poses] t= 222.0/246.4s traj     q=[  0.   -0.3 -26.9 -51.1] I=[ 0.   -0.51 -0.49  0.02] T=30C
+[gravity_poses] t= 224.0/246.4s traj     q=[  0.   15.2 -38.3  13.8] I=[ 0.   -0.86 -0.51  0.03] T=30C
+[gravity_poses] t= 226.0/246.4s traj     q=[  0.   27.6 -47.4  73.8] I=[-0.   -1.11 -0.52  0.04] T=30C
+[gravity_poses] t= 228.0/246.4s traj     q=[  0.   30.6 -49.6  89.9] I=[-0.   -1.16 -0.51  0.04] T=30C
+[gravity_poses] t= 230.0/246.4s traj     q=[  0.   30.7 -49.7  90. ] I=[-0.   -1.22 -0.48  0.02] T=30C
+[gravity_poses] t= 232.0/246.4s traj     q=[  0.   30.7 -49.7  90. ] I=[-0.   -1.23 -0.48  0.02] T=30C
+[gravity_poses] t= 234.0/246.4s traj     q=[  0.   30.7 -49.7  79.4] I=[-0.   -1.24 -0.48 -0.01] T=30C
+[gravity_poses] t= 236.0/246.4s traj     q=[  0.   30.7 -49.7  33. ] I=[-0.   -1.24 -0.48 -0.02] T=30C
+[gravity_poses] t= 238.0/246.4s traj     q=[  0.   30.7 -49.7 -35.1] I=[-0.   -1.24 -0.48 -0.04] T=30C
+[gravity_poses] t= 240.0/246.4s traj     q=[  0.   30.7 -49.7 -84. ] I=[ 0.   -1.24 -0.48 -0.04] T=30C
+[gravity_poses] t= 242.0/246.4s traj     q=[  0.   30.7 -49.7 -89.9] I=[ 0.   -1.24 -0.48 -0.02] T=30C
+[gravity_poses] t= 244.0/246.4s traj     q=[  0.   30.7 -49.7 -90. ] I=[ 0.   -1.24 -0.48 -0.02] T=30C
+[gravity_poses] t= 246.0/246.4s tail     q=[  0.   30.7 -49.7 -90. ] I=[ 0.   -1.24 -0.48 -0.02] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/09_gravity_poses  (completed)
+{"trajectory": "gravity_poses", "aborted": null, "max_track_err_deg": [0.0, 1.46, 1.38, 0.84], "max_abs_current_A": [0.0, 1.61, 0.56, 0.04], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.697, "p99": 0.839, "max": 2.251}}
+[fourier_A] t=   0.0/49.5s approach q=[  0.   30.7 -49.7 -90. ] I=[ 0.   -1.24 -0.48 -0.02] T=30C
+[fourier_A] t=   2.0/49.5s approach q=[  0.   28.  -44.  -80.5] I=[ 0.   -1.29 -0.45  0.01] T=30C
+[fourier_A] t=   4.0/49.5s approach q=[  0.   14.7 -23.1 -43.9] I=[-0.   -1.05 -0.46  0.02] T=30C
+[fourier_A] t=   6.0/49.5s approach q=[ 0.   2.3 -3.  -6.5] I=[-0.   -0.79 -0.47  0.03] T=30C
+[fourier_A] t=   8.0/49.5s settle   q=[ 0.   0.3  0.3 -0. ] I=[-0.   -0.72 -0.49  0.01] T=30C
+[fourier_A] t=  10.0/49.5s traj     q=[  1.2  10.2 -12.4   1.5] I=[ 0.05 -0.81 -0.56  0.03] T=30C
+[fourier_A] t=  12.0/49.5s traj     q=[ 3.1 10.4 -9.5 16.4] I=[-0.03 -0.97 -0.47  0.03] T=30C
+[fourier_A] t=  14.0/49.5s traj     q=[22.2  3.1  8.3 26.8] I=[ 0.04 -0.8  -0.54  0.04] T=30C
+[fourier_A] t=  16.0/49.5s traj     q=[33.   5.5  0.4 19. ] I=[ 0.05 -0.69 -0.46 -0.02] T=30C
+[fourier_A] t=  18.0/49.5s traj     q=[ 52.8  -0.7  15.5 -28. ] I=[ 0.03 -0.71 -0.46 -0.03] T=30C
+[fourier_A] t=  20.0/49.5s traj     q=[ 27.3   0.5  16.6 -42.8] I=[-0.04 -0.57 -0.45  0.02] T=30C
+[fourier_A] t=  22.0/49.5s traj     q=[-19.5  -9.   13.9 -11.5] I=[-0.04 -0.55 -0.55  0.02] T=30C
+[fourier_A] t=  24.0/49.5s traj     q=[-43.1 -26.4  -2.2  -6.5] I=[-0.04 -0.1  -0.48  0.03] T=30C
+[fourier_A] t=  26.0/49.5s traj     q=[-35.1 -14.3  -0.9  25.3] I=[ 0.04 -0.24 -0.53  0.03] T=30C
+[fourier_A] t=  28.0/49.5s traj     q=[-39.   15.5 -16.7   3.7] I=[ 0.06 -0.91 -0.55 -0.03] T=30C
+[fourier_A] t=  30.0/49.5s traj     q=[ -0.3  17.1 -22.5   2.4] I=[ 0.03 -1.1  -0.55  0.03] T=30C
+[fourier_A] t=  32.0/49.5s traj     q=[ 3.1 10.4 -9.5 16.4] I=[-0.03 -0.97 -0.47  0.03] T=30C
+[fourier_A] t=  34.0/49.5s traj     q=[22.2  3.1  8.2 26.8] I=[ 0.04 -0.8  -0.54  0.04] T=30C
+[fourier_A] t=  36.0/49.5s traj     q=[33.   5.5  0.4 19. ] I=[ 0.05 -0.69 -0.46 -0.02] T=30C
+[fourier_A] t=  38.0/49.5s traj     q=[ 52.8  -0.7  15.5 -28. ] I=[ 0.03 -0.71 -0.46 -0.03] T=30C
+[fourier_A] t=  40.0/49.5s traj     q=[ 27.3   0.5  16.6 -42.8] I=[-0.04 -0.57 -0.45  0.02] T=30C
+[fourier_A] t=  42.0/49.5s traj     q=[-19.5  -9.   13.9 -11.5] I=[-0.04 -0.55 -0.55  0.02] T=30C
+[fourier_A] t=  44.0/49.5s traj     q=[-43.1 -26.4  -2.2  -6.5] I=[-0.04 -0.1  -0.48  0.03] T=30C
+[fourier_A] t=  46.0/49.5s traj     q=[-35.1 -14.3  -0.9  25.3] I=[ 0.04 -0.24 -0.53  0.03] T=30C
+[fourier_A] t=  48.0/49.5s traj     q=[-7.7  2.3 -1.9  0.4] I=[ 0.03 -0.8  -0.47 -0.03] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/10_fourier_A  (completed)
+{"trajectory": "fourier_A", "aborted": null, "max_track_err_deg": [0.99, 0.78, 0.92, 0.72], "max_abs_current_A": [0.07, 1.23, 0.56, 0.04], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.653, "p99": 0.798, "max": 1.137}}
+[fourier_B] t=   0.0/42.5s approach q=[-0.   0.3  0.3  0. ] I=[ 0.02 -0.71 -0.5  -0.  ] T=30C
+[fourier_B] t=   2.0/42.5s traj     q=[2.  0.3 0.1 0.4] I=[ 0.05 -0.61 -0.55  0.03] T=30C
+[fourier_B] t=   4.0/42.5s traj     q=[ 33.  -10.1  13.3  26.9] I=[ 0.04 -0.5  -0.47  0.02] T=30C
+[fourier_B] t=   6.0/42.5s traj     q=[ 49.7 -17.3  18.7  12.6] I=[-0.05 -0.37 -0.55  0.04] T=30C
+[fourier_B] t=   8.0/42.5s traj     q=[  7.1 -17.1   8.5  25.7] I=[-0.04 -0.19 -0.51  0.03] T=30C
+[fourier_B] t=  10.0/42.5s traj     q=[-41.2   9.9   5.9  21.9] I=[-0.03 -0.79 -0.54 -0.01] T=30C
+[fourier_B] t=  12.0/42.5s traj     q=[-39.3  12.9  -7.2  12.4] I=[ 0.04 -0.85 -0.55 -0.02] T=30C
+[fourier_B] t=  14.0/42.5s traj     q=[-40.5  11.3 -14.8 -15.2] I=[-0.03 -0.98 -0.55 -0.03] T=30C
+[fourier_B] t=  16.0/42.5s traj     q=[ -9.2  18.5 -12.8 -25.8] I=[ 0.05 -0.97 -0.46 -0.04] T=30C
+[fourier_B] t=  18.0/42.5s traj     q=[ 10.5  12.6  -3.4 -46.8] I=[-0.04 -1.02 -0.47  0.02] T=30C
+[fourier_B] t=  20.0/42.5s traj     q=[ -1.9 -18.5  -2.3 -16.5] I=[ 0.05 -0.12 -0.49  0.02] T=30C
+[fourier_B] t=  22.0/42.5s traj     q=[32.2  1.  -3.5  4.5] I=[ 0.03 -0.77 -0.47  0.03] T=30C
+[fourier_B] t=  24.0/42.5s traj     q=[ 34.  -10.1  13.6  27. ] I=[ 0.05 -0.52 -0.47 -0.02] T=30C
+[fourier_B] t=  26.0/42.5s traj     q=[ 49.7 -17.3  18.7  12.6] I=[-0.05 -0.37 -0.55  0.04] T=30C
+[fourier_B] t=  28.0/42.5s traj     q=[  7.1 -17.1   8.5  25.7] I=[-0.04 -0.19 -0.51  0.03] T=30C
+[fourier_B] t=  30.0/42.5s traj     q=[-41.2   9.9   5.9  21.9] I=[-0.03 -0.79 -0.54 -0.01] T=30C
+[fourier_B] t=  32.0/42.5s traj     q=[-39.3  12.9  -7.2  12.4] I=[ 0.04 -0.85 -0.55 -0.02] T=30C
+[fourier_B] t=  34.0/42.5s traj     q=[-40.5  11.3 -14.8 -15.2] I=[-0.03 -0.98 -0.55 -0.03] T=30C
+[fourier_B] t=  36.0/42.5s traj     q=[ -9.2  18.5 -12.8 -25.8] I=[ 0.05 -0.97 -0.46 -0.04] T=30C
+[fourier_B] t=  38.0/42.5s traj     q=[ 10.5  12.6  -3.5 -46.8] I=[-0.04 -1.02 -0.47  0.02] T=30C
+[fourier_B] t=  40.0/42.5s traj     q=[ -1.4 -13.6  -1.5 -13.2] I=[ 0.04 -0.24 -0.45  0.02] T=30C
+[fourier_B] t=  42.0/42.5s tail     q=[ 0.   0.2  0.3 -0. ] I=[-0.03 -0.6  -0.49  0.01] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/11_fourier_B  (completed)
+{"trajectory": "fourier_B", "aborted": null, "max_track_err_deg": [1.05, 1.19, 0.68, 0.52], "max_abs_current_A": [0.11, 1.29, 0.56, 0.04], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.667, "p99": 0.806, "max": 1.063}}
+[cartesian_square] t=   0.0/26.0s approach q=[ 0.   0.2  0.3 -0. ] I=[-0.02 -0.62 -0.5   0.01] T=30C
+[cartesian_square] t=   2.0/26.0s approach q=[-9.8 -5.6 18.  -0. ] I=[-0.04 -0.61 -0.46  0.  ] T=30C
+[cartesian_square] t=   4.0/26.0s settle   q=[-21.7 -12.6  41.5  -0. ] I=[-0.04 -0.4  -0.41  0.  ] T=30C
+[cartesian_square] t=   6.0/26.0s traj     q=[-20.1  -8.6  37.7   0. ] I=[ 0.04 -0.31 -0.49  0.  ] T=30C
+[cartesian_square] t=   8.0/26.0s traj     q=[-15.    9.8  17.1   0. ] I=[ 0.04 -0.73 -0.49  0.  ] T=30C
+[cartesian_square] t=  10.0/26.0s traj     q=[-10.2   8.4  18.8  -0. ] I=[ 0.05 -0.87 -0.41  0.  ] T=30C
+[cartesian_square] t=  12.0/26.0s traj     q=[14.9  9.8 17.1  0. ] I=[ 0.04 -0.73 -0.49  0.  ] T=30C
+[cartesian_square] t=  14.0/26.0s traj     q=[15.8  6.2 21.4  0. ] I=[ 0.04 -0.83 -0.41  0.  ] T=30C
+[cartesian_square] t=  16.0/26.0s traj     q=[ 21.7 -12.6  41.5   0. ] I=[ 0.04 -0.4  -0.41  0.  ] T=30C
+[cartesian_square] t=  18.0/26.0s traj     q=[ 15.8 -14.9  43.6   0. ] I=[-0.05 -0.36 -0.41  0.  ] T=30C
+[cartesian_square] t=  20.0/26.0s traj     q=[-21.7 -12.7  41.7   0. ] I=[-0.04 -0.24 -0.49  0.  ] T=30C
+[cartesian_square] t=  22.0/26.0s traj     q=[-21.8 -12.7  41.6   0. ] I=[-0.01 -0.29 -0.45  0.  ] T=30C
+[cartesian_square] t=  24.0/26.0s traj     q=[-21.8 -12.6  41.6   0. ] I=[-0.   -0.31 -0.45  0.  ] T=30C
+[cartesian_square] t=  26.0/26.0s tail     q=[-21.8 -12.6  41.6   0. ] I=[-0.   -0.32 -0.45  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/12_cartesian_square  (completed)
+{"trajectory": "cartesian_square", "aborted": null, "max_track_err_deg": [0.94, 0.68, 0.8, 0.0], "max_abs_current_A": [0.05, 0.92, 0.5, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.658, "p99": 0.788, "max": 1.006}}
+[gripper_cycles] t=   0.0/26.0s approach q=[-21.8 -12.6  41.6   0. ] I=[-0.   -0.32 -0.45  0.  ] T=30C
+[gripper_cycles] t=   2.0/26.0s approach q=[-12.1  -6.8  24.5   0. ] I=[ 0.04 -0.4  -0.53  0.  ] T=30C
+[gripper_cycles] t=   4.0/26.0s approach q=[-0.1  0.2  0.4  0. ] I=[ 0.04 -0.58 -0.55  0.  ] T=30C
+[gripper_cycles] t=   6.0/26.0s traj     q=[-0.   0.2  0.3 -0. ] I=[ 0.01 -0.64 -0.52  0.  ] T=30C
+[gripper_cycles] t=   8.0/26.0s traj     q=[-0.   0.2  0.3  0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  10.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  12.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  14.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  16.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  18.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  20.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  22.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  24.0/26.0s traj     q=[0.  0.2 0.3 0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+[gripper_cycles] t=  26.0/26.0s tail     q=[ 0.   0.2  0.3 -0. ] I=[-0.   -0.66 -0.51  0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/13_gripper_cycles  (completed)
+{"trajectory": "gripper_cycles", "aborted": null, "max_track_err_deg": [0.03, 0.21, 0.34, 0.0], "max_abs_current_A": [0.02, 0.66, 0.53, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.655, "p99": 0.755, "max": 2.753}}
+[park] t=   0.0/11.7s approach q=[ 0.   0.2  0.3 -0. ] I=[ 0.   -0.66 -0.51  0.  ] T=30C
+[park] t=   2.0/11.7s approach q=[  0.  -10.7  10.2  -0. ] I=[ 0.   -0.52 -0.47  0.  ] T=30C
+[park] t=   4.0/11.7s approach q=[  0.  -50.2  44.4  -0. ] I=[-0.    0.27 -0.47  0.  ] T=30C
+[park] t=   6.0/11.7s approach q=[  0.  -79.8  69.4  -0. ] I=[-0.    0.62 -0.47  0.  ] T=30C
+[park] t=   8.0/11.7s traj     q=[  0.  -80.8  70.3  -0. ] I=[-0.    0.66 -0.49  0.  ] T=30C
+[park] t=  10.0/11.7s traj     q=[  0.  -80.8  70.3   0. ] I=[-0.    0.69 -0.5   0.  ] T=30C
+saved /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun/99_park  (completed)
+{"trajectory": "park", "aborted": null, "max_track_err_deg": [0.0, 0.78, 0.3, 0.0], "max_abs_current_A": [0.0, 0.69, 0.5, 0.0], "max_temp_C": 30.0, "loop_dt_ms": {"median": 0.653, "p99": 0.782, "max": 1.229}}
+session -> /home/jcy/course_project/results/sim_runs/20261022_220459_genesis_dryrun

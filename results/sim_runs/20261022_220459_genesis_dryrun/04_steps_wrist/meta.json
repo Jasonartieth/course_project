@@ -1,0 +1,53 @@
+{
+  "trajectory": "steps_wrist",
+  "trajectory_hash": "1237b1b1bf24",
+  "trajectory_meta": {
+    "goal_steps": true,
+    "joint": 3,
+    "steps": [
+      0.1,
+      0.0,
+      -0.1,
+      0.0,
+      0.2,
+      0.0,
+      -0.2,
+      0.0
+    ],
+    "hold_s": 2.5,
+    "purpose": "Goal steps +-0.1/+-0.2 rad on wrist at HOME: profile + PID identification"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 0.5,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    4.1970363895416085e-07,
+    0.007577541284263134,
+    0.011245816946029663,
+    -2.563916496001184e-05
+  ],
+  "notes": "",
+  "started": "2026-10-22T22:05:43",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-22T22:05:52",
+  "wall_time_s": 8.181,
+  "sim_or_nominal_time_s": 25.0,
+  "loop_dt_ms": {
+    "median": 0.652,
+    "p99": 0.752,
+    "max": 2.388
+  },
+  "git_commit": "3bababd"
+}

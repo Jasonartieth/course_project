@@ -1,0 +1,10 @@
+{
+  "trajectory": "steps_shoulder",
+  "backend": "genesis(replay)",
+  "rate_hz": 500.0,
+  "replay_of": "results/sim_runs/20261022_220459_genesis_dryrun/02_steps_shoulder",
+  "params": "default",
+  "aborted": null,
+  "created": "2026-10-22T22:12:12",
+  "git_commit": "a84f50f"
+}

@@ -1,0 +1,344 @@
+{
+  "argv": [
+    "scripts/run.py",
+    "--backend",
+    "genesis",
+    "--set",
+    "data/trajectories/hwday_20261023",
+    "--park",
+    "--tag",
+    "dryrun"
+  ],
+  "runs": [
+    {
+      "trajectory": "hold_home",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        0.49,
+        0.76,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.0,
+        0.67,
+        0.53,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.641,
+        "p99": 0.76,
+        "max": 1.782
+      }
+    },
+    {
+      "trajectory": "steps_base",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.94,
+        0.51,
+        0.73,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.08,
+        0.71,
+        0.52,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.642,
+        "p99": 0.776,
+        "max": 1.435
+      }
+    },
+    {
+      "trajectory": "steps_shoulder",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        1.52,
+        0.71,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.0,
+        1.1,
+        0.52,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.662,
+        "p99": 0.777,
+        "max": 1.835
+      }
+    },
+    {
+      "trajectory": "steps_elbow",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        0.48,
+        1.58,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.0,
+        0.71,
+        0.58,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.661,
+        "p99": 0.801,
+        "max": 1.95
+      }
+    },
+    {
+      "trajectory": "steps_wrist",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        0.46,
+        0.67,
+        0.64
+      ],
+      "max_abs_current_A": [
+        0.0,
+        0.71,
+        0.52,
+        0.04
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.652,
+        "p99": 0.752,
+        "max": 2.388
+      }
+    },
+    {
+      "trajectory": "sine_base",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.73,
+        0.45,
+        0.64,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.09,
+        0.71,
+        0.52,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.668,
+        "p99": 0.775,
+        "max": 1.351
+      }
+    },
+    {
+      "trajectory": "sine_shoulder",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.01,
+        1.11,
+        0.59,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.0,
+        1.11,
+        0.52,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.67,
+        "p99": 0.8,
+        "max": 3.268
+      }
+    },
+    {
+      "trajectory": "sine_elbow",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        0.38,
+        1.21,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.0,
+        0.71,
+        0.58,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.664,
+        "p99": 0.798,
+        "max": 1.629
+      }
+    },
+    {
+      "trajectory": "sine_wrist",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        0.35,
+        0.5,
+        0.5
+      ],
+      "max_abs_current_A": [
+        0.0,
+        0.71,
+        0.52,
+        0.04
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.661,
+        "p99": 0.797,
+        "max": 1.2
+      }
+    },
+    {
+      "trajectory": "gravity_poses",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        1.46,
+        1.38,
+        0.84
+      ],
+      "max_abs_current_A": [
+        0.0,
+        1.61,
+        0.56,
+        0.04
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.697,
+        "p99": 0.839,
+        "max": 2.251
+      }
+    },
+    {
+      "trajectory": "fourier_A",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.99,
+        0.78,
+        0.92,
+        0.72
+      ],
+      "max_abs_current_A": [
+        0.07,
+        1.23,
+        0.56,
+        0.04
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.653,
+        "p99": 0.798,
+        "max": 1.137
+      }
+    },
+    {
+      "trajectory": "fourier_B",
+      "aborted": null,
+      "max_track_err_deg": [
+        1.05,
+        1.19,
+        0.68,
+        0.52
+      ],
+      "max_abs_current_A": [
+        0.11,
+        1.29,
+        0.56,
+        0.04
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.667,
+        "p99": 0.806,
+        "max": 1.063
+      }
+    },
+    {
+      "trajectory": "cartesian_square",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.94,
+        0.68,
+        0.8,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.05,
+        0.92,
+        0.5,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.658,
+        "p99": 0.788,
+        "max": 1.006
+      }
+    },
+    {
+      "trajectory": "gripper_cycles",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.03,
+        0.21,
+        0.34,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.02,
+        0.66,
+        0.53,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.655,
+        "p99": 0.755,
+        "max": 2.753
+      }
+    },
+    {
+      "trajectory": "park",
+      "aborted": null,
+      "max_track_err_deg": [
+        0.0,
+        0.78,
+        0.3,
+        0.0
+      ],
+      "max_abs_current_A": [
+        0.0,
+        0.69,
+        0.5,
+        0.0
+      ],
+      "max_temp_C": 30.0,
+      "loop_dt_ms": {
+        "median": 0.653,
+        "p99": 0.782,
+        "max": 1.229
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "trajectory": "sine_elbow",
+  "trajectory_hash": "cc2bc1ab9f2f",
+  "trajectory_meta": {
+    "joint": 2,
+    "freqs": [
+      0.1,
+      0.2,
+      0.3,
+      0.45
+    ],
+    "amps": [
+      0.2125,
+      0.2125,
+      0.20041733574534967,
+      0.08907437144237763
+    ],
+    "cycles": 3,
+    "purpose": "Sine sweep 0.1-0.45 Hz on elbow at HOME: frequency response, inertia/damping"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 0.5,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    1.1913105481653474e-05,
+    0.0057647982612252235,
+    0.009093858301639557,
+    -2.0595771275111474e-05
+  ],
+  "notes": "",
+  "started": "2026-10-22T22:12:18",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-22T22:12:40",
+  "wall_time_s": 22.288,
+  "sim_or_nominal_time_s": 68.17,
+  "loop_dt_ms": {
+    "median": 0.648,
+    "p99": 0.79,
+    "max": 1.506
+  },
+  "git_commit": "a84f50f"
+}
