@@ -1,0 +1,6 @@
+# Mac-side simulation / analysis environment (python 3.12, managed by uv)
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+mujoco>=3.2
+pytest>=8

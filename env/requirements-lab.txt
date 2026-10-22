@@ -1,0 +1,4 @@
+# Lab-PC (Windows/Linux, wired to the QArm) runtime.
+# The Quanser SDK provides the `quanser` package (quanser.hardware);
+# Quanser_Academic_Resources/0_libraries/python provides `pal` (add it to PYTHONPATH).
+numpy>=1.26
