@@ -26,6 +26,7 @@
   - 明天的轨迹集：`data/trajectories/hwday_20261023/`（15 条，12.2 min，全部通过检查）。在 4090 的 Genesis（CPU）上整套干跑**0 次中止**，最大跟踪误差 1.6°，最大电流 1.6 A。
   - 工具：`scripts/run.py`（真机/仿真共用入口）、`scripts/sim/replay_in_sim.py`（真机日志放进仿真重放并对比）、`scripts/analysis/fit_gravity.py`（重力 + 用砝码标定 Kt）、`scripts/hw/check_env.py`。
   - 上机清单：`docs/hardware_day_20261023.md`。
+  - **Quanser SDK 已装到 4090**（23:01–23:08，用户输入 sudo 密码）：33 个 apt 包（quanser-sdk 1.26.133、python3-quanser-apis、Quanser 自带的 librealsense2 2.49.0），udev 规则 `77-quanser.rules`，驱动 `/usr/lib/x86_64-linux-gnu/quanser/hardware/qarm_usb.so`。`check_env.py` 全部 ALL OK；`qarm` 环境里的 `quanser` 来自 `~/.local/share/qarm_quanser_site`，numpy 仍是环境自己的 2.5.4。安装日志：`logs/install_quanser_sdk_20261022_230140.log`。
   - 用最终代码做的正式干跑：`results/sim_runs/20261022_221039_genesis_dryrun_final/`（15 条，0 次中止）。工具自检：用仿真日志重放，RMSE ≤ 0.06°（`results/replay_selftest_20261022/`）；用仿真数据做重力拟合，残差从 0.07 降到 0.02 N·m（`results/sysid_20261022_221213/`）。
 
 ## 已知坑 / ★
@@ -36,6 +37,7 @@
 - ★ Genesis 会自动合并固定连杆（base_link→world，tcp 和 gripper_base→END-EFFECTOR）→ TCP 要用 END-EFFECTOR 的位姿加 `spec.URDF_EE_TO_TCP` 计算（`GenesisBackend.tcp_position()`）。
 - ★ 4090 的 GPU 暂时不可用：`nvidia-smi` 报 "Driver/library version mismatch"，torch 报 CUDA error 804。根因：自动更新把用户态库升到 580.178，但内核模块还是 580.173（5 周没重启）。解法：重启（需要用户的 sudo）；在此之前 Genesis 用 `--device cpu`（4 自由度的臂约 3 倍实时，够用）。
 - ★ Quanser `pal` 的行为：出错只 `print` 不抛异常（要检查 `status` 和读数）；`measJoint*` 是同一块内部缓冲区的引用（记日志必须复制）；`readMode=1` 是硬件时钟定时读取；打开设备时会写入 PID（P 8.89 / I 0.012 / D 10.23），但不下发位置。
+- ★ 打开 `qarm_usb` 报 **HILError −108**（"kernel-level driver ... could not be found"）= 没检测到机械臂硬件（2026-10-22 没接臂时实测就是这个错误）。连上之后如果还报这个，就查 USB 线、电源、USB 口，以及 `lsusb` 有没有出现新设备。
 - ★ Linux 上 Quanser 的 Python 接口是 apt 包 `python3-quanser-apis`，装在系统 Python 里 → 通过符号链接目录加 .pth 文件**只把 `quanser` 包**暴露给 conda 环境（`install_quanser_sdk.sh`），不要把整个系统 site-packages 加进去。
 - ★ ProfileLimiter 不能用连续时间的制动律 √(2a|e|)：离散步进时刹车太晚，到达目标时速度会跳变（约 20 rad/s²）。改用离散制动律 v = −a·dt/2 + √((a·dt/2)² + 2a|e|) 后，只剩到达那一步 ≤ 2a·dt 的残余速度（有测试覆盖）。
 - ★ SLEEP 位姿（肩 −85°、肘 +75°）正好卡在关节限位上 → 从休息位出发的接近段检查必须允许 2° 容差（`runner._approach_ok`），否则仿真的微小漂移就会被判越界。

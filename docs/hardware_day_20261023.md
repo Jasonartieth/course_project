@@ -8,7 +8,7 @@
 
 | # | 做什么 | 命令 / 说明 |
 |---|---|---|
-| A1 | 安装 Quanser SDK + Python 接口（需要 sudo 密码） | 在 4090 终端执行 `bash ~/course_project/env/4090/install_quanser_sdk.sh`，最后应输出 `OK: quanser.hardware + pal.products.qarm import ...` |
+| A1 | ~~安装 Quanser SDK + Python 接口~~ **已完成（2026-10-22 23:08）** | `check_env.py` 全部 ALL OK；`qarm_usb` 驱动已就位 |
 | A2 | （建议）重启 4090 修复 NVIDIA 驱动 | `sudo reboot`。驱动库已升级到 580.178，但内核模块还是 580.173，所以现在 GPU 不可用。仿真用 CPU 也能跑，重启只为能用 GPU |
 | A3 | 确认 Tailscale 开机自启 | 已确认 `tailscaled` 是 enabled。到实验室接上网络后，我这边 `ssh 4090` 能连上即可 |
 | A4 | 称重砝码 | 准备 2 个已知质量（约 200 g 和 350 g，用厨房秤称到 1 g），能被夹爪夹住或用胶带固定在指尖 |
@@ -65,7 +65,7 @@
 - **立刻停**：你**直接关电源**，或者在对话里说"停"，我按 Ctrl+C。程序收到 Ctrl+C、SSH 断线（SIGHUP）或 `kill`（SIGTERM）时，都会**原地保持 1 s → 存日志 → 关闭连接**。
 - **自动中止条件**（`src/qarm_lab/safety.py`）：瞬时电流超过额定的 90%；持续电流超过额定的 1.3 倍且超过 1.5 s；温度超过 45 °C；关节越限；跟踪误差超过 0.15 rad 且持续 0.5 s；数据冻结。底座 LED 会变红。
 - **开环模式**（PWM/Current）今天**不用**，只用 Position 模式。
-- 连不上时，先确认没有别的程序（QUARC 或 Quanser 的例程）占用机械臂，再重插 USB。
+- 连不上时，先确认没有别的程序（QUARC 或 Quanser 的例程）占用机械臂，再重插 USB。报 **HILError −108** 表示系统没检测到机械臂：检查电源开关、USB 线和接口，用 `lsusb` 看插上前后有没有多出一个设备。
 
 ## G. 收尾
 
