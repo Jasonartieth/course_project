@@ -35,7 +35,8 @@
 - ★ 官方 mesh 面数太多（底座 21 万、夹爪底座 46 万）→ MuJoCo 报 "number of faces should be between 1 and 200000"。解法：`simplify_meshes.py` 生成视觉 mesh（≤5 万面，最大误差 6.8 mm）和碰撞凸包；视觉和碰撞文件用不同的后缀 `__vis`/`__col`。
 - ★ 用 MuJoCo 检查 URDF 时有三个隐蔽的坑：① URDF 解析器默认 `discardvisual=true`，在解析**之前**就把视觉几何丢掉了，解析之后再改 `spec.compiler` 没用，必须把 `<mujoco><compiler discardvisual="false" fusestatic="false"/></mujoco>` 注入 URDF 文本；② `fusestatic` 会把固定关节连接的连杆（tcp、gripper_base）合并掉；③ 名字找不到时 `mj_name2id` 返回 −1，`d.xpos[-1]` 会静默取到最后一个 body → 一定要 assert id ≥ 0。
 - ★ Genesis 会自动合并固定连杆（base_link→world，tcp 和 gripper_base→END-EFFECTOR）→ TCP 要用 END-EFFECTOR 的位姿加 `spec.URDF_EE_TO_TCP` 计算（`GenesisBackend.tcp_position()`）。
-- ★ 4090 的 GPU 暂时不可用：`nvidia-smi` 报 "Driver/library version mismatch"，torch 报 CUDA error 804。根因：自动更新把用户态库升到 580.178，但内核模块还是 580.173（5 周没重启）。解法：重启（需要用户的 sudo）；在此之前 Genesis 用 `--device cpu`（4 自由度的臂约 3 倍实时，够用）。
+- ★ 4090 的 GPU 曾经不可用：`nvidia-smi` 报 "Driver/library version mismatch"，torch 报 CUDA error 804。根因：自动更新把用户态库升到 580.178，但内核模块还是 580.173（5 周没重启）。**2026-10-22 23:09 重启后已修好**（内核 7.0.0-38，驱动 580.178.04，CUDA 13.0，torch 能识别 RTX 4090 Laptop 16 GB）。以后再出现同样报错，先看 `cat /proc/driver/nvidia/version` 和 `dpkg -l nvidia-driver-*` 的版本是否一致，不一致就重启。
+- ★ Genesis 只跑**单个环境**时，GPU 反而比 CPU 慢（steps_shoulder 31.6 s 的仿真：GPU 23 s，CPU 10 s，结果完全一致）→ 单条运行或重放默认用 CPU；批量参数辨识或强化学习（n_envs 很大）时再用 `--device gpu`。GPU 离屏相机渲染已验证可用（`results/render_check_20261022/`）。
 - ★ Quanser `pal` 的行为：出错只 `print` 不抛异常（要检查 `status` 和读数）；`measJoint*` 是同一块内部缓冲区的引用（记日志必须复制）；`readMode=1` 是硬件时钟定时读取；打开设备时会写入 PID（P 8.89 / I 0.012 / D 10.23），但不下发位置。
 - ★ 打开 `qarm_usb` 报 **HILError −108**（"kernel-level driver ... could not be found"）= 没检测到机械臂硬件（2026-10-22 没接臂时实测就是这个错误）。连上之后如果还报这个，就查 USB 线、电源、USB 口，以及 `lsusb` 有没有出现新设备。
 - ★ Linux 上 Quanser 的 Python 接口是 apt 包 `python3-quanser-apis`，装在系统 Python 里 → 通过符号链接目录加 .pth 文件**只把 `quanser` 包**暴露给 conda 环境（`install_quanser_sdk.sh`），不要把整个系统 site-packages 加进去。
