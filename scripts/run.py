@@ -12,11 +12,15 @@ Examples
 
 Output: <out-root>/<YYYYmmdd_HHMMSS>_<backend>[_<tag>]/<NN_name>/{log.npz, meta.json, plot.png} and session.json
 (out-root defaults: data/real for pal, results/sim_runs for simulation). Nothing is ever overwritten.
+
+Stopping: Ctrl+C, SIGTERM (`kill <pid>`) and SIGHUP (SSH connection lost) all abort the current trajectory the
+same way: hold the measured pose for 1 s, save the log, close the arm. Run real sessions inside tmux anyway.
 """
 
 import argparse
 import datetime as dt
 import json
+import signal
 import sys
 from pathlib import Path
 
@@ -53,7 +57,15 @@ def read_only(backend, seconds, out_dir):
     print(f"  sample period ms: median {np.median(dt_s) * 1e3:.3f}  p99 {np.percentile(dt_s, 99) * 1e3:.3f}")
 
 
+def _stop_like_ctrl_c(signum, _frame):
+    # SSH drop (SIGHUP) or `kill <pid>` (SIGTERM) must take the same safe path as Ctrl+C: the runner catches
+    # KeyboardInterrupt, holds the measured pose, saves the log and the session closes the arm.
+    raise KeyboardInterrupt(f"signal {signal.Signals(signum).name}")
+
+
 def main():
+    for sig in (signal.SIGHUP, signal.SIGTERM):
+        signal.signal(sig, _stop_like_ctrl_c)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--backend", required=True, choices=["pal", "genesis", "fake"])
     ap.add_argument("--traj", nargs="*", default=[], help="trajectory .npz files, run in the given order")

@@ -104,8 +104,8 @@ def run_trajectory(backend, traj, out_dir=None, approach_speed=0.25, settle_s=1.
                 last_print = t
                 print(f"[{traj.name}] t={t:6.1f}/{bounds[-1]:.1f}s {phase:8s} q={np.rad2deg(s.q[:4]).round(1)} "
                       f"I={s.current[:4].round(2)} T={s.temp.max():.0f}C")
-    except KeyboardInterrupt:
-        abort = "KeyboardInterrupt (user stop)"
+    except KeyboardInterrupt as e:          # Ctrl+C, or SIGHUP/SIGTERM re-raised by scripts/run.py
+        abort = f"KeyboardInterrupt ({e or 'Ctrl+C'})"
     if abort:
         backend.set_led((1.0, 0.0, 0.0))
         print(f"!!! ABORT [{traj.name}]: {abort} -> holding the measured pose for 1 s")

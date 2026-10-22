@@ -15,3 +15,7 @@ venv/
 # test / build caches
 .pytest_cache/
 dist/
+
+# simulation run logs are regenerable (kept on disk, not in git); plots/meta/session files are committed
+results/sim_runs/**/log.npz
+results/replay_*/**/log.npz

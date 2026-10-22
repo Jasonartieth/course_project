@@ -5,6 +5,9 @@ profile_acceleration = pi/3 rad/s^2 toward the latest goal position; the servo's
 The simulator feeds goals through this limiter before its PD controller, and the runner logs the limiter output
 as `q_ref` for both backends so tracking errors are measured against what the servo is actually asked to do.
 Whether the real servo's profile matches this emulation is one of the things the step tests check.
+
+Guarantee (tests/test_core.py): |dq| <= v_max always; |ddq| <= a_max on every step except the arrival step, where
+a residual velocity of at most 2*a_max*dt is zeroed (0.24 deg/s at 500 Hz).
 """
 
 import numpy as np
@@ -26,8 +29,11 @@ class ProfileLimiter:
     def step(self, goal, dt):
         """Advance by dt toward `goal`; returns (q_ref, dq_ref) copies."""
         e = np.asarray(goal, dtype=float) - self.q
-        # fastest velocity from which we can still stop at the goal, capped by v_max
-        v_des = np.sign(e) * np.minimum(self.v_max, np.sqrt(2.0 * self.a_max * np.abs(e)))
+        # fastest velocity from which we can still stop at the goal, capped by v_max. Discrete-time braking law:
+        # decelerating by a*dt per step from v covers v^2/(2a) + v*dt/2, so v = -a*dt/2 + sqrt((a*dt/2)^2 + 2a|e|)
+        # (the continuous sqrt(2a|e|) brakes too late and ends with a velocity jump at the goal).
+        h = 0.5 * self.a_max * dt
+        v_des = np.sign(e) * np.minimum(self.v_max, -h + np.sqrt(h * h + 2.0 * self.a_max * np.abs(e)))
         dv = np.clip(v_des - self.dq, -self.a_max * dt, self.a_max * dt)
         self.dq = self.dq + dv
         step = self.dq * dt
