@@ -1,6 +1,8 @@
 # course_project
 
-大作业项目。（主题待定，确定后补充）
+基于 Quanser **QArm**（4 自由度机械臂）的大作业项目。（具体作业要求待补）
+
+- 调研报告：[docs/research/qarm_survey_2026-10-22.md](docs/research/qarm_survey_2026-10-22.md)
 
 ## 目录结构
 

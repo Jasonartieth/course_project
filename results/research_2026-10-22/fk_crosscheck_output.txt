@@ -1,0 +1,18 @@
+q=[0, 0, 0, 0]
+  URDF wrist-frame origin : [0.288  0.     0.4898]
+  DH tip (L4+L5=0.40)     : [0.45 0.   0.49]
+  DH with lam3=L4 (0.25)  : [ 0.3  -0.    0.49]   |URDF-DH(L4)|=12.0 mm
+q=[0.5, 0.3, -0.4, 0.2]
+  URDF wrist-frame origin : [0.3405 0.186  0.4831]
+  DH tip (L4+L5=0.40)     : [0.482  0.2633 0.4995]
+  DH with lam3=L4 (0.25)  : [0.351  0.1917 0.4846]   |URDF-DH(L4)|=12.0 mm
+q=[-1.0, -0.6, 0.8, 1.0]
+  URDF wrist-frame origin : [ 0.0415 -0.0647  0.4096]
+  DH tip (L4+L5=0.40)     : [ 0.1273 -0.1983  0.3776]
+  DH with lam3=L4 (0.25)  : [ 0.0479 -0.0746  0.4074]   |URDF-DH(L4)|=12.0 mm
+
+TCP offset of DH tip expressed in URDF END-EFFECTOR frame (should be constant if a fixed tool frame suffices):
+  q=[0, 0, 0, 0]: offset_local = [0.0002 0.     0.162 ]
+  q=[0.5, 0.3, -0.4, 0.2]: offset_local = [ 0.0002 -0.      0.162 ]
+  q=[-1.0, -0.6, 0.8, 1.0]: offset_local = [ 0.0001 -0.0002  0.162 ]
+  q=[1.2, 0.9, -1.2, -2.0]: offset_local = [-0.0001  0.0002  0.1621]
