@@ -35,6 +35,10 @@ DDQ_MAX = np.full(4, np.pi / 3)           # rad/s^2 (Table 7, also pal default p
 
 # Gripper command range accepted by pal (it clips to [0.1, 0.9]; 0 = open, 1 = closed)
 GRIP_MIN, GRIP_MAX = 0.1, 0.9
+# Simulation-only gripper map: finger joint angles = grip * GRIPPER_FINGER_CLOSE (URDF joint names).
+# APPROXIMATE (chosen visually, results/model_check_*); the real gripper is tendon-driven and underactuated.
+# To be checked against the real arm (finger angles at grip 0.1 / 0.9).
+GRIPPER_FINGER_CLOSE = {"Joint1A": -0.45, "Joint2A": -0.35, "Joint1B": 0.45, "Joint2B": -0.35}
 
 # ---------------------------------------------------------------- poses (pal.products.qarm.QArm)
 HOME_POSE = np.zeros(4)                                         # TCP at (0.45, 0, 0.49)

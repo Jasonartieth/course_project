@@ -1,0 +1,150 @@
+{
+  "source": "models/qarm_official (quanser/urdf_representations @ 071f9a6)",
+  "limits": {
+    "YAW": {
+      "before": {
+        "lower": "-2.967",
+        "upper": "2.967",
+        "effort": "0",
+        "velocity": "0"
+      },
+      "after": {
+        "lower": "-2.967060",
+        "upper": "2.967060",
+        "effort": "10.6",
+        "velocity": "1.570796"
+      }
+    },
+    "SHOULDER": {
+      "before": {
+        "lower": "-1.483",
+        "upper": "1.483",
+        "effort": "0",
+        "velocity": "0"
+      },
+      "after": {
+        "lower": "-1.483530",
+        "upper": "1.483530",
+        "effort": "21.2",
+        "velocity": "1.570796"
+      }
+    },
+    "ELBOW": {
+      "before": {
+        "lower": "-1.658",
+        "upper": "1.309",
+        "effort": "0",
+        "velocity": "0"
+      },
+      "after": {
+        "lower": "-1.658063",
+        "upper": "1.308997",
+        "effort": "10.6",
+        "velocity": "1.570796"
+      }
+    },
+    "WRIST": {
+      "before": {
+        "lower": "-3.010",
+        "upper": "3.010",
+        "effort": "0",
+        "velocity": "0"
+      },
+      "after": {
+        "lower": "-2.792527",
+        "upper": "2.792527",
+        "effort": "4.1",
+        "velocity": "1.570796"
+      }
+    }
+  },
+  "dh_to_link_residual": {
+    "YAW": {
+      "max_translation_m": 0.0,
+      "max_rotation_elem": 2.220446049250313e-16
+    },
+    "BICEP": {
+      "max_translation_m": 0.00022741614591168663,
+      "max_rotation_elem": 3.944120963116794e-15
+    },
+    "FOREARM": {
+      "max_translation_m": 0.0004391664553815289,
+      "max_rotation_elem": 6.839016620764775e-15
+    },
+    "END-EFFECTOR": {
+      "max_translation_m": 0.00042253290974214597,
+      "max_rotation_elem": 1.049160758270772e-14
+    }
+  },
+  "inertials": {
+    "YAW": {
+      "mass": 0.7906,
+      "com_link": [
+        0.0,
+        0.0003,
+        0.1001
+      ]
+    },
+    "BICEP": {
+      "mass": 0.4591,
+      "com_link": [
+        0.019609,
+        -0.246383,
+        -0.0001
+      ]
+    },
+    "FOREARM": {
+      "mass": 0.269,
+      "com_link": [
+        0.031608,
+        0.153169,
+        -0.002
+      ]
+    },
+    "END-EFFECTOR": {
+      "mass": 0.257,
+      "com_link": [
+        -0.011374,
+        0.0,
+        0.0622
+      ]
+    }
+  },
+  "gripper": {
+    "mount_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mount_rpy": [
+      1.5707963267948966,
+      0.0,
+      1.5707963267948966
+    ],
+    "finger_limits": {
+      "Joint1A": [
+        -0.9,
+        0.05
+      ],
+      "Joint2A": [
+        -1.2,
+        0.05
+      ],
+      "Joint1B": [
+        -0.05,
+        0.9
+      ],
+      "Joint2B": [
+        -1.2,
+        0.05
+      ]
+    },
+    "token_masses": {
+      "gripper_base": 0.005,
+      "Link1A": 0.005,
+      "Link1B": 0.005,
+      "Link2A": 0.003,
+      "Link2B": 0.003
+    }
+  }
+}

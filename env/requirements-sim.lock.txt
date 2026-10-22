@@ -2,6 +2,7 @@ absl-py==2.5.1
 contourpy==1.4.0
 cycler==0.12.1
 etils==1.14.0
+fast-simplification==0.2.0
 fonttools==4.67.0
 fsspec==2026.9.0
 glfw==2.11.0
@@ -18,8 +19,10 @@ pyopengl==3.1.10
 pyparsing==3.3.3
 pytest==9.1.1
 python-dateutil==3.0.0
+rtree==1.4.1
 scipy==1.18.1
 six==1.17.0
+trimesh==5.1.1
 typing-extensions==4.16.0
 tzdata==2026.5
 websockets==17.3

@@ -1,0 +1,112 @@
+{
+  "qarm__BICEP": {
+    "source": "models/qarm_official/qarm/meshes/BICEP.STL",
+    "faces_official": 15884,
+    "faces_visual": 15884,
+    "faces_collision": 392,
+    "visual_err_max_mm": 0.0,
+    "visual_err_mean_mm": 0.0,
+    "kb_official": 775,
+    "kb_visual": 775,
+    "kb_collision": 19
+  },
+  "qarm__END-EFFECTOR": {
+    "source": "models/qarm_official/qarm/meshes/END-EFFECTOR.STL",
+    "faces_official": 4782,
+    "faces_visual": 4782,
+    "faces_collision": 344,
+    "visual_err_max_mm": 0.0,
+    "visual_err_mean_mm": 0.0,
+    "kb_official": 233,
+    "kb_visual": 233,
+    "kb_collision": 16
+  },
+  "qarm__FOREARM": {
+    "source": "models/qarm_official/qarm/meshes/FOREARM.STL",
+    "faces_official": 82075,
+    "faces_visual": 50000,
+    "faces_collision": 740,
+    "visual_err_max_mm": 1.405,
+    "visual_err_mean_mm": 0.0274,
+    "kb_official": 4007,
+    "kb_visual": 2441,
+    "kb_collision": 36
+  },
+  "qarm__YAW": {
+    "source": "models/qarm_official/qarm/meshes/YAW.STL",
+    "faces_official": 49396,
+    "faces_visual": 49396,
+    "faces_collision": 304,
+    "visual_err_max_mm": 0.0,
+    "visual_err_mean_mm": 0.0,
+    "kb_official": 2411,
+    "kb_visual": 2411,
+    "kb_collision": 14
+  },
+  "qarm__base_link": {
+    "source": "models/qarm_official/qarm/meshes/base_link.STL",
+    "faces_official": 211080,
+    "faces_visual": 49998,
+    "faces_collision": 216,
+    "visual_err_max_mm": 4.393,
+    "visual_err_mean_mm": 0.0849,
+    "kb_official": 10306,
+    "kb_visual": 2441,
+    "kb_collision": 10
+  },
+  "qarm_gripper__Link1A": {
+    "source": "models/qarm_official/qarm_gripper/meshes/Link1A.STL",
+    "faces_official": 138338,
+    "faces_visual": 50000,
+    "faces_collision": 332,
+    "visual_err_max_mm": 1.876,
+    "visual_err_mean_mm": 0.082,
+    "kb_official": 6754,
+    "kb_visual": 2441,
+    "kb_collision": 16
+  },
+  "qarm_gripper__Link1B": {
+    "source": "models/qarm_official/qarm_gripper/meshes/Link1B.STL",
+    "faces_official": 107582,
+    "faces_visual": 50000,
+    "faces_collision": 290,
+    "visual_err_max_mm": 1.827,
+    "visual_err_mean_mm": 0.0769,
+    "kb_official": 5253,
+    "kb_visual": 2441,
+    "kb_collision": 14
+  },
+  "qarm_gripper__Link2A": {
+    "source": "models/qarm_official/qarm_gripper/meshes/Link2A.STL",
+    "faces_official": 50126,
+    "faces_visual": 50000,
+    "faces_collision": 444,
+    "visual_err_max_mm": 0.153,
+    "visual_err_mean_mm": 0.003,
+    "kb_official": 2447,
+    "kb_visual": 2441,
+    "kb_collision": 21
+  },
+  "qarm_gripper__Link2B": {
+    "source": "models/qarm_official/qarm_gripper/meshes/Link2B.STL",
+    "faces_official": 50126,
+    "faces_visual": 50000,
+    "faces_collision": 444,
+    "visual_err_max_mm": 0.182,
+    "visual_err_mean_mm": 0.0031,
+    "kb_official": 2447,
+    "kb_visual": 2441,
+    "kb_collision": 21
+  },
+  "qarm_gripper__base_link": {
+    "source": "models/qarm_official/qarm_gripper/meshes/base_link.STL",
+    "faces_official": 461538,
+    "faces_visual": 49998,
+    "faces_collision": 460,
+    "visual_err_max_mm": 6.821,
+    "visual_err_mean_mm": 0.5693,
+    "kb_official": 22536,
+    "kb_visual": 2441,
+    "kb_collision": 22
+  }
+}
