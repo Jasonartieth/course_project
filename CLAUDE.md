@@ -11,6 +11,7 @@
 ## 进展
 - 2026-10-22：建立项目骨架与私有仓
 - 2026-10-22：完成 QArm 调研 → `docs/research/qarm_survey_2026-10-22.md`。结论：官方 URDF（quanser/urdf_representations，BSD-3）运动学已与官方 DH 交叉验证一致（`scripts/research/fk_crosscheck_urdf_vs_dh.py`）；电机为 Dynamixel XM540-W270-R（底座/肩×2/肘）+ XM430-W350-R（腕）+ XC430-W240-T（夹爪），瞬时/持续力矩 10.6/21.2/10.6/4.1 与 2.65/5.3/2.65/1.0 N·m，速度上限 π/2 rad/s；真实质量和惯量见官方 `7. Dynamic Parameters.pdf`。没有现成的 MuJoCo 模型。仿真路线待按作业要求选定。
+- 2026-10-22：确认**真机可以纯 Python 控制，不必用 Simulink**。官方 `pal.products.qarm.QArm.read_write_std()` 在 Position 模式下下发关节角和夹爪指令，同时回读位置、速度、电流(A)、PWM、温度，默认 500 Hz；`pal` 不支持 PWM/Current 模式，Simulink 需要 QUARC 许可证。Python 依赖 Quanser SDK（含 `quanser.hardware`），**官方只提供 Windows 和 Linux 版**；macOS 只有 beta 版的 C 语言 HIL SDK（列出了 QArm，但没有 Python API）→ 真机要接在 Windows/Linux 电脑上。用户计划日后连真机做 real2sim（不完全信任网上参数）。
 
 ## 已知坑 / ★
 - ★ git push 报 "Repository not found"：本机 SSH key 绑定的是 kefusong 账号，访问不到 Jasonartieth 的私有仓 → remote 必须用 HTTPS（`https://github.com/Jasonartieth/course_project.git`，走 gh 凭据）。`gh repo create --source=. --push` 默认用 SSH，会失败，需要先 `git remote set-url` 改成 HTTPS。
