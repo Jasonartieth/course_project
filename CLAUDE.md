@@ -1,7 +1,7 @@
 # course_project — 项目说明
 
 - 创建日期：2026-10-22
-- GitHub：Jasonartieth/course_project（私有）
+- GitHub：Jasonartieth/course_project（**2026-10-23 起公开**：https://github.com/Jasonartieth/course_project）。公开仓库里不许出现真实姓名、个人邮箱、IP 或密钥（见「已知坑」里的 git 身份条目）。
 - 主题：基于 Quanser **QArm**（4 自由度，roll-pitch-pitch-roll）的大作业；**没有给定作业要求，任务由用户自定**。当前阶段是搭基础环境，并做真机 real2sim。
 - 仿真器：**Genesis**（用户指定）。运行机器是 **4090**（`ssh 4090`，Tailscale <tailscale-ip>，用户 jcy，Ubuntu 24.04，Alienware 笔记本）；这台电脑也会被带去接真机，从 Mac 远程控制。
 - Mac 只负责写代码和离线分析（`.venv`，uv，Python 3.12；装了 MuJoCo，只用来渲染检查 URDF）。
@@ -13,6 +13,7 @@
 
 ## 两台机器的工作流
 - Mac 是主力编辑端：改代码 → commit → push（Mac 用 HTTPS remote）。
+- 两台机器都在仓库本地设置了 git 身份 `Jasonartieth <178580748+Jasonartieth@users.noreply.github.com>`（`git config user.*`，不是 --global）。新 clone 下来的副本要先设好这个身份再提交。
 - 4090：`cd ~/course_project && git pull`；conda 环境 `qarm`（`~/miniconda3/envs/qarm/bin/python`，`src/` 已通过 .pth 加入 path；tmux 也装在这个环境里）。4090 上产生的数据在 4090 上 commit 并 push（4090 的 SSH key 就是 Jasonartieth）。
 - Quanser `pal`/`hal`：`~/Quanser/Quanser_Academic_Resources`（稀疏检出 `0_libraries/python`，分支 dev-windows）。Quanser SDK 需要用户用 sudo 执行 `env/4090/install_quanser_sdk.sh`。
 
@@ -31,6 +32,7 @@
 
 ## 已知坑 / ★
 - ★ git push 报 "Repository not found"：本机 SSH key 绑定的是 kefusong 账号，访问不到 Jasonartieth 的私有仓 → remote 必须用 HTTPS（`https://github.com/Jasonartieth/course_project.git`，走 gh 凭据）。`gh repo create --source=. --push` 默认用 SSH，会失败，需要先 `git remote set-url` 改成 HTTPS。（**4090 例外**：它的 SSH key 就是 Jasonartieth，可以直接 `git@github.com:` 克隆和推送。）
+- ★ **公开仓库前必须清理提交身份，而且强制推送并不够**（2026-10-23）。现象：Mac 的默认 git 身份是「真实姓名 <用户名@主机名.local>」，我在 4090 上提交时用了用户的 gmail；用 `git filter-repo --mailmap/--replace-text` 改写并强制推送后，GitHub 仍然保留旧的提交对象，公开后按旧 SHA（连短 SHA 也行）访问照样返回 200，个人信息还在。解法：先改回私有 → 把旧仓库**改名**保留为私有（`course_project_prerewrite_20261023`）→ 新建同名的公开仓库 → 推送清理后的历史；验证旧 SHA 返回 422。以后：两台机器都用 noreply 身份；**不要用 `git -c user.email=<个人邮箱>` 提交**。
 - ★ 官方 QARM.urdf 不能直接用于物理仿真：① 所有关节 effort/velocity=0；② 惯性参数是占位值（文件头注明）；③ mesh 路径 `package://QARM/` 和目录 `qarm`、package 名 `QArm` 大小写不一致；④ 夹爪是单独的 URDF，限位全为 0、没有连到臂上；⑤ 没有 TCP，需在 END-EFFECTOR 后加固定关节 xyz=(0,0,0.162) 才能与官方 FK/IK（λ3=0.40）对齐（已实测，误差 <1 mm）；⑥ 腕关节限位 ±172.5°，手册为 ±160°。已由 `scripts/model/build_qarm_urdf.py` 全部修复。
 - ★ 官方 mesh 面数太多（底座 21 万、夹爪底座 46 万）→ MuJoCo 报 "number of faces should be between 1 and 200000"。解法：`simplify_meshes.py` 生成视觉 mesh（≤5 万面，最大误差 6.8 mm）和碰撞凸包；视觉和碰撞文件用不同的后缀 `__vis`/`__col`。
 - ★ 用 MuJoCo 检查 URDF 时有三个隐蔽的坑：① URDF 解析器默认 `discardvisual=true`，在解析**之前**就把视觉几何丢掉了，解析之后再改 `spec.compiler` 没用，必须把 `<mujoco><compiler discardvisual="false" fusestatic="false"/></mujoco>` 注入 URDF 文本；② `fusestatic` 会把固定关节连接的连杆（tcp、gripper_base）合并掉；③ 名字找不到时 `mj_name2id` 返回 −1，`d.xpos[-1]` 会静默取到最后一个 body → 一定要 assert id ≥ 0。
@@ -52,3 +54,4 @@
 - 程序结束（terminate）后机械臂是保持力矩还是变软
 
 ## 归档索引（任务 → 仓库/分支/tag/路径）
+- 公开前的原始提交历史（含旧作者信息，19 个提交，HEAD 9fb4778）→ 本地 `_backup/history_before_public_20261023/course_project_pre_rewrite_9fb4778.bundle`（已校验，附 `commit_list_pre_rewrite.txt`）+ 私有仓 `Jasonartieth/course_project_prerewrite_20261023`（可以删除）。找回方法：`git clone <bundle> <dir>`。
