@@ -54,4 +54,4 @@
 - 程序结束（terminate）后机械臂是保持力矩还是变软
 
 ## 归档索引（任务 → 仓库/分支/tag/路径）
-- 公开前的原始提交历史（含旧作者信息，19 个提交，HEAD 9fb4778）→ 本地 `_backup/history_before_public_20261023/course_project_pre_rewrite_9fb4778.bundle`（已校验，附 `commit_list_pre_rewrite.txt`）+ 私有仓 `Jasonartieth/course_project_prerewrite_20261023`（可以删除）。找回方法：`git clone <bundle> <dir>`。
+- 公开前的原始提交历史（含旧作者信息，19 个提交，HEAD 9fb4778）→ 本地 `_backup/history_before_public_20261023/course_project_pre_rewrite_9fb4778.bundle`（已校验，附 `commit_list_pre_rewrite.txt`）+ 私有仓 `Jasonartieth/course_project_prerewrite_20261023`（**用户 2026-10-23 决定保留，不删**；不要再建议删除或改成公开）。找回方法：`git clone <bundle> <dir>`。
