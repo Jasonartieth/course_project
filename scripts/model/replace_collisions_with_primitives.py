@@ -9,6 +9,9 @@ For each <collision> block referencing a mesh:
   * if the link's <visual> uses the same mesh and origin, enclosing the collision mesh = enclosing the visual;
     links where they differ are reported (pass --require-same-visual to fail on them)
   * the block is replaced by one <collision> per primitive, preceded by a one-line comment
+  * the written file is re-parsed: primitives are rebuilt from their <origin rpy> and sizes exactly as a URDF
+    parser would, and every vertex of each link's visual mesh must lie inside them (guards against rpy
+    rounding / gimbal-lock decomposition errors)
 
 Usage:  python scripts/model/replace_collisions_with_primitives.py <in.urdf> <out.urdf>
             [--mesh-root DIR]  (default: the input URDF's directory)  [--require-same-visual]
@@ -64,6 +67,37 @@ def primitive_block(p, indent):
     i2, i4 = indent + "  ", indent + "    "
     return (f"{indent}<collision>\n{i2}<origin xyz=\"{g(p.T[:3, 3])}\" rpy=\"{g(rpy)}\"/>\n"
             f"{i2}<geometry>\n{i4}{geo}\n{i2}</geometry>\n{indent}</collision>\n")
+
+
+def verify_written(urdf_text, mesh_root):
+    """Round-trip check on the WRITTEN file: rebuild every primitive from its <origin>/<geometry> as a URDF parser
+    would (rpy -> rotation) and test that every vertex of the link's visual meshes, placed by the visual
+    <origin>, is inside the union of the link's collision primitives. Returns {link: (coverage, n_outside)}."""
+    robot = ET.fromstring(urdf_text)
+    res = {}
+    for l in robot.findall("link"):
+        prims = []
+        for c in l.findall("collision"):
+            geo = c.find("geometry")[0]
+            T, _ = origin_T(c)
+            if geo.tag == "box":
+                prims.append(CP.Primitive("box", T, np.array([float(v) for v in geo.get("size").split()])))
+            elif geo.tag == "cylinder":
+                prims.append(CP.Primitive("cylinder", T, np.array([float(geo.get("radius")), float(geo.get("length"))])))
+            elif geo.tag == "sphere":
+                prims.append(CP.Primitive("sphere", T, np.array([float(geo.get("radius"))])))
+        if not prims:
+            continue
+        pts = []
+        for v in l.findall("visual"):
+            mesh_el = v.find("geometry/mesh")
+            if mesh_el is not None:
+                Tv, _ = origin_T(v)
+                V = trimesh.load_mesh(mesh_root / mesh_el.get("filename")).vertices
+                pts.append(V @ Tv[:3, :3].T + Tv[:3, 3])
+        if pts:
+            res[l.get("name")] = CP.check_coverage(prims, np.vstack(pts), tol=1e-6)
+    return res
 
 
 def strip_collisions(text):
@@ -128,6 +162,12 @@ def main():
     new = "".join(out)
     ET.fromstring(new)                                         # still well-formed
     assert strip_collisions(new) == strip_collisions(text), "something outside <collision> changed"
+    written = verify_written(new, mesh_root)
+    for link, (cov, n_out) in written.items():
+        report.setdefault(link, {})["visual_coverage_after_writing"] = cov
+        print(f"  round-trip {link:18s} visual vertices inside written primitives: {cov:.6f} ({n_out} outside)")
+    bad = {k: v for k, v in written.items() if v[1]}
+    assert not bad, f"visual vertices outside the written primitives: {bad}"
     dst = Path(a.urdf_out)
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(new)
