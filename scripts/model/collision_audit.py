@@ -52,6 +52,8 @@ def main():
     ap.add_argument("--samples", type=int, default=400)
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--no-render", action="store_true")
+    ap.add_argument("--close", help="finger angles at grip=1 as 'Joint1A,Joint2A,Joint1B,Joint2B' (rad); default: "
+                                    "gripper_report.json next to the URDF if present, else spec.GRIPPER_FINGER_CLOSE")
     a = ap.parse_args()
     urdf = Path(a.urdf).resolve()
     tag = a.tag or urdf.stem
@@ -85,9 +87,16 @@ def main():
 
     jmap = {j.name: j for j in arm.joints}
     arm_dofs = [jmap[n].dofs_idx_local[0] for n in ARM_JOINTS]
-    fingers = [n for n in spec.GRIPPER_FINGER_CLOSE if n in jmap]
+    close_map = dict(spec.GRIPPER_FINGER_CLOSE)
+    grip_report = urdf.parent / "gripper_report.json"
+    if a.close:
+        close_map = dict(zip(("Joint1A", "Joint2A", "Joint1B", "Joint2B"), map(float, a.close.split(","))))
+    elif grip_report.exists():
+        rec = json.loads(grip_report.read_text())["recommended_mapping"]
+        close_map = dict(zip(rec["joints"], rec["coefficients_at_grip_1"]))
+    fingers = [n for n in close_map if n in jmap]
     finger_dofs = [jmap[n].dofs_idx_local[0] for n in fingers]
-    close = np.array([spec.GRIPPER_FINGER_CLOSE[n] for n in fingers])
+    close = np.array([close_map[n] for n in fingers])
     geom2link = {g.idx: l.name for l in arm.links for g in l.geoms}
 
     def set_q(q_arm, grip, ent=arm):
@@ -110,7 +119,8 @@ def main():
                       "convex": [bool(g.is_convex) for g in l.geoms],
                       "aabb_size_mm": [((b[1] - b[0]) * 1e3).round(1).tolist() for b in boxes]})
 
-    report = {"urdf": str(urdf), "genesis": gs.__version__, "build_s": round(build_s, 2), "links": links}
+    report = {"urdf": str(urdf), "genesis": gs.__version__, "build_s": round(build_s, 2), "links": links,
+              "finger_close_at_grip_1": dict(zip(fingers, close.tolist()))}
     set_q(np.zeros(4), 0.0)
     report["contacts_neutral"] = sorted(map(list, pairs_now()))
     sweep = Counter()

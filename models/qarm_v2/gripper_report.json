@@ -1,0 +1,47 @@
+{
+  "closing_scalar_rad_at_contact": 0.1616,
+  "finger_limits": {
+    "Joint1A": [
+      -0.1616,
+      0.05
+    ],
+    "Joint2A": [
+      -0.1257,
+      0.05
+    ],
+    "Joint1B": [
+      -0.05,
+      0.1616
+    ],
+    "Joint2B": [
+      -0.1257,
+      0.05
+    ]
+  },
+  "recommended_mapping": {
+    "joints": [
+      "Joint1A",
+      "Joint2A",
+      "Joint1B",
+      "Joint2B"
+    ],
+    "coefficients_at_grip_1": [
+      -0.1616,
+      -0.1257,
+      0.1616,
+      -0.1257
+    ]
+  },
+  "gap_open_mm": 35.79,
+  "tipA": [
+    -0.0041,
+    0.1683,
+    0.0088
+  ],
+  "tipB": [
+    0.0041,
+    0.1683,
+    -0.0088
+  ],
+  "tip_mid_y": 0.1683
+}

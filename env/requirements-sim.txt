@@ -6,3 +6,4 @@ mujoco>=3.2
 pytest>=8
 trimesh>=4
 fast-simplification>=0.1
+networkx>=3

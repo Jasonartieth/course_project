@@ -1,0 +1,13 @@
+{
+  "meshes/visual/BICEP.stl": "856dc29acd8092bbf33f8d30354d27592effcc1c29e9637f1e59fd755a90001a",
+  "meshes/visual/END-EFFECTOR.stl": "530312a8d6261dff19372ea89ebb67411c7ed0db2d226ecd9933f76f787a4eb4",
+  "meshes/visual/FOREARM.stl": "b6b1048782eaca6f97641755914bb972bbd0ff069f11e1f9dcbee3ddb36b5cdf",
+  "meshes/visual/LINK1A.stl": "cf82d866cfc84c105dc2c50840c3b2842406f713bfeb7b6f52153573961976f7",
+  "meshes/visual/LINK1B.stl": "ed7930261b76d9eff60892d272a477b5aef3fe2bf5c37ebffe3d930e29ad8870",
+  "meshes/visual/LINK2A.stl": "22c531627c035c001f53cb93fd1b252581bd100ef57992d9e0671e43fcbb6c1b",
+  "meshes/visual/LINK2B.stl": "1ec783bac95f9c4cd2ca788127921fe3dd4ff77054cb2015539e0485df2f521a",
+  "meshes/visual/YAW.stl": "164e66a0337f495c0fc6d1fd37c71156bf81a1940aabc098c1c8cb1b5b7c9764",
+  "meshes/visual/base_link.stl": "5e808e11660ca09ef9b1fdb8c47c76815e6671bbf01023cff9b600681fd062ac",
+  "meshes/visual/gripper_base_link.stl": "44c011803d9f2a95e221d436a2cfd3f6a21574ce72acc482bcac4730978ed2a4",
+  "qarm_with_gripper.urdf": "ff1cd86ece71e2b9417f8ed3dfa55aeff6522146d096c2a6b57042d91dd8145f"
+}
