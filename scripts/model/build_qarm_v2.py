@@ -11,12 +11,17 @@ What the generated model contains:
     fingers' visual meshes first touch; token finger masses with the COM at each part's geometric centre
     (the rotating wrist + gripper mass is in END-EFFECTOR, official body B4)
   * collision: ONLY boxes / cylinders / spheres (qarm_lab.collision_primitives), fitted to the full-resolution
-    official meshes so that every visual vertex is inside the collision geometry (larger, never smaller)
+    official meshes so that every vertex is inside the collision geometry (larger, never smaller). Budgets from
+    qarm_lab.collision_simplify.PROFILES (default "coarse-arm": coarse arm, fine gripper), then primitives buried
+    in their own body or in an adjacent body over the whole joint range are pruned (Genesis ignores parent-child
+    collisions). The written URDF is re-checked: every full-resolution vertex of each link lies inside its own
+    body's primitives or, over the whole joint range, inside an adjacent body's; the same check on the decimated
+    visual meshes is reported in collision_report.json
   * visual: official meshes decimated to <= 50k faces (models/qarm/meshes/visual) -> Genesis' primary parser
     accepts them (MuJoCo's STL limit is 200k faces) and loading is fast
   * named materials (Genesis' URDF parser rejects <material> without a name)
 
-Usage:  python scripts/model/build_qarm_v2.py [--out models/qarm_v2]
+Usage:  python scripts/model/build_qarm_v2.py [--out models/qarm_v2] [--profile coarse-arm|uniform]
 Output: <out>/qarm_with_gripper.urdf, meshes/visual/*.stl, collision_report.json, gripper_report.json
 """
 
@@ -38,23 +43,25 @@ sys.path.insert(0, str(ROOT / "scripts" / "model"))
 import build_qarm_urdf as B  # noqa: E402
 from qarm_lab import collision_primitives as CP  # noqa: E402
 from qarm_lab import spec  # noqa: E402
+from qarm_lab.collision_simplify import (DEFAULT_BUDGET, PROFILES, add_collision_element,  # noqa: E402
+                                         parse_structure, prune, verify_written)
 
 PI = np.pi
 OFFICIAL = ROOT / "models" / "qarm_official"
 VISUAL_SRC = ROOT / "models" / "qarm" / "meshes" / "visual"
 
-# mesh name in the output -> (official STL, decimated visual STL, primitive budget)
+# mesh name in the output -> (official STL, decimated visual STL). Primitive budgets: PROFILES[--profile][name.lower()]
 MESHES = {
-    "base_link": ("qarm/meshes/base_link.STL", "qarm__base_link__vis.stl", 6),
-    "YAW": ("qarm/meshes/YAW.STL", "qarm__YAW__vis.stl", 4),
-    "BICEP": ("qarm/meshes/BICEP.STL", "qarm__BICEP__vis.stl", 6),
-    "FOREARM": ("qarm/meshes/FOREARM.STL", "qarm__FOREARM__vis.stl", 8),
-    "END-EFFECTOR": ("qarm/meshes/END-EFFECTOR.STL", "qarm__END-EFFECTOR__vis.stl", 2),
-    "gripper_base_link": ("qarm_gripper/meshes/base_link.STL", "qarm_gripper__base_link__vis.stl", 8),
-    "LINK1A": ("qarm_gripper/meshes/Link1A.STL", "qarm_gripper__Link1A__vis.stl", 4),
-    "LINK1B": ("qarm_gripper/meshes/Link1B.STL", "qarm_gripper__Link1B__vis.stl", 4),
-    "LINK2A": ("qarm_gripper/meshes/Link2A.STL", "qarm_gripper__Link2A__vis.stl", 3),
-    "LINK2B": ("qarm_gripper/meshes/Link2B.STL", "qarm_gripper__Link2B__vis.stl", 3),
+    "base_link": ("qarm/meshes/base_link.STL", "qarm__base_link__vis.stl"),
+    "YAW": ("qarm/meshes/YAW.STL", "qarm__YAW__vis.stl"),
+    "BICEP": ("qarm/meshes/BICEP.STL", "qarm__BICEP__vis.stl"),
+    "FOREARM": ("qarm/meshes/FOREARM.STL", "qarm__FOREARM__vis.stl"),
+    "END-EFFECTOR": ("qarm/meshes/END-EFFECTOR.STL", "qarm__END-EFFECTOR__vis.stl"),
+    "gripper_base_link": ("qarm_gripper/meshes/base_link.STL", "qarm_gripper__base_link__vis.stl"),
+    "LINK1A": ("qarm_gripper/meshes/Link1A.STL", "qarm_gripper__Link1A__vis.stl"),
+    "LINK1B": ("qarm_gripper/meshes/Link1B.STL", "qarm_gripper__Link1B__vis.stl"),
+    "LINK2A": ("qarm_gripper/meshes/Link2A.STL", "qarm_gripper__Link2A__vis.stl"),
+    "LINK2B": ("qarm_gripper/meshes/Link2B.STL", "qarm_gripper__Link2B__vis.stl"),
 }
 ARM_LINK_MESH = {"base_link": "base_link", "YAW": "YAW", "BICEP": "BICEP", "FOREARM": "FOREARM",
                  "END-EFFECTOR": "END-EFFECTOR"}
@@ -112,20 +119,6 @@ def add_visual(link_el, mesh_name, T_vis, material):
     ET.SubElement(v, "material", {"name": material})
 
 
-def add_collisions(link_el, prims, T_vis):
-    for p in prims:
-        q = p.transformed(T_vis)
-        c = ET.SubElement(link_el, "collision")
-        origin_el(c, q.T)
-        g = ET.SubElement(c, "geometry")
-        if q.kind == "box":
-            ET.SubElement(g, "box", {"size": fmt(q.size)})
-        elif q.kind == "cylinder":
-            ET.SubElement(g, "cylinder", {"radius": f"{q.size[0]:.9g}", "length": f"{q.size[1]:.9g}"})
-        else:
-            ET.SubElement(g, "sphere", {"radius": f"{q.size[0]:.9g}"})
-
-
 def finger_parts(q, pts):
     """World (gripper-frame) points of each finger part for finger joint values q (dict)."""
     out = {}
@@ -167,27 +160,31 @@ def finger_contact(pts, touch=0.0015):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT / "models" / "qarm_v2"))
+    ap.add_argument("--profile", default="coarse-arm", choices=sorted(PROFILES))
     a = ap.parse_args()
     out = Path(a.out)
     (out / "meshes" / "visual").mkdir(parents=True, exist_ok=True)
 
-    meshes_full = {n: trimesh.load_mesh(OFFICIAL / src) for n, (src, _, _) in MESHES.items()}
-    for n, (_, vis, _) in MESHES.items():
+    meshes_full = {n: trimesh.load_mesh(OFFICIAL / src) for n, (src, _) in MESHES.items()}
+    for n, (_, vis) in MESHES.items():
         shutil.copyfile(VISUAL_SRC / vis, out / "meshes" / "visual" / f"{n}.stl")
 
     # ---------------- primitive collision geometry (mesh frame), coverage on full-res vertices
-    col_report, prims = {}, {}
-    for n, (src, _, budget) in MESHES.items():
-        fit = CP.fit_mesh(meshes_full[n], max_prims=budget)
+    fit_report, prims = {}, {}
+    for n in MESHES:
+        k, gain = PROFILES[a.profile].get(n.lower(), DEFAULT_BUDGET)
+        fit = CP.fit_mesh(meshes_full[n], max_prims=k, min_gain=gain)
         cov, n_out = CP.check_coverage(fit.primitives, meshes_full[n].vertices)
         assert n_out == 0, f"{n}: {n_out} vertices outside the collision primitives"
         prims[n] = fit.primitives
         uv = CP.union_volume_mc(fit.primitives)
-        col_report[n] = {"n_primitives": fit.k, "kinds": [p.kind for p in fit.primitives],
+        fit_report[n] = {"budget": [k, gain], "fitted": fit.k, "kinds": [p.kind for p in fit.primitives],
                          "union_volume_cm3": round(uv * 1e6, 1), "convex_hull_volume_cm3": round(fit.hull_volume * 1e6, 1),
                          "union_over_hull": round(uv / fit.hull_volume, 3), "vertex_coverage": cov,
                          "official_vertices_checked": int(len(meshes_full[n].vertices))}
-        print(f"{n:18s} {fit.k} prims {[p.kind[0] for p in fit.primitives]}  union/hull {uv / fit.hull_volume:.2f}  coverage {cov}")
+        print(f"{n:18s} budget {(k, gain)} -> {fit.k} {''.join(p.kind[0] for p in fit.primitives)}  "
+              f"union/hull {uv / fit.hull_volume:.2f}  coverage {cov}")
+    link_prims = {}          # link -> primitives in the link frame (collision elements are written after pruning)
 
     # ---------------- arm (real inertias, limits, tcp) from the course_project builder
     robot = B.build_arm({})
@@ -199,7 +196,7 @@ def main():
         if l.get("name") in ARM_LINK_MESH:
             m = ARM_LINK_MESH[l.get("name")]
             add_visual(l, m, np.eye(4), "qarm_light_grey")
-            add_collisions(l, prims[m], np.eye(4))
+            link_prims[l.get("name")] = list(prims[m])
     for name, rgba in MATERIALS.items():          # robot-level material definitions
         mat = ET.Element("material", {"name": name})
         ET.SubElement(mat, "color", {"rgba": rgba})
@@ -214,7 +211,7 @@ def main():
     c_g = T_gv[:3, :3] @ meshes_full["gripper_base_link"].bounding_box.centroid + T_gv[:3, 3]
     B.set_inertial(gl, TOKEN_MASS["gripper_base_link"], c_g, np.eye(3) * 1e-7)
     add_visual(gl, "gripper_base_link", T_gv, "qarm_dark_grey")
-    add_collisions(gl, prims["gripper_base_link"], T_gv)
+    link_prims["gripper_base_link"] = [p.transformed(T_gv) for p in prims["gripper_base_link"]]
     j = ET.SubElement(robot, "joint", {"name": "gripper_mount", "type": "fixed"})
     origin_el(j, H(*G_MOUNT))
     ET.SubElement(j, "parent", {"link": "END-EFFECTOR"})
@@ -226,7 +223,7 @@ def main():
         c = T_v[:3, :3] @ meshes_full[mesh].bounding_box.centroid + T_v[:3, 3]
         B.set_inertial(l, TOKEN_MASS[name], c, np.eye(3) * 1e-7)
         add_visual(l, mesh, T_v, "qarm_dark_grey")
-        add_collisions(l, prims[mesh], T_v)
+        link_prims[name] = [p.transformed(T_v) for p in prims[mesh]]
         jj = ET.SubElement(robot, "joint", {"name": joint, "type": "revolute"})
         origin_el(jj, H(jxyz, jrpy))
         ET.SubElement(jj, "parent", {"link": parent})
@@ -238,14 +235,43 @@ def main():
         ET.SubElement(jj, "limit", {"lower": f"{lo:.4f}", "upper": f"{hi:.4f}",
                                     "effort": f"{spec.GRIP_TAU_INST}", "velocity": "2.0"})
 
+    # ---------------- prune buried primitives (whole kinematic tree known now), then write the collisions
+    body_of, T_body, movable = parse_structure(robot)
+    link_prims, pruned = prune(link_prims, body_of, T_body, movable)
+    links = {l.get("name"): l for l in robot.findall("link")}
+    for name, ps in link_prims.items():
+        for p in ps:
+            add_collision_element(links[name], p)
+
     header = ("GENERATED by course_project scripts/model/build_qarm_v2.py - do not edit by hand.\n"
               "  Meshes and arm kinematics: Quanser QArm URDF representations (BSD-3, see LICENSE).\n"
               "  Arm inertias: Quanser QArm 'Dynamic Parameters'; limits: QArm User Manual Table 7.\n"
-              "  Gripper frames: LuoShaoyinn/mmic-project 2b8ab95. Collision: boxes/cylinders/spheres that fully\n"
-              "  enclose the full-resolution official meshes (collision is never smaller than the visual mesh).")
+              "  Gripper frames: LuoShaoyinn/mmic-project 2b8ab95. Collision: boxes/cylinders/spheres enclosing the\n"
+              f"  full-resolution official meshes, profile {a.profile}, buried primitives pruned (collision is never\n"
+              "  smaller than the visual mesh: every vertex is inside its own or, over the whole joint range, an\n"
+              "  adjacent link's primitives).")
     ET.indent(robot, space="  ")
-    (out / "qarm_with_gripper.urdf").write_text(
-        f'<?xml version="1.0" encoding="utf-8"?>\n<!--\n  {header}\n-->\n' + ET.tostring(robot, encoding="unicode") + "\n")
+    urdf_text = (f'<?xml version="1.0" encoding="utf-8"?>\n<!--\n  {header}\n-->\n'
+                 + ET.tostring(robot, encoding="unicode") + "\n")
+
+    # ---------------- round-trip check of the written collisions (full-res originals must be 100 % covered)
+    full_res = {f"meshes/visual/{n}.stl": OFFICIAL / src for n, (src, _) in MESHES.items()}
+    check_full = verify_written(urdf_text, out, mesh_override=full_res)
+    check_vis = verify_written(urdf_text, out)
+    for l, s in check_full.items():
+        print(f"check {l:18s} own prims {s['own_primitives']:2d}  full-res coverage incl. adjacent "
+              f"{s['coverage_incl_adjacent']:.6f}  | decimated visual {check_vis[l]['coverage_incl_adjacent']:.6f}")
+    bad = {l: s["outside"] for l, s in check_full.items() if s["outside"]}
+    assert not bad, f"full-resolution vertices outside the written collision primitives: {bad}"
+    (out / "qarm_with_gripper.urdf").write_text(urdf_text)
+    kinds = {}
+    for ps in link_prims.values():
+        for p in ps:
+            kinds[p.kind] = kinds.get(p.kind, 0) + 1
+    col_report = {"profile": a.profile, "total_primitives": sum(kinds.values()), "kinds": kinds,
+                  "per_link": {l: [p.kind for p in ps] for l, ps in link_prims.items()}, "pruned": pruned,
+                  "fit_per_mesh": fit_report, "written_check_full_resolution": check_full,
+                  "written_check_decimated_visual": check_vis}
 
     grip_report = {"closing_scalar_rad_at_contact": round(s_contact, 4), "finger_limits": limits,
                    "recommended_mapping": {"joints": ["Joint1A", "Joint2A", "Joint1B", "Joint2B"],

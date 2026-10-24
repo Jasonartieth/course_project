@@ -1,82 +1,36 @@
 {
-  "base_link": {
-    "n_primitives": 6,
-    "kinds": [
-      "box",
-      "box",
-      "box",
-      "box",
-      "box",
+  "profile": "coarse-arm",
+  "total_primitives": 32,
+  "kinds": {
+    "box": 25,
+    "cylinder": 6,
+    "sphere": 1
+  },
+  "per_link": {
+    "base_link": [
       "box"
     ],
-    "union_volume_cm3": 7115.8,
-    "convex_hull_volume_cm3": 7105.1,
-    "union_over_hull": 1.001,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 105084
-  },
-  "YAW": {
-    "n_primitives": 4,
-    "kinds": [
-      "cylinder",
-      "box",
-      "box",
-      "box"
-    ],
-    "union_volume_cm3": 568.1,
-    "convex_hull_volume_cm3": 905.6,
-    "union_over_hull": 0.627,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 24682
-  },
-  "BICEP": {
-    "n_primitives": 6,
-    "kinds": [
-      "cylinder",
-      "box",
-      "cylinder",
-      "cylinder",
+    "YAW": [
       "box",
       "cylinder"
     ],
-    "union_volume_cm3": 2174.1,
-    "convex_hull_volume_cm3": 2140.6,
-    "union_over_hull": 1.016,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 7792
-  },
-  "FOREARM": {
-    "n_primitives": 8,
-    "kinds": [
+    "BICEP": [
       "box",
       "cylinder",
-      "box",
-      "box",
-      "box",
-      "box",
-      "box",
-      "box"
-    ],
-    "union_volume_cm3": 824.8,
-    "convex_hull_volume_cm3": 1045.0,
-    "union_over_hull": 0.789,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 40516
-  },
-  "END-EFFECTOR": {
-    "n_primitives": 1,
-    "kinds": [
+      "cylinder",
       "cylinder"
     ],
-    "union_volume_cm3": 14.6,
-    "convex_hull_volume_cm3": 12.7,
-    "union_over_hull": 1.153,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 2359
-  },
-  "gripper_base_link": {
-    "n_primitives": 8,
-    "kinds": [
+    "FOREARM": [
+      "cylinder",
+      "box",
+      "box"
+    ],
+    "END-EFFECTOR": [
+      "cylinder"
+    ],
+    "gripper_base_link": [
+      "box",
+      "box",
       "box",
       "box",
       "box",
@@ -86,60 +40,362 @@
       "box",
       "box"
     ],
-    "union_volume_cm3": 366.3,
-    "convex_hull_volume_cm3": 304.8,
-    "union_over_hull": 1.202,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 231164
-  },
-  "LINK1A": {
-    "n_primitives": 4,
-    "kinds": [
+    "Link1A": [
       "box",
       "box",
       "box",
       "box"
     ],
-    "union_volume_cm3": 66.4,
-    "convex_hull_volume_cm3": 53.5,
-    "union_over_hull": 1.241,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 69145
-  },
-  "LINK1B": {
-    "n_primitives": 4,
-    "kinds": [
-      "box",
-      "box",
-      "box",
-      "sphere"
-    ],
-    "union_volume_cm3": 62.0,
-    "convex_hull_volume_cm3": 53.3,
-    "union_over_hull": 1.164,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 53761
-  },
-  "LINK2A": {
-    "n_primitives": 1,
-    "kinds": [
+    "Link2A": [
       "box"
     ],
-    "union_volume_cm3": 30.4,
-    "convex_hull_volume_cm3": 21.2,
-    "union_over_hull": 1.436,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 24971
-  },
-  "LINK2B": {
-    "n_primitives": 1,
-    "kinds": [
+    "Link1B": [
+      "box",
+      "box",
+      "sphere",
+      "box",
       "box"
     ],
-    "union_volume_cm3": 30.4,
-    "convex_hull_volume_cm3": 21.2,
-    "union_over_hull": 1.436,
-    "vertex_coverage": 1.0,
-    "official_vertices_checked": 24971
+    "Link2B": [
+      "box"
+    ]
+  },
+  "pruned": [
+    {
+      "link": "Link1A",
+      "kind": "box",
+      "volume_cm3": 0.54,
+      "reason": "buried after growing 1 covering primitive(s) by 1 mm",
+      "grown": [
+        "Link1A"
+      ]
+    },
+    {
+      "link": "BICEP",
+      "kind": "box",
+      "volume_cm3": 31.69,
+      "reason": "buried",
+      "grown": []
+    }
+  ],
+  "fit_per_mesh": {
+    "base_link": {
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 1,
+      "kinds": [
+        "box"
+      ],
+      "union_volume_cm3": 9526.9,
+      "convex_hull_volume_cm3": 7105.1,
+      "union_over_hull": 1.341,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 105084
+    },
+    "YAW": {
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 2,
+      "kinds": [
+        "box",
+        "cylinder"
+      ],
+      "union_volume_cm3": 817.3,
+      "convex_hull_volume_cm3": 905.6,
+      "union_over_hull": 0.902,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 24682
+    },
+    "BICEP": {
+      "budget": [
+        5,
+        0.05
+      ],
+      "fitted": 5,
+      "kinds": [
+        "box",
+        "cylinder",
+        "box",
+        "cylinder",
+        "cylinder"
+      ],
+      "union_volume_cm3": 2302.1,
+      "convex_hull_volume_cm3": 2140.6,
+      "union_over_hull": 1.075,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 7792
+    },
+    "FOREARM": {
+      "budget": [
+        3,
+        0.12
+      ],
+      "fitted": 3,
+      "kinds": [
+        "cylinder",
+        "box",
+        "box"
+      ],
+      "union_volume_cm3": 1071.4,
+      "convex_hull_volume_cm3": 1045.0,
+      "union_over_hull": 1.025,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 40516
+    },
+    "END-EFFECTOR": {
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 1,
+      "kinds": [
+        "cylinder"
+      ],
+      "union_volume_cm3": 14.6,
+      "convex_hull_volume_cm3": 12.7,
+      "union_over_hull": 1.153,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 2359
+    },
+    "gripper_base_link": {
+      "budget": [
+        10,
+        0.04
+      ],
+      "fitted": 10,
+      "kinds": [
+        "box",
+        "box",
+        "box",
+        "box",
+        "box",
+        "box",
+        "box",
+        "box",
+        "box",
+        "box"
+      ],
+      "union_volume_cm3": 348.3,
+      "convex_hull_volume_cm3": 304.8,
+      "union_over_hull": 1.142,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 231164
+    },
+    "LINK1A": {
+      "budget": [
+        5,
+        0.04
+      ],
+      "fitted": 5,
+      "kinds": [
+        "box",
+        "box",
+        "box",
+        "box",
+        "box"
+      ],
+      "union_volume_cm3": 64.8,
+      "convex_hull_volume_cm3": 53.5,
+      "union_over_hull": 1.212,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 69145
+    },
+    "LINK1B": {
+      "budget": [
+        5,
+        0.04
+      ],
+      "fitted": 5,
+      "kinds": [
+        "box",
+        "box",
+        "sphere",
+        "box",
+        "box"
+      ],
+      "union_volume_cm3": 61.3,
+      "convex_hull_volume_cm3": 53.3,
+      "union_over_hull": 1.15,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 53761
+    },
+    "LINK2A": {
+      "budget": [
+        4,
+        0.04
+      ],
+      "fitted": 1,
+      "kinds": [
+        "box"
+      ],
+      "union_volume_cm3": 30.4,
+      "convex_hull_volume_cm3": 21.2,
+      "union_over_hull": 1.436,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 24971
+    },
+    "LINK2B": {
+      "budget": [
+        4,
+        0.04
+      ],
+      "fitted": 1,
+      "kinds": [
+        "box"
+      ],
+      "union_volume_cm3": 30.4,
+      "convex_hull_volume_cm3": 21.2,
+      "union_over_hull": 1.436,
+      "vertex_coverage": 1.0,
+      "official_vertices_checked": 24971
+    }
+  },
+  "written_check_full_resolution": {
+    "base_link": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "YAW": {
+      "own_primitives": 2,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24682,
+      "outside": 0
+    },
+    "BICEP": {
+      "own_primitives": 4,
+      "own_coverage": 0.701617,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 7792,
+      "outside": 0
+    },
+    "FOREARM": {
+      "own_primitives": 3,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "END-EFFECTOR": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 2359,
+      "outside": 0
+    },
+    "gripper_base_link": {
+      "own_primitives": 10,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "Link1A": {
+      "own_primitives": 4,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "Link2A": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24971,
+      "outside": 0
+    },
+    "Link1B": {
+      "own_primitives": 5,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "Link2B": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24971,
+      "outside": 0
+    }
+  },
+  "written_check_decimated_visual": {
+    "base_link": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24714,
+      "outside": 0
+    },
+    "YAW": {
+      "own_primitives": 2,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24682,
+      "outside": 0
+    },
+    "BICEP": {
+      "own_primitives": 4,
+      "own_coverage": 0.701617,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 7792,
+      "outside": 0
+    },
+    "FOREARM": {
+      "own_primitives": 3,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24544,
+      "outside": 0
+    },
+    "END-EFFECTOR": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 2359,
+      "outside": 0
+    },
+    "gripper_base_link": {
+      "own_primitives": 10,
+      "own_coverage": 0.99996,
+      "coverage_incl_adjacent": 0.99996,
+      "vertices_checked": 25282,
+      "outside": 1
+    },
+    "Link1A": {
+      "own_primitives": 4,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 25018,
+      "outside": 0
+    },
+    "Link2A": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24908,
+      "outside": 0
+    },
+    "Link1B": {
+      "own_primitives": 5,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24997,
+      "outside": 0
+    },
+    "Link2B": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24908,
+      "outside": 0
+    }
   }
 }

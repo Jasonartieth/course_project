@@ -9,5 +9,5 @@
   "meshes/visual/YAW.stl": "164e66a0337f495c0fc6d1fd37c71156bf81a1940aabc098c1c8cb1b5b7c9764",
   "meshes/visual/base_link.stl": "5e808e11660ca09ef9b1fdb8c47c76815e6671bbf01023cff9b600681fd062ac",
   "meshes/visual/gripper_base_link.stl": "44c011803d9f2a95e221d436a2cfd3f6a21574ce72acc482bcac4730978ed2a4",
-  "qarm_with_gripper.urdf": "ff1cd86ece71e2b9417f8ed3dfa55aeff6522146d096c2a6b57042d91dd8145f"
+  "qarm_with_gripper.urdf": "86c94b33bf3f1dbb431891212b83fc1815c397b693a8a66736a3ec3ee70eb282"
 }
