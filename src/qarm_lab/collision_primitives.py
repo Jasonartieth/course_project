@@ -221,6 +221,47 @@ def fit_mesh(mesh, max_prims=6, min_gain=0.08, seed=0, max_edge=0.005):
     return FitResult(prims, len(prims), sum(p.volume for p in prims), float(mesh.convex_hull.volume), history)
 
 
+def surface_points(p, spacing=0.003):
+    """Points on the surface of primitive p (in p's parent frame) with roughly `spacing` between them; used to
+    decide whether p is buried inside other primitives (all surface points inside -> buried)."""
+    if p.kind == "box":
+        hx, hy, hz = p.size / 2
+        pts = []
+        for ax, (a, b, c) in enumerate(((hy, hz, hx), (hx, hz, hy), (hx, hy, hz))):
+            u = np.linspace(-a, a, max(2, int(np.ceil(2 * a / spacing)) + 1))
+            v = np.linspace(-b, b, max(2, int(np.ceil(2 * b / spacing)) + 1))
+            U, V = np.meshgrid(u, v)
+            for s in (-c, c):
+                W = np.full_like(U, s)
+                if ax == 0:
+                    pts.append(np.column_stack([W.ravel(), U.ravel(), V.ravel()]))
+                elif ax == 1:
+                    pts.append(np.column_stack([U.ravel(), W.ravel(), V.ravel()]))
+                else:
+                    pts.append(np.column_stack([U.ravel(), V.ravel(), W.ravel()]))
+        local = np.vstack(pts)
+    elif p.kind == "cylinder":
+        r, L = p.size
+        nth = max(8, int(np.ceil(2 * np.pi * r / spacing)))
+        th = np.linspace(0, 2 * np.pi, nth, endpoint=False)
+        z = np.linspace(-L / 2, L / 2, max(2, int(np.ceil(L / spacing)) + 1))
+        Th, Z = np.meshgrid(th, z)
+        side = np.column_stack([r * np.cos(Th).ravel(), r * np.sin(Th).ravel(), Z.ravel()])
+        rr = np.linspace(0, r, max(2, int(np.ceil(r / spacing)) + 1))
+        Rr, Tc = np.meshgrid(rr, th)
+        disk = np.column_stack([(Rr * np.cos(Tc)).ravel(), (Rr * np.sin(Tc)).ravel()])
+        caps = [np.column_stack([disk, np.full(len(disk), s)]) for s in (-L / 2, L / 2)]
+        local = np.vstack([side] + caps)
+    else:
+        r = p.size[0]
+        n = max(50, int(4 * np.pi * r * r / spacing ** 2))
+        i = np.arange(n) + 0.5
+        phi = np.arccos(1 - 2 * i / n)
+        th = np.pi * (1 + 5 ** 0.5) * i
+        local = r * np.column_stack([np.cos(th) * np.sin(phi), np.sin(th) * np.sin(phi), np.cos(phi)])
+    return local @ p.T[:3, :3].T + p.T[:3, 3]
+
+
 def check_coverage(prims, pts, tol=1e-7):
     """Fraction of points inside the union of primitives (must be 1.0) and the worst outside distance proxy."""
     inside = np.zeros(len(pts), bool)
