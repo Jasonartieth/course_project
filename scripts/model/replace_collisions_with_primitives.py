@@ -11,9 +11,9 @@ Steps
        uniform               the earlier per-mesh budgets (8 for the forearm, ...)
   2. Prune buried primitives (unless --no-prune). Bodies follow Genesis: links joined by fixed joints form one
      body, and collisions between parent-child bodies are ignored (enable_adjacent_collision=False). A primitive
-     is removed if its surface (sampled every 3 mm) lies inside
-       - the other primitives of its own body, or
-       - the primitives of an adjacent body for every joint angle in the joint's limits (sampled every 2 deg).
+     is removed if every point of its surface (sampled every 3 mm) is covered, point by point, by
+       - another primitive of its own body, or
+       - an adjacent body's primitives at every joint angle in the joint's limits (sampled every 2 deg).
      One primitive at a time (smallest first), re-evaluated after each removal.
   3. Write the replacement <collision> blocks (one per primitive, after a one-line comment).
   4. Verify the WRITTEN file: primitives are rebuilt from <origin rpy>/<geometry> as a URDF parser would; every
@@ -166,20 +166,30 @@ def prune(link_prims, body_of, T_body, movable):
         victim = None
         for l, p in sorted(items, key=lambda lp: lp[1].volume):
             b = body_of[l]
-            pts = CP.surface_points(p.transformed(T_body[l]))
-            others = [q for (l2, q) in body_prims[b] if q is not None and not (l2 == l and np.allclose(
-                q.T, p.transformed(T_body[l]).T) and np.allclose(q.size, p.size))]
-            if others and inside_union(others, pts).all():
-                victim = (l, p, f"inside other primitives of body {b}")
-                break
+            pb = p.transformed(T_body[l])
+            pts = CP.surface_points(pb)
+            others = [q for (l2, q) in body_prims[b] if not (l2 == l and np.allclose(q.T, pb.T) and np.allclose(q.size, p.size))]
+            # point-wise: a surface point is covered if it is inside another primitive of the same body, or inside
+            # an adjacent body's primitives at every sampled angle of the joint between them
+            covered = inside_union(others, pts) if others else np.zeros(len(pts), bool)
+            used = {f"same body {b}"} if covered.any() else set()
             for ob, Ts in adjacent_transforms(b, movable):
+                rest = ~covered
+                if not rest.any():
+                    break
                 cover = [q for (_, q) in body_prims.get(ob, [])]
                 if not cover:
                     continue
-                if all(inside_union(cover, pts @ T[:3, :3].T + T[:3, 3]).all() for T in Ts):
-                    victim = (l, p, f"inside adjacent body {ob} over the whole joint range")
-                    break
-            if victim:
+                ok = np.ones(rest.sum(), bool)
+                for T in Ts:
+                    ok &= inside_union(cover, pts[rest] @ T[:3, :3].T + T[:3, 3])
+                    if not ok.any():
+                        break
+                if ok.any():
+                    covered[np.flatnonzero(rest)[ok]] = True
+                    used.add(f"adjacent {ob} (whole joint range)")
+            if covered.all():
+                victim = (l, p, "buried: " + " + ".join(sorted(used)))
                 break
         if victim is None:
             break
