@@ -1,0 +1,54 @@
+{
+  "trajectory": "sine_base",
+  "trajectory_hash": "455b0b77af71",
+  "trajectory_meta": {
+    "joint": 0,
+    "freqs": [
+      0.1,
+      0.2,
+      0.3,
+      0.45
+    ],
+    "amps": [
+      0.2125,
+      0.2125,
+      0.20041733574534967,
+      0.08907437144237763
+    ],
+    "cycles": 3,
+    "purpose": "Sine sweep 0.1-0.45 Hz on base at HOME: frequency response, inertia/damping"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 0.5,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    5.590979981207056e-07,
+    0.007356693968176842,
+    0.0109830591827631,
+    -1.3447121091303416e-05
+  ],
+  "notes": "",
+  "started": "2026-10-24T16:55:13",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-24T16:55:36",
+  "wall_time_s": 22.948,
+  "sim_or_nominal_time_s": 68.17,
+  "loop_dt_ms": {
+    "median": 0.671,
+    "p99": 0.776,
+    "max": 1.769
+  },
+  "git_commit": "6345657"
+}

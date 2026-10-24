@@ -1,0 +1,53 @@
+{
+  "trajectory": "steps_base",
+  "trajectory_hash": "602357d7e043",
+  "trajectory_meta": {
+    "goal_steps": true,
+    "joint": 0,
+    "steps": [
+      0.1,
+      0.0,
+      -0.1,
+      0.0,
+      0.2,
+      0.0,
+      -0.2,
+      0.0
+    ],
+    "hold_s": 2.5,
+    "purpose": "Goal steps +-0.1/+-0.2 rad on base at HOME: profile + PID identification"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 0.53,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    -4.5419128527623975e-12,
+    0.008447397500276566,
+    0.012573305517435074,
+    -2.6588841805369468e-12
+  ],
+  "notes": "",
+  "started": "2026-10-24T16:54:38",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-24T16:54:46",
+  "wall_time_s": 8.321,
+  "sim_or_nominal_time_s": 25.03,
+  "loop_dt_ms": {
+    "median": 0.663,
+    "p99": 0.761,
+    "max": 1.623
+  },
+  "git_commit": "6345657"
+}

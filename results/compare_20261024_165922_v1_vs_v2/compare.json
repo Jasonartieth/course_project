@@ -1,0 +1,284 @@
+{
+  "a": "results/sim_runs/20261022_221039_genesis_dryrun_final",
+  "b": "results/sim_runs/20261024_165419_genesis_dryrun_v2",
+  "labels": [
+    "v1",
+    "v2"
+  ],
+  "trajectories": {
+    "hold_home": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "steps_base": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ],
+      "d_current_A": [
+        0.01,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "steps_shoulder": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "steps_elbow": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "steps_wrist": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "sine_base": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "sine_shoulder": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "sine_elbow": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "sine_wrist": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "gravity_poses": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "fourier_A": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "fourier_B": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ]
+    },
+    "cartesian_square": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ]
+    },
+    "gripper_cycles": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.01,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.01,
+        0.0,
+        0.0
+      ]
+    },
+    "park": {
+      "abort": [
+        null,
+        null
+      ],
+      "d_track_err_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "d_current_A": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "max_abs_diff": {
+    "track_err_deg": 0.01,
+    "current_A": 0.01
+  }
+}

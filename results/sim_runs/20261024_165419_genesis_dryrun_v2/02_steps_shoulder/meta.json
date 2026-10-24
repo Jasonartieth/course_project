@@ -1,0 +1,53 @@
+{
+  "trajectory": "steps_shoulder",
+  "trajectory_hash": "81c41fc43061",
+  "trajectory_meta": {
+    "goal_steps": true,
+    "joint": 1,
+    "steps": [
+      0.1,
+      0.0,
+      -0.1,
+      0.0,
+      0.2,
+      0.0,
+      -0.2,
+      0.0
+    ],
+    "hold_s": 2.5,
+    "purpose": "Goal steps +-0.1/+-0.2 rad on shoulder at HOME: profile + PID identification"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 0.52,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    -0.0001337164721917361,
+    0.00816173292696476,
+    0.01215357519686222,
+    1.0579545062228135e-07
+  ],
+  "notes": "",
+  "started": "2026-10-24T16:54:46",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-24T16:54:55",
+  "wall_time_s": 8.363,
+  "sim_or_nominal_time_s": 25.02,
+  "loop_dt_ms": {
+    "median": 0.667,
+    "p99": 0.74,
+    "max": 2.584
+  },
+  "git_commit": "6345657"
+}

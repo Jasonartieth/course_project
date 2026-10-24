@@ -1,0 +1,67 @@
+{
+  "trajectory": "cartesian_square",
+  "trajectory_hash": "15b1b8bfd308",
+  "trajectory_meta": {
+    "waypoints": [
+      [
+        0.3,
+        -0.12,
+        0.3
+      ],
+      [
+        0.45,
+        -0.12,
+        0.3
+      ],
+      [
+        0.45,
+        0.12,
+        0.3
+      ],
+      [
+        0.3,
+        0.12,
+        0.3
+      ],
+      [
+        0.3,
+        -0.12,
+        0.3
+      ]
+    ],
+    "purpose": "TCP square 15 x 24 cm at z = 0.30 m via IK: task-space accuracy (compare camera / ruler)"
+  },
+  "backend": "genesis",
+  "rate_hz": 500.0,
+  "approach_s": 3.97,
+  "settle_s": 1.0,
+  "tail_s": 1.0,
+  "q_start_measured": [
+    0.0005112309008836746,
+    0.003274505492299795,
+    0.005446824710816145,
+    -0.0002202764298999682
+  ],
+  "notes": "",
+  "started": "2026-10-24T16:58:46",
+  "safety": {
+    "inst_frac": 0.9,
+    "cont_frac": 1.3,
+    "cont_time_s": 1.5,
+    "temp_max_c": 45.0,
+    "pos_tol": 0.03490658503988659,
+    "track_err_rad": 0.15,
+    "track_time_s": 0.5,
+    "stale_s": 0.5
+  },
+  "aborted": null,
+  "finished": "2026-10-24T16:58:54",
+  "wall_time_s": 8.487,
+  "sim_or_nominal_time_s": 26.01,
+  "loop_dt_ms": {
+    "median": 0.65,
+    "p99": 0.77,
+    "max": 0.938
+  },
+  "git_commit": "6345657"
+}
