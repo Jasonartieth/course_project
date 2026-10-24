@@ -131,9 +131,35 @@ def inside_union(prims, pts):
     return ok
 
 
+def inflated(p, d):
+    """Primitive grown by d on every side (same pose)."""
+    if p.kind == "box":
+        return CP.Primitive("box", p.T, p.size + 2 * d)
+    if p.kind == "cylinder":
+        return CP.Primitive("cylinder", p.T, p.size + np.array([d, 2 * d]))
+    return CP.Primitive("sphere", p.T, p.size + d)
+
+
+def pointwise_cover(pts, others, adj_covers):
+    """Boolean per point: inside `others` (same body) or, for some adjacent body, inside it at every sample."""
+    covered = inside_union(others, pts) if others else np.zeros(len(pts), bool)
+    for cover, Ts in adj_covers:
+        rest = ~covered
+        if not rest.any() or not cover:
+            continue
+        ok = np.ones(rest.sum(), bool)
+        for T in Ts:
+            ok &= inside_union(cover, pts[rest] @ T[:3, :3].T + T[:3, 3])
+            if not ok.any():
+                break
+        covered[np.flatnonzero(rest)[ok]] = True
+    return covered
+
+
 def burial_table(link_prims, body_of, T_body, movable):
-    """Diagnostics: for every primitive, the fraction of its surface samples inside (a) the other primitives of its
-    body and (b) each adjacent body (minimum over the joint samples). 1.0 = buried."""
+    """Diagnostics per primitive: fraction of its surface samples covered by (a) the other primitives of its body,
+    (b) each adjacent body (minimum over the joint samples), (c) point-wise (a)+(b), and (c) with every covering
+    primitive inflated by 1 mm / 2 mm. 1.0 = buried."""
     body_prims = {}
     for l, ps in link_prims.items():
         for p in ps:
@@ -141,16 +167,22 @@ def burial_table(link_prims, body_of, T_body, movable):
     rows = []
     for l, ps in link_prims.items():
         b = body_of[l]
+        adjs = list(adjacent_transforms(b, movable))
         for p in ps:
-            pb = p.transformed(T_body[l])
-            pts = CP.surface_points(pb)
+            pts = CP.surface_points(p.transformed(T_body[l]))
             others = [q for (_, p2, q) in body_prims[b] if p2 is not p]
             same = float(inside_union(others, pts).mean()) if others else 0.0
             adj = {}
-            for ob, Ts in adjacent_transforms(b, movable):
+            for ob, Ts in adjs:
                 cover = [q for (_, _, q) in body_prims.get(ob, [])]
-                adj[ob] = min(float(inside_union(cover, pts @ T[:3, :3].T + T[:3, 3]).mean()) for T in Ts) if cover else 0.0
-            rows.append((l, p.kind, round(p.volume * 1e6, 2), round(same, 3), {k: round(v, 3) for k, v in adj.items()}))
+                adj[ob] = round(min(float(inside_union(cover, pts @ T[:3, :3].T + T[:3, 3]).mean()) for T in Ts), 3) if cover else 0.0
+            comb = {}
+            for d in (0.0, 0.001, 0.002):
+                oth = [inflated(q, d) for q in others]
+                ac = [([inflated(q, d) for (_, _, q) in body_prims.get(ob, [])], Ts) for ob, Ts in adjs]
+                comb[f"{d * 1e3:.0f}mm"] = round(float(pointwise_cover(pts, oth, ac).mean()), 4)
+            rows.append({"link": l, "kind": p.kind, "volume_cm3": round(p.volume * 1e6, 2), "same_body": round(same, 3),
+                         "adjacent_min_over_q": adj, "pointwise": comb})
     return rows
 
 
@@ -331,8 +363,9 @@ def main():
 
     # 2) prune (burial diagnostics first: fraction of surface inside same body / adjacent bodies)
     burial = burial_table(link_prims, body_of, T_body, movable)
-    for l, kind, vol, same, adj in burial:
-        print(f"  burial {l:18s} {kind:8s} {vol:8.2f} cm3  same-body {same:.3f}  adjacent(min over q) {adj}")
+    for r in burial:
+        print(f"  burial {r['link']:18s} {r['kind']:8s} {r['volume_cm3']:8.2f} cm3  same-body {r['same_body']:.3f}  "
+              f"pointwise {r['pointwise']}  adjacent {r['adjacent_min_over_q']}")
     removed = []
     if not a.no_prune:
         link_prims, removed = prune(link_prims, body_of, T_body, movable)
