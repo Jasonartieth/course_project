@@ -1,0 +1,165 @@
+{
+  "base_link": {
+    "mesh": "meshes/base_link.STL",
+    "n_primitives": 6,
+    "kinds": [
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 105084,
+    "same_as_visual": true,
+    "union_volume_cm3": 7115.8,
+    "convex_hull_volume_cm3": 7105.1,
+    "union_over_hull": 1.001
+  },
+  "YAW": {
+    "mesh": "meshes/YAW.STL",
+    "n_primitives": 4,
+    "kinds": [
+      "cylinder",
+      "box",
+      "box",
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 24682,
+    "same_as_visual": true,
+    "union_volume_cm3": 568.1,
+    "convex_hull_volume_cm3": 905.6,
+    "union_over_hull": 0.627
+  },
+  "BICEP": {
+    "mesh": "meshes/BICEP.STL",
+    "n_primitives": 6,
+    "kinds": [
+      "cylinder",
+      "box",
+      "cylinder",
+      "cylinder",
+      "box",
+      "cylinder"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 7792,
+    "same_as_visual": true,
+    "union_volume_cm3": 2174.1,
+    "convex_hull_volume_cm3": 2140.6,
+    "union_over_hull": 1.016
+  },
+  "FOREARM": {
+    "mesh": "meshes/FOREARM.STL",
+    "n_primitives": 8,
+    "kinds": [
+      "box",
+      "cylinder",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 40516,
+    "same_as_visual": true,
+    "union_volume_cm3": 824.8,
+    "convex_hull_volume_cm3": 1045.0,
+    "union_over_hull": 0.789
+  },
+  "END-EFFECTOR": {
+    "mesh": "meshes/END-EFFECTOR.STL",
+    "n_primitives": 1,
+    "kinds": [
+      "cylinder"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 2359,
+    "same_as_visual": true,
+    "union_volume_cm3": 14.6,
+    "convex_hull_volume_cm3": 12.7,
+    "union_over_hull": 1.153
+  },
+  "gripper_base_link": {
+    "mesh": "meshes/gripper_base_link.STL",
+    "n_primitives": 8,
+    "kinds": [
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 231164,
+    "same_as_visual": true,
+    "union_volume_cm3": 366.3,
+    "convex_hull_volume_cm3": 304.8,
+    "union_over_hull": 1.202
+  },
+  "Link1A": {
+    "mesh": "meshes/LINK1A.STL",
+    "n_primitives": 4,
+    "kinds": [
+      "box",
+      "box",
+      "box",
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 69145,
+    "same_as_visual": true,
+    "union_volume_cm3": 66.4,
+    "convex_hull_volume_cm3": 53.5,
+    "union_over_hull": 1.241
+  },
+  "Link2A": {
+    "mesh": "meshes/LINK2A.STL",
+    "n_primitives": 1,
+    "kinds": [
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 24971,
+    "same_as_visual": true,
+    "union_volume_cm3": 30.4,
+    "convex_hull_volume_cm3": 21.2,
+    "union_over_hull": 1.436
+  },
+  "Link1B": {
+    "mesh": "meshes/LINK1B.STL",
+    "n_primitives": 4,
+    "kinds": [
+      "box",
+      "box",
+      "box",
+      "sphere"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 53761,
+    "same_as_visual": true,
+    "union_volume_cm3": 62.0,
+    "convex_hull_volume_cm3": 53.3,
+    "union_over_hull": 1.164
+  },
+  "Link2B": {
+    "mesh": "meshes/LINK2B.STL",
+    "n_primitives": 1,
+    "kinds": [
+      "box"
+    ],
+    "vertex_coverage": 1.0,
+    "vertices_checked": 24971,
+    "same_as_visual": true,
+    "union_volume_cm3": 30.4,
+    "convex_hull_volume_cm3": 21.2,
+    "union_over_hull": 1.436
+  }
+}
