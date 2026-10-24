@@ -14,14 +14,17 @@ Steps
      is removed if every point of its surface (sampled every 3 mm) is covered, point by point, by
        - another primitive of its own body, or
        - an adjacent body's primitives at every joint angle in the joint's limits (sampled every 2 deg).
-     One primitive at a time (smallest first), re-evaluated after each removal.
+     If that holds only after growing the covering primitives by --bury-tol (default 1 mm), exactly the covering
+     primitives that touch the uncovered points are grown by that much and the primitive is removed (collision
+     only ever grows, so it still encloses every visual). One primitive at a time (smallest first),
+     re-evaluated after each removal.
   3. Write the replacement <collision> blocks (one per primitive, after a one-line comment).
   4. Verify the WRITTEN file: primitives are rebuilt from <origin rpy>/<geometry> as a URDF parser would; every
      vertex of each link's visual mesh must lie inside its own body's primitives or, for every sampled joint
      angle, inside an adjacent body's primitives. Also re-checks that nothing outside <collision> changed.
 
 Usage:  python scripts/model/replace_collisions_with_primitives.py <in.urdf> <out.urdf>
-            [--mesh-root DIR] [--profile coarse-arm|uniform] [--no-prune] [--require-same-visual]
+            [--mesh-root DIR] [--profile coarse-arm|uniform] [--no-prune] [--bury-tol 0.001] [--require-same-visual]
 Writes <out.urdf>, <out>.report.json and <out>.diff.
 """
 
@@ -186,52 +189,66 @@ def burial_table(link_prims, body_of, T_body, movable):
     return rows
 
 
-def prune(link_prims, body_of, T_body, movable):
+def prune(link_prims, body_of, T_body, movable, tol=0.001):
     """Remove buried primitives (see module docstring). link_prims: {link: [Primitive in link frame]}.
-    Returns (new link_prims, list of removal records)."""
-    items = [(l, p) for l, ps in link_prims.items() for p in ps]          # (link, primitive in link frame)
+
+    A primitive P is buried if its surface is covered point-wise (same-body primitives, or an adjacent body at
+    every joint sample). If that only holds after growing the covering primitives by `tol`, exactly the covering
+    primitives that touch P's uncovered points are grown by `tol` and P is removed: collision geometry only ever
+    grows, so it still encloses every visual. Returns (new link_prims, removal records)."""
+    items = [{"link": l, "p": p} for l, ps in link_prims.items() for p in ps]
     removed = []
+
+    def body_view():
+        view = {}
+        for i, it in enumerate(items):
+            view.setdefault(body_of[it["link"]], []).append((i, it["p"].transformed(T_body[it["link"]])))
+        return view
+
+    def coverage(i_p, view, d):
+        """(covered mask, pts, list of (item index, T-list or None) usable as covers) with covers grown by d."""
+        it = items[i_p]
+        b = body_of[it["link"]]
+        pts = CP.surface_points(it["p"].transformed(T_body[it["link"]]))
+        same = [(j, q) for (j, q) in view[b] if j != i_p]
+        adj = [([(j, q) for (j, q) in view.get(ob, [])], Ts) for ob, Ts in adjacent_transforms(b, movable)]
+        covered = pointwise_cover(pts, [inflated(q, d) for _, q in same],
+                                  [([inflated(q, d) for _, q in c], Ts) for c, Ts in adj])
+        return covered, pts, same, adj
+
     while True:
-        body_prims = {}
-        for l, p in items:
-            body_prims.setdefault(body_of[l], []).append((l, p.transformed(T_body[l])))
+        view = body_view()
         victim = None
-        for l, p in sorted(items, key=lambda lp: lp[1].volume):
-            b = body_of[l]
-            pb = p.transformed(T_body[l])
-            pts = CP.surface_points(pb)
-            others = [q for (l2, q) in body_prims[b] if not (l2 == l and np.allclose(q.T, pb.T) and np.allclose(q.size, p.size))]
-            # point-wise: a surface point is covered if it is inside another primitive of the same body, or inside
-            # an adjacent body's primitives at every sampled angle of the joint between them
-            covered = inside_union(others, pts) if others else np.zeros(len(pts), bool)
-            used = {f"same body {b}"} if covered.any() else set()
-            for ob, Ts in adjacent_transforms(b, movable):
-                rest = ~covered
-                if not rest.any():
-                    break
-                cover = [q for (_, q) in body_prims.get(ob, [])]
-                if not cover:
-                    continue
-                ok = np.ones(rest.sum(), bool)
-                for T in Ts:
-                    ok &= inside_union(cover, pts[rest] @ T[:3, :3].T + T[:3, 3])
-                    if not ok.any():
-                        break
-                if ok.any():
-                    covered[np.flatnonzero(rest)[ok]] = True
-                    used.add(f"adjacent {ob} (whole joint range)")
+        for i_p in sorted(range(len(items)), key=lambda i: items[i]["p"].volume):
+            covered, pts, same, adj = coverage(i_p, view, 0.0)
             if covered.all():
-                victim = (l, p, "buried: " + " + ".join(sorted(used)))
+                victim = (i_p, [], "buried")
+                break
+            if tol > 0 and coverage(i_p, view, tol)[0].all():
+                miss = pts[~covered]
+                grow = {j for j, q in same if inflated(q, tol).contains(miss).any()}
+                for c, Ts in adj:
+                    for j, q in c:
+                        qi = inflated(q, tol)
+                        if any(qi.contains(miss @ T[:3, :3].T + T[:3, 3]).any() for T in Ts):
+                            grow.add(j)
+                victim = (i_p, sorted(grow), f"buried after growing {len(grow)} covering primitive(s) by {tol * 1e3:.0f} mm")
                 break
         if victim is None:
             break
-        l, p, why = victim
-        items = [(l2, p2) for (l2, p2) in items if p2 is not p]
-        removed.append({"link": l, "kind": p.kind, "volume_cm3": round(p.volume * 1e6, 2), "reason": why})
-        print(f"  pruned {l:18s} {p.kind:8s} {p.volume * 1e6:8.2f} cm3  ({why})")
+        i_p, grow, why = victim
+        for j in grow:
+            items[j]["p"] = inflated(items[j]["p"], tol)
+        if grow:                                      # confirm with the grown covers before removing
+            assert coverage(i_p, body_view(), 0.0)[0].all(), "tolerance pruning failed to cover the primitive"
+        it = items.pop(i_p)
+        removed.append({"link": it["link"], "kind": it["p"].kind, "volume_cm3": round(it["p"].volume * 1e6, 2),
+                        "reason": why, "grown": [items[j - (j > i_p)]["link"] for j in grow]})
+        print(f"  pruned {it['link']:18s} {it['p'].kind:8s} {it['p'].volume * 1e6:8.2f} cm3  ({why}; grown: "
+              f"{removed[-1]['grown']})")
     out = {l: [] for l in link_prims}
-    for l, p in items:
-        out[l].append(p)
+    for it in items:
+        out[it["link"]].append(it["p"])
     return out, removed
 
 
@@ -320,6 +337,7 @@ def main():
     ap.add_argument("--mesh-root")
     ap.add_argument("--profile", default="coarse-arm", choices=sorted(PROFILES))
     ap.add_argument("--no-prune", action="store_true")
+    ap.add_argument("--bury-tol", type=float, default=0.001, help="m; see step 2 (0 = exact burial only)")
     ap.add_argument("--require-same-visual", action="store_true")
     a = ap.parse_args()
     src = Path(a.urdf_in)
@@ -368,7 +386,7 @@ def main():
               f"pointwise {r['pointwise']}  adjacent {r['adjacent_min_over_q']}")
     removed = []
     if not a.no_prune:
-        link_prims, removed = prune(link_prims, body_of, T_body, movable)
+        link_prims, removed = prune(link_prims, body_of, T_body, movable, tol=a.bury_tol)
 
     # 3) write
     out, pos, done = [], 0, set()
