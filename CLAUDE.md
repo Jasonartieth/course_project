@@ -36,7 +36,8 @@
   - 手指：沿用 mmic 的坐标系；闭合限位取两指视觉 mesh 刚好接触时的角度（近端 ±0.1616，远端 −0.1257 rad）；推荐映射 grip·(−0.1616, −0.1257, 0.1616, −0.1257)；此时指尖合拢在 y=0.168（TCP 0.162）。
   - 验证（4090，Genesis 1.4.4）：加载 5.4 s、主解析器、无质心警告、零位无自碰撞；开碰撞和重力后保持误差 0.23°；往手心、A 指、B 指上丢方块，都落在目标连杆上；mmic 的 `gripper_demo.py` 原样能跑。结果在 `results/collision_audit_*_qarm_v2/`、`results/verify_qarm_v2_20261024/`。
   - 4090 上的目录：`~/external/mmic-project`（克隆，remote `fork` 指向我们的 fork，本地 git 身份是 noreply）、`~/external/mmic_audit`（只补了材质名的副本）、`~/external/mmic_v2_test`（替换成 v2 资源的测试副本）。
-  - 我们自己的 `models/qarm/`（v1）夹爪仍然是飘着的；Genesis 后端还默认用 v1，`spec.GRIPPER_FINGER_CLOSE` 也还是旧的近似值。
+  - 我们自己的 `models/qarm/`（v1）夹爪仍然是飘着的，保留但不再作为默认。
+- 2026-10-24：**course_project 的 Genesis 后端默认改成 v2**（`backends/sim_genesis.DEFAULT_URDF = models/qarm_v2/qarm_with_gripper.urdf`）；`spec.GRIPPER_FINGER_CLOSE = (−0.1616, −0.1257, 0.1616, −0.1257)`，由测试保证和 `models/qarm_v2/gripper_report.json` 一致；`render_model_check.py` 默认渲染 v2，并隐藏原始体碰撞几何。pytest 13 项通过（Mac 和 4090）。冒烟测试：TCP 误差 0.2 mm，肩关节阶跃 1.55°（和 v1 相同）。整套干跑 `results/sim_runs/20261024_165419_genesis_dryrun_v2/`：15 条、0 次中止；和 v1 比（`results/compare_20261024_165922_v1_vs_v2/`，工具 `scripts/analysis/compare_sessions.py`），最大差异 0.01° / 0.01 A。原因：手臂惯量相同，原始体碰撞体在这些轨迹里不引起额外接触。
 
 ## 已知坑 / ★
 - ★ 官方夹爪 URDF（以及我们由它生成的 `qarm_gripper.urdf`）的手指连杆坐标系有问题：渲染出来 Link1/Link2 零件和夹爪底座是分开的（`results/collision_audit_20261024_162654_course_project_qarm_gripper/visual_vs_collision.png`）。`spec.GRIPPER_FINGER_CLOSE` 只是在这个错误几何上目测出来的近似值，不要拿来当真。
@@ -63,7 +64,7 @@
 - ★ 本机 `/usr/bin/python3` 的 numpy 装在用户 site-packages 里，`python3 -I` 会 import 失败；需要隔离时，把下载文件和脚本分目录存放，再去掉 `-I` 运行。
 
 ## 待确认（明天真机实测）
-- 夹爪安装偏移（模型里手指平面离腕轴约 15 mm）、手指闭合角度映射（`spec.GRIPPER_FINGER_CLOSE` 是近似值）
+- 夹爪几何（v2 用的是 mmic 2b8ab95 的坐标系）、手指闭合限位和映射（`spec.GRIPPER_FINGER_CLOSE` 是按"两指视觉 mesh 刚好接触"算出来的，没在真机上核实；需要拍下 grip=0.1/0.9 时手指的实际张角）
 - pal 的 PID 单位（假设是 PWM 比例/rad）、舵机的 armature 和摩擦（`servo.ServoParams` 默认值是估计）、Kt
 - 程序结束（terminate）后机械臂是保持力矩还是变软
 
