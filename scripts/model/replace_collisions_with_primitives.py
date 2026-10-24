@@ -6,8 +6,9 @@ comments and formatting stay byte-identical (checked at the end). No mesh file i
 Steps
   1. Fit: each <collision> mesh gets primitives that enclose every vertex (qarm_lab.collision_primitives),
      placed with the block's <origin>. Budgets come from a profile:
-       coarse-arm (default)  arm links (base_link, YAW, BICEP, FOREARM, END-EFFECTOR): <= 2 primitives, split only
-                             if it saves >= 25 % volume; gripper (gripper_base_link, LINK1A/1B/2A/2B): fine
+       coarse-arm (default)  arm links coarse (base_link, YAW, END-EFFECTOR: <= 2 primitives, split only if it
+                             saves >= 25 % volume; BICEP <= 5 and FOREARM <= 3, the fewest that avoid false
+                             self-contacts); gripper (gripper_base_link, LINK1A/1B/2A/2B): fine
        uniform               the earlier per-mesh budgets (8 for the forearm, ...)
   2. Prune buried primitives (unless --no-prune). Bodies follow Genesis: links joined by fixed joints form one
      body, and collisions between parent-child bodies are ignored (enable_adjacent_collision=False). A primitive
@@ -48,8 +49,13 @@ from qarm_lab import collision_primitives as CP  # noqa: E402
 
 ARM = {"base_link", "yaw", "bicep", "forearm", "end-effector"}
 PROFILES = {   # mesh stem (lower case) -> (max_prims, min_gain)
-    "coarse-arm": {**{s: (2, 0.25) for s in ARM}, "gripper_base_link": (10, 0.04),
-                   "link1a": (5, 0.04), "link1b": (5, 0.04), "link2a": (4, 0.04), "link2b": (4, 0.04)},
+    # Arm links coarse, gripper fine. BICEP and FOREARM need a few more primitives than the other arm links:
+    # with 2-4 BICEP primitives the shoulder-end bulge produced false BICEP-base contacts (89/400 random poses vs
+    # 14 with the fine fit), and with 2 FOREARM primitives the forearm end touched the finger roots when the
+    # wrist rotates (54/400) - measured with scripts/model/collision_audit.py, see results/collision_audit_*try*.
+    "coarse-arm": {**{s: (2, 0.25) for s in ARM}, "bicep": (5, 0.05), "forearm": (3, 0.12),
+                   "gripper_base_link": (10, 0.04), "link1a": (5, 0.04), "link1b": (5, 0.04),
+                   "link2a": (4, 0.04), "link2b": (4, 0.04)},
     "uniform": {"base_link": (6, 0.08), "yaw": (4, 0.08), "bicep": (6, 0.08), "forearm": (8, 0.08),
                 "end-effector": (2, 0.08), "gripper_base_link": (8, 0.08), "link1a": (4, 0.08),
                 "link1b": (4, 0.08), "link2a": (3, 0.08), "link2b": (3, 0.08)},
