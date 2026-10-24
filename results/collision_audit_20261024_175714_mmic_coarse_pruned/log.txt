@@ -1,0 +1,6 @@
+[38;5;226m[Genesis] [17:57:20] [WARNING] Link 'Link1A' has dubious center of mass [x=-0.000, y=0.041, z=-0.017] compared to the bounding box from geometry [x=(-0.018, 0.082), y=(-0.017, 0.011), z=(-0.018, 0.018)].[0m
+[38;5;226m[Genesis] [17:57:20] [WARNING] Link 'Link2A' has dubious center of mass [x=-0.005, y=0.016, z=-0.020] compared to the bounding box from geometry [x=(-0.009, 0.051), y=(-0.011, 0.014), z=(-0.011, 0.011)].[0m
+[38;5;226m[Genesis] [17:57:20] [WARNING] Link 'Link2B' has dubious center of mass [x=0.005, y=0.016, z=-0.014] compared to the bounding box from geometry [x=(-0.009, 0.051), y=(-0.014, 0.011), z=(-0.011, 0.011)].[0m
+[38;5;226m[Genesis] [17:57:20] [WARNING] Link 'Link1A' has dubious center of mass [x=-0.000, y=0.041, z=-0.017] compared to the bounding box from geometry [x=(-0.018, 0.082), y=(-0.017, 0.011), z=(-0.018, 0.018)].[0m
+[38;5;226m[Genesis] [17:57:20] [WARNING] Link 'Link2A' has dubious center of mass [x=-0.005, y=0.016, z=-0.020] compared to the bounding box from geometry [x=(-0.009, 0.051), y=(-0.011, 0.014), z=(-0.011, 0.011)].[0m
+[38;5;226m[Genesis] [17:57:20] [WARNING] Link 'Link2B' has dubious center of mass [x=0.005, y=0.016, z=-0.014] compared to the bounding box from geometry [x=(-0.009, 0.051), y=(-0.014, 0.011), z=(-0.011, 0.011)].[0m

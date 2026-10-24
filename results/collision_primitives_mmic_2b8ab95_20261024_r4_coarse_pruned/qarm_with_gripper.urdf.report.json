@@ -1,0 +1,546 @@
+{
+  "profile": "coarse-arm",
+  "pruned": [],
+  "burial_before_pruning": [
+    [
+      "base_link",
+      "box",
+      9514.78,
+      0.0,
+      {
+        "YAW": 0.049
+      }
+    ],
+    [
+      "YAW",
+      "box",
+      503.92,
+      0.194,
+      {
+        "world": 0.0,
+        "BICEP": 0.186
+      }
+    ],
+    [
+      "YAW",
+      "cylinder",
+      325.05,
+      0.266,
+      {
+        "world": 0.534,
+        "BICEP": 0.0
+      }
+    ],
+    [
+      "BICEP",
+      "box",
+      573.67,
+      0.139,
+      {
+        "YAW": 0.0,
+        "FOREARM": 0.099
+      }
+    ],
+    [
+      "BICEP",
+      "cylinder",
+      2201.77,
+      0.098,
+      {
+        "YAW": 0.121,
+        "FOREARM": 0.0
+      }
+    ],
+    [
+      "FOREARM",
+      "box",
+      588.21,
+      0.114,
+      {
+        "BICEP": 0.0,
+        "END-EFFECTOR": 0.064
+      }
+    ],
+    [
+      "FOREARM",
+      "cylinder",
+      630.31,
+      0.139,
+      {
+        "BICEP": 0.212,
+        "END-EFFECTOR": 0.0
+      }
+    ],
+    [
+      "END-EFFECTOR",
+      "cylinder",
+      14.57,
+      0.617,
+      {
+        "FOREARM": 0.961,
+        "Link1A": 0.0,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      15.76,
+      0.539,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.0,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      102.58,
+      0.348,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.0,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      58.28,
+      0.615,
+      {
+        "FOREARM": 0.136,
+        "Link1A": 0.0,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      4.97,
+      0.524,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.429,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      21.48,
+      0.62,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.0,
+        "Link1B": 0.155
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      32.85,
+      0.571,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.0,
+        "Link1B": 0.196
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      51.35,
+      0.506,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.109,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      70.01,
+      0.739,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.017,
+        "Link1B": 0.065
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      66.38,
+      0.476,
+      {
+        "FOREARM": 0.276,
+        "Link1A": 0.054,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "gripper_base_link",
+      "box",
+      8.26,
+      0.811,
+      {
+        "FOREARM": 0.0,
+        "Link1A": 0.366,
+        "Link1B": 0.0
+      }
+    ],
+    [
+      "Link1A",
+      "box",
+      19.07,
+      0.203,
+      {
+        "END-EFFECTOR": 0.615,
+        "Link2A": 0.0
+      }
+    ],
+    [
+      "Link1A",
+      "box",
+      10.93,
+      0.233,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2A": 0.293
+      }
+    ],
+    [
+      "Link1A",
+      "box",
+      35.06,
+      0.348,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2A": 0.066
+      }
+    ],
+    [
+      "Link1A",
+      "box",
+      5.42,
+      0.435,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2A": 0.054
+      }
+    ],
+    [
+      "Link1A",
+      "box",
+      0.54,
+      0.959,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2A": 0.221
+      }
+    ],
+    [
+      "Link2A",
+      "box",
+      29.58,
+      0.0,
+      {
+        "Link1A": 0.203
+      }
+    ],
+    [
+      "Link1B",
+      "box",
+      19.01,
+      0.253,
+      {
+        "END-EFFECTOR": 0.596,
+        "Link2B": 0.0
+      }
+    ],
+    [
+      "Link1B",
+      "box",
+      36.91,
+      0.177,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2B": 0.057
+      }
+    ],
+    [
+      "Link1B",
+      "sphere",
+      5.16,
+      0.338,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2B": 0.475
+      }
+    ],
+    [
+      "Link1B",
+      "box",
+      4.73,
+      0.346,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2B": 0.421
+      }
+    ],
+    [
+      "Link1B",
+      "box",
+      0.49,
+      0.51,
+      {
+        "END-EFFECTOR": 0.0,
+        "Link2B": 0.304
+      }
+    ],
+    [
+      "Link2B",
+      "box",
+      29.58,
+      0.0,
+      {
+        "Link1B": 0.19
+      }
+    ]
+  ],
+  "fit": {
+    "base_link": {
+      "mesh": "meshes/base_link.STL",
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 1,
+      "vertices": 105084,
+      "union_over_hull": 1.341
+    },
+    "YAW": {
+      "mesh": "meshes/YAW.STL",
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 2,
+      "vertices": 24682,
+      "union_over_hull": 0.902
+    },
+    "BICEP": {
+      "mesh": "meshes/BICEP.STL",
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 2,
+      "vertices": 7792,
+      "union_over_hull": 1.321
+    },
+    "FOREARM": {
+      "mesh": "meshes/FOREARM.STL",
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 2,
+      "vertices": 40516,
+      "union_over_hull": 1.139
+    },
+    "END-EFFECTOR": {
+      "mesh": "meshes/END-EFFECTOR.STL",
+      "budget": [
+        2,
+        0.25
+      ],
+      "fitted": 1,
+      "vertices": 2359,
+      "union_over_hull": 1.153
+    },
+    "gripper_base_link": {
+      "mesh": "meshes/gripper_base_link.STL",
+      "budget": [
+        10,
+        0.04
+      ],
+      "fitted": 10,
+      "vertices": 231164,
+      "union_over_hull": 1.142
+    },
+    "Link1A": {
+      "mesh": "meshes/LINK1A.STL",
+      "budget": [
+        5,
+        0.04
+      ],
+      "fitted": 5,
+      "vertices": 69145,
+      "union_over_hull": 1.212
+    },
+    "Link2A": {
+      "mesh": "meshes/LINK2A.STL",
+      "budget": [
+        4,
+        0.04
+      ],
+      "fitted": 1,
+      "vertices": 24971,
+      "union_over_hull": 1.436
+    },
+    "Link1B": {
+      "mesh": "meshes/LINK1B.STL",
+      "budget": [
+        5,
+        0.04
+      ],
+      "fitted": 5,
+      "vertices": 53761,
+      "union_over_hull": 1.15
+    },
+    "Link2B": {
+      "mesh": "meshes/LINK2B.STL",
+      "budget": [
+        4,
+        0.04
+      ],
+      "fitted": 1,
+      "vertices": 24971,
+      "union_over_hull": 1.436
+    }
+  },
+  "written_check": {
+    "base_link": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "YAW": {
+      "own_primitives": 2,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24682,
+      "outside": 0
+    },
+    "BICEP": {
+      "own_primitives": 2,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 7792,
+      "outside": 0
+    },
+    "FOREARM": {
+      "own_primitives": 2,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "END-EFFECTOR": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 2359,
+      "outside": 0
+    },
+    "gripper_base_link": {
+      "own_primitives": 10,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "Link1A": {
+      "own_primitives": 5,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "Link2A": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24971,
+      "outside": 0
+    },
+    "Link1B": {
+      "own_primitives": 5,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 30000,
+      "outside": 0
+    },
+    "Link2B": {
+      "own_primitives": 1,
+      "own_coverage": 1.0,
+      "coverage_incl_adjacent": 1.0,
+      "vertices_checked": 24971,
+      "outside": 0
+    }
+  },
+  "total_primitives": 30,
+  "kinds": {
+    "box": 25,
+    "cylinder": 4,
+    "sphere": 1
+  },
+  "per_link": {
+    "base_link": [
+      "box"
+    ],
+    "YAW": [
+      "box",
+      "cylinder"
+    ],
+    "BICEP": [
+      "box",
+      "cylinder"
+    ],
+    "FOREARM": [
+      "box",
+      "cylinder"
+    ],
+    "END-EFFECTOR": [
+      "cylinder"
+    ],
+    "gripper_base_link": [
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box",
+      "box"
+    ],
+    "Link1A": [
+      "box",
+      "box",
+      "box",
+      "box",
+      "box"
+    ],
+    "Link2A": [
+      "box"
+    ],
+    "Link1B": [
+      "box",
+      "box",
+      "sphere",
+      "box",
+      "box"
+    ],
+    "Link2B": [
+      "box"
+    ]
+  }
+}
