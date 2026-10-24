@@ -1,0 +1,15 @@
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [18:19:47] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+One gripper scalar -> Joint1A, Joint2A, Joint1B, Joint2B
+Close the viewer or press Ctrl+C to stop.
+cycle 1: grip=0.100, finger angles=[-0.045 -0.035  0.045 -0.035]
+cycle 2: grip=0.206, finger angles=[-0.152 -0.118  0.152 -0.118]
+{"steps": 400, "finger_min_rad": [-0.1643117219209671, -0.12734203040599823, 0.037527091801166534, -0.12734203040599823], "finger_max_rad": [-0.037527140229940414, -0.029131660237908363, 0.16431210935115814, -0.029131660237908363]}
