@@ -71,14 +71,14 @@ def main():
         if k > 500:
             err_max = max(err_max, float(np.abs(q[:4] - spec.HOME_POSE).max()))
     hold = {"finite": grip_ok, "arm_err_max_deg": round(np.rad2deg(err_max), 3),
-            "pass": grip_ok and np.rad2deg(err_max) < 2.0}
+            "pass": bool(grip_ok and np.rad2deg(err_max) < 2.0)}
 
     # 2) drop the cube onto the open fingers
     arm.control_dofs_position(np.r_[spec.HOME_POSE, np.zeros(4)], dofs)
     for _ in range(int(1.5 / 0.002)):
         scene.step()
     z = float(cube.get_pos().cpu().numpy().reshape(-1)[2])
-    drop = {"cube_final_z_m": round(z, 4), "tcp_z_m": round(float(tcp[2]), 4), "pass": z > 0.40}
+    drop = {"cube_final_z_m": round(z, 4), "tcp_z_m": round(float(tcp[2]), 4), "pass": bool(z > 0.40)}
     res = {"urdf": str(urdf), "close": close.tolist(), "hold": hold, "drop": drop}
     print(json.dumps(res, indent=1))
     sys.exit(0 if hold["pass"] and drop["pass"] else 1)
