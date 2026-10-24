@@ -37,10 +37,13 @@
   - 验证（4090，Genesis 1.4.4）：加载 5.4 s、主解析器、无质心警告、零位无自碰撞；开碰撞和重力后保持误差 0.23°；往手心、A 指、B 指上丢方块，都落在目标连杆上；mmic 的 `gripper_demo.py` 原样能跑。结果在 `results/collision_audit_*_qarm_v2/`、`results/verify_qarm_v2_20261024/`。
   - 4090 上的目录：`~/external/mmic-project`（克隆，remote `fork` 指向我们的 fork，本地 git 身份是 noreply）、`~/external/mmic_audit`（只补了材质名的副本）、`~/external/mmic_v2_test`（替换成 v2 资源的测试副本）。
   - 我们自己的 `models/qarm/`（v1）夹爪仍然是飘着的，保留但不再作为默认。
+- 2026-10-24：**按用户要求把 mmic PR #1 改成只改 collision**（"不要新建 STL，只改 URDF，原始体写在 URDF 里，只改 collision 部分"）。工具 `scripts/model/replace_collisions_with_primitives.py`：在文本层面原地替换 `<collision>` 块，自检"去掉 collision 块后文本完全相同"，并把写出的 URDF 读回来做覆盖验证（视觉顶点 100% 在原始体里）。PR 现在只有 1 个文件、1 个提交 812ca51（+243/−35）：43 个原始体（35 立方体、7 圆柱、1 球），不增删 STL。效果：Genesis 主解析器只加载 collision 几何，所以碰撞改成原始体后**就不再退回旧版解析器**（加载 36 s → 7.3 s），即使视觉 mesh 还是全精度；保持误差 0.43°，丢方块测试通过。PR 描述里列出了不在本次范围内的问题（材质缺名字所以仍然加载不了、手指映射过大、占位惯量）。结果：`results/collision_primitives_mmic_2b8ab95_20261024_r2/`、`results/collision_audit_*_mmic_collision_only_primitives/`、`results/verify_mmic_collision_only_20261024/`。
 - 2026-10-24：**course_project 的 Genesis 后端默认改成 v2**（`backends/sim_genesis.DEFAULT_URDF = models/qarm_v2/qarm_with_gripper.urdf`）；`spec.GRIPPER_FINGER_CLOSE = (−0.1616, −0.1257, 0.1616, −0.1257)`，由测试保证和 `models/qarm_v2/gripper_report.json` 一致；`render_model_check.py` 默认渲染 v2，并隐藏原始体碰撞几何。pytest 13 项通过（Mac 和 4090）。冒烟测试：TCP 误差 0.2 mm，肩关节阶跃 1.55°（和 v1 相同）。整套干跑 `results/sim_runs/20261024_165419_genesis_dryrun_v2/`：15 条、0 次中止；和 v1 比（`results/compare_20261024_165922_v1_vs_v2/`，工具 `scripts/analysis/compare_sessions.py`），最大差异 0.01° / 0.01 A。原因：手臂惯量相同，原始体碰撞体在这些轨迹里不引起额外接触。
 
 ## 已知坑 / ★
 - ★ 官方夹爪 URDF（以及我们由它生成的 `qarm_gripper.urdf`）的手指连杆坐标系有问题：渲染出来 Link1/Link2 零件和夹爪底座是分开的（`results/collision_audit_20261024_162654_course_project_qarm_gripper/visual_vs_collision.png`）。`spec.GRIPPER_FINGER_CLOSE` 只是在这个错误几何上目测出来的近似值，不要拿来当真。
+- ★ **给别人的仓库提 PR 时，改动范围要最小**（用户 2026-10-24 的明确要求）：只改需要改的那部分（这次是 URDF 的 `<collision>`），不新增或替换 mesh 文件，不顺手修别的问题；顺手发现的问题写进 PR 描述作为提醒，由对方决定。PR 描述里的数字必须从实际产物里统计出来，不能凭印象写（这次差点写错原始体数量）。
+- ★ Genesis 1.4.4 默认的 URDF 解析器（MuJoCo 那套）默认丢弃视觉几何、只加载碰撞几何 → 超过 20 万面的限制只对**碰撞**里引用的 mesh 生效；碰撞改成原始体后，即使视觉 mesh 是全精度的，也不会再退回旧版解析器。
 - ★ 用原始体拟合 CAD mesh 时：① CAD 导出有横跨整个零件的细长三角形，一个面就能把它所在那块的包围盒拉满整个零件 → 必须先 `trimesh.remesh.subdivide_to_size` 细分长边；② k-means 聚类切得很差（分成多块后总体积反而更大）→ 改用自顶向下贪心二分；③ `trimesh.nsphere.minimum_nsphere`（qhull）遇到共面点集会报错，trimesh 处理退化凸包时需要 `networkx` → 加兜底（包围盒中心球 / 主成分方向包围盒），并装 networkx。
 - ★ 测试碰撞时，不要把方块丢在张开的两指中间：两指内侧间距约 36 mm，3 cm 的方块本来就会从缝里掉下去，这不能说明碰撞失效。要丢在手心或手指本体上，并检查方块实际碰到了哪个连杆（`verify_qarm_genesis.py`）。
 - ★ mmic 的 `gripper_demo.py` 用了 `recompute_inertia=True`，会抛开 URDF 里的惯量，用（不封闭的）mesh 凸包重新计算，所以"质量和惯量是否正确"不能用这个示例来验证。
@@ -69,4 +72,5 @@
 - 程序结束（terminate）后机械臂是保持力矩还是变软
 
 ## 归档索引（任务 → 仓库/分支/tag/路径）
+- mmic PR 的上一版完整方案（26 个文件：减面视觉 mesh、真实惯量、手指限位、README/LICENSE，提交 b6d3425）→ fork `Jasonartieth/mmic-project` 的分支 `archive/qarm-v2-full-assets-20261024`；内容和 course_project 的 `models/qarm_v2/` 相同。
 - 公开前的原始提交历史（含旧作者信息，19 个提交，HEAD 9fb4778）→ 本地 `_backup/history_before_public_20261023/course_project_pre_rewrite_9fb4778.bundle`（已校验，附 `commit_list_pre_rewrite.txt`）+ 私有仓 `Jasonartieth/course_project_prerewrite_20261023`（**用户 2026-10-23 决定保留，不删**；不要再建议删除或改成公开）。找回方法：`git clone <bundle> <dir>`。
