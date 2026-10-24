@@ -1,0 +1,54 @@
+{
+ "urdf": "/home/jcy/course_project/models/qarm_v2/qarm_with_gripper.urdf",
+ "close": [
+  -0.1616,
+  -0.1257,
+  0.1616,
+  -0.1257
+ ],
+ "hold": {
+  "finite": true,
+  "arm_err_max_deg": 0.23,
+  "pass": true
+ },
+ "drop": {
+  "palm": {
+   "dropped_above": [
+    0.349,
+    0.0,
+    0.487
+   ],
+   "touched_links": [
+    "END-EFFECTOR"
+   ],
+   "final_z_m": 0.527,
+   "pass": true
+  },
+  "fingerA": {
+   "dropped_above": [
+    0.391,
+    0.029,
+    0.487
+   ],
+   "touched_links": [
+    "END-EFFECTOR",
+    "Link1A"
+   ],
+   "final_z_m": 0.518,
+   "pass": true
+  },
+  "fingerB": {
+   "dropped_above": [
+    0.391,
+    -0.029,
+    0.487
+   ],
+   "touched_links": [
+    "Link1B"
+   ],
+   "final_z_m": 0.518,
+   "pass": true
+  }
+ },
+ "pass": true
+}
