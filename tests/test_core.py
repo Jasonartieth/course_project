@@ -65,6 +65,28 @@ def test_check_rejects_table_collision():
     assert not T.check_trajectory(T.min_jerk(spec.HOME_POSE, q_low)).ok
 
 
+def test_gripper_map_matches_v2_model():
+    """spec.GRIPPER_FINGER_CLOSE must equal the v2 builder's recommended mapping (grip = 1 at first contact)."""
+    import json
+    rep = json.loads((Path(__file__).resolve().parents[1] / "models/qarm_v2/gripper_report.json").read_text())
+    rec = dict(zip(rep["recommended_mapping"]["joints"], rep["recommended_mapping"]["coefficients_at_grip_1"]))
+    assert rec == pytest.approx(spec.GRIPPER_FINGER_CLOSE)
+    for j, (lo, hi) in rep["finger_limits"].items():          # grip in [0, 1] stays inside the joint limits
+        assert lo - 1e-6 <= spec.GRIPPER_FINGER_CLOSE[j] <= hi + 1e-6
+
+
+def test_default_genesis_model_is_v2_with_primitive_collisions():
+    import xml.etree.ElementTree as ET
+    from qarm_lab.backends.sim_genesis import DEFAULT_URDF
+    assert DEFAULT_URDF.parent.name == "qarm_v2" and DEFAULT_URDF.exists()
+    root = ET.parse(DEFAULT_URDF).getroot()
+    kinds = {c.find("geometry")[0].tag for c in root.iter("collision")}
+    assert kinds <= {"box", "cylinder", "sphere"} and kinds
+    assert all(m.get("name") for m in root.iter("material"))           # Genesis rejects unnamed materials
+    for mesh in root.iter("mesh"):
+        assert (DEFAULT_URDF.parent / mesh.get("filename")).exists()
+
+
 def test_runner_with_fake_backend_and_safety_trip(tmp_path):
     be = make_backend("fake")
     be.open()

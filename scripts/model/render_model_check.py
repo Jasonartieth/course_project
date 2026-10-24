@@ -4,7 +4,8 @@ Runs on the Mac with the MuJoCo package from env/requirements-sim.txt (MuJoCo is
 here; the simulator of record is Genesis on the 4090). Markers: red sphere = tcp link origin,
 green sphere = END-EFFECTOR origin (DH wrist point is 12 mm further along the wrist axis), blue = wrist axis.
 
-Usage:  python scripts/model/render_model_check.py [--urdf models/qarm/urdf/qarm_gripper.urdf]
+Usage:  python scripts/model/render_model_check.py [--urdf models/qarm_v2/qarm_with_gripper.urdf]
+        (default: the v2 model; pass models/qarm/urdf/qarm_gripper.urdf for v1)
 Output: results/model_check_<timestamp>/*.png
 """
 
@@ -37,6 +38,12 @@ def load(urdf_path):
     i = xml.index(">", xml.index("<robot")) + 1
     spec_ = mujoco.MjSpec.from_string(xml[:i] + inject + xml[i:])
     spec_.visual.global_.offwidth, spec_.visual.global_.offheight = 960, 720
+    # hide collision geometry before adding the markers: v1 uses convex-hull meshes from meshes/collision/,
+    # v2 uses primitives (every non-mesh geom parsed from the URDF is a collision primitive)
+    col_meshes = {me.name for me in spec_.meshes if "/collision/" in me.file}
+    for g in spec_.geoms:
+        if g.meshname in col_meshes or g.type != mujoco.mjtGeom.mjGEOM_MESH:
+            g.rgba = [0, 0, 0, 0]
     marks = {"tcp": [1, 0, 0, 1], "END-EFFECTOR": [0, 1, 0, 1]}
     for body in spec_.bodies:
         if body.name in marks:
@@ -48,11 +55,6 @@ def load(urdf_path):
     spec_.worldbody.add_light(pos=[0.5, -0.5, 1.5], dir=[-0.3, 0.3, -1])
     spec_.worldbody.add_geom(type=mujoco.mjtGeom.mjGEOM_PLANE, size=[1, 1, 0.01], rgba=[0.85, 0.85, 0.85, 1],
                              contype=0, conaffinity=0)
-    # hide the convex-hull collision geoms (their mesh files live in meshes/collision/)
-    col_meshes = {me.name for me in spec_.meshes if "/collision/" in me.file}
-    for g in spec_.geoms:
-        if g.meshname in col_meshes:
-            g.rgba = [0, 0, 0, 0]
     return spec_.compile()
 
 
@@ -75,7 +77,7 @@ def shot(m, d, r, lookat, dist, az, el):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--urdf", default=str(ROOT / "models/qarm/urdf/qarm_gripper.urdf"))
+    ap.add_argument("--urdf", default=str(ROOT / "models/qarm_v2/qarm_with_gripper.urdf"))
     args = ap.parse_args()
     out = ROOT / "results" / f"model_check_{dt.datetime.now():%Y%m%d_%H%M%S}"
     out.mkdir(parents=True, exist_ok=True)
@@ -100,8 +102,8 @@ def main():
         ax.imshow(img)
         ax.set_title(title, fontsize=10)
         ax.axis("off")
-    fig.suptitle(f"{Path(args.urdf).name} | red = tcp, green = END-EFFECTOR origin, blue = wrist axis | "
-                 f"mount xyz={B.GRIPPER_MOUNT_XYZ}", fontsize=11)
+    fig.suptitle(f"{Path(args.urdf).parent.name}/{Path(args.urdf).name} | red = tcp, green = END-EFFECTOR origin, "
+                 f"blue = wrist axis | grip map {list(FINGER_CLOSE.values())}", fontsize=11)
     fig.tight_layout()
     fig.savefig(out / "model_check.png", dpi=80)
     set_q(m, d, [0, 0, 0, 0])

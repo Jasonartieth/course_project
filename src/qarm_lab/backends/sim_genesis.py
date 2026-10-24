@@ -1,5 +1,8 @@
 """Genesis simulation of the QArm with the Dynamixel servo model (servo.py) on the 4 arm joints.
 
+Default model: models/qarm_v2/qarm_with_gripper.urdf (aligned gripper, box/cylinder/sphere collisions that
+enclose the visual meshes, finger limits at first contact). The v1 model (models/qarm/urdf/qarm_gripper.urdf,
+floating finger parts) can still be passed explicitly with urdf=...
 Arm joints: torque control (tau_stall * pwm from our PID); back-EMF damping, armature and Coulomb friction are
 set as Genesis joint properties. Fingers: Genesis position control to grip * spec.GRIPPER_FINGER_CLOSE.
 Physics runs at `physics_hz` (default 1 kHz); the servo/PID updates at `rate_hz` with zero-order hold.
@@ -16,7 +19,7 @@ from ..servo import ServoParams, ServoPID
 from .base import Backend, State
 
 ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_URDF = ROOT / "models" / "qarm" / "urdf" / "qarm_gripper.urdf"
+DEFAULT_URDF = ROOT / "models" / "qarm_v2" / "qarm_with_gripper.urdf"
 ARM_JOINTS = ("YAW", "SHOULDER", "ELBOW", "WRIST")
 
 _GS_INITIALISED = False
