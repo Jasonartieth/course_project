@@ -1,0 +1,196 @@
+{
+  "urdf": "/home/jcy/course_project/models/qarm/urdf/qarm_gripper.urdf",
+  "genesis": "1.4.4",
+  "build_s": 5.28,
+  "links": [
+    {
+      "link": "world",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        214
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          295.29998779296875,
+          335.29998779296875,
+          95.5
+        ]
+      ]
+    },
+    {
+      "link": "YAW",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        300
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          139.8000030517578,
+          152.39999389648438,
+          84.0
+        ]
+      ]
+    },
+    {
+      "link": "BICEP",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        358
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          111.9000015258789,
+          88.19999694824219,
+          385.20001220703125
+        ]
+      ]
+    },
+    {
+      "link": "FOREARM",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        499
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          253.39999389648438,
+          98.9000015258789,
+          91.80000305175781
+        ]
+      ]
+    },
+    {
+      "link": "END-EFFECTOR",
+      "n_collision_geoms": 2,
+      "n_visual_geoms": 2,
+      "collision_faces": [
+        328,
+        460
+      ],
+      "convex": [
+        true,
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          14.399999618530273,
+          35.0,
+          34.900001525878906
+        ],
+        [
+          86.9000015258789,
+          81.5999984741211,
+          76.30000305175781
+        ]
+      ]
+    },
+    {
+      "link": "Link1A",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        332
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          73.5999984741211,
+          93.19999694824219,
+          25.899999618530273
+        ]
+      ]
+    },
+    {
+      "link": "Link2A",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        444
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          44.099998474121094,
+          60.20000076293945,
+          23.100000381469727
+        ]
+      ]
+    },
+    {
+      "link": "Link1B",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        290
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          72.69999694824219,
+          93.5999984741211,
+          25.899999618530273
+        ]
+      ]
+    },
+    {
+      "link": "Link2B",
+      "n_collision_geoms": 1,
+      "n_visual_geoms": 1,
+      "collision_faces": [
+        444
+      ],
+      "convex": [
+        true
+      ],
+      "aabb_size_mm": [
+        [
+          45.20000076293945,
+          59.900001525878906,
+          23.100000381469727
+        ]
+      ]
+    }
+  ],
+  "contacts_neutral": [],
+  "contacts_gripper_sweep_home": {},
+  "contacts_random_poses": {
+    "Link2B|world": 14,
+    "Link2A|world": 6,
+    "END-EFFECTOR|world": 5,
+    "Link1B|world": 5,
+    "Link1A|world": 5,
+    "FOREARM|world": 1
+  },
+  "random_samples": 400,
+  "warnings": {
+    "legacy_parser_fallback": false,
+    "dubious_com_links": [
+      "END-EFFECTOR"
+    ],
+    "neutral_pairs_filtered": [
+      "(6, 8), (16, 18)"
+    ]
+  }
+}

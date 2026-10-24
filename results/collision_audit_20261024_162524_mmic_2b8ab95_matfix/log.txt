@@ -1,0 +1,10 @@
+[38;5;226m[Genesis] [16:25:29] [WARNING] Falling back to legacy URDF parser. Default values of physics properties may be off:
+Error: stl_decoder: number of faces should be between 1 and 200000 in STL file '/home/jcy/external/mmic_audit/meshes/base_link.STL'; perhaps this is an ASCII file? - Element name 'base_link', id 0[0m
+[38;5;226m[Genesis] [16:25:31] [WARNING] Link 'Link1A' has dubious center of mass [x=-0.000, y=0.041, z=-0.017] compared to the bounding box from geometry [x=(-0.018, 0.081), y=(-0.016, 0.010), z=(-0.017, 0.017)].[0m
+[38;5;226m[Genesis] [16:25:31] [WARNING] Link 'Link2A' has dubious center of mass [x=-0.005, y=0.016, z=-0.020] compared to the bounding box from geometry [x=(-0.009, 0.050), y=(-0.010, 0.013), z=(-0.011, 0.010)].[0m
+[38;5;226m[Genesis] [16:25:31] [WARNING] Link 'Link2B' has dubious center of mass [x=0.005, y=0.016, z=-0.014] compared to the bounding box from geometry [x=(-0.009, 0.050), y=(-0.013, 0.010), z=(-0.010, 0.011)].[0m
+[38;5;226m[Genesis] [16:25:32] [WARNING] Falling back to legacy URDF parser. Default values of physics properties may be off:
+Error: stl_decoder: number of faces should be between 1 and 200000 in STL file '/home/jcy/external/mmic_audit/meshes/base_link.STL'; perhaps this is an ASCII file? - Element name 'base_link', id 0[0m
+[38;5;226m[Genesis] [16:25:32] [WARNING] Link 'Link1A' has dubious center of mass [x=-0.000, y=0.041, z=-0.017] compared to the bounding box from geometry [x=(-0.018, 0.081), y=(-0.016, 0.010), z=(-0.017, 0.017)].[0m
+[38;5;226m[Genesis] [16:25:32] [WARNING] Link 'Link2A' has dubious center of mass [x=-0.005, y=0.016, z=-0.020] compared to the bounding box from geometry [x=(-0.009, 0.050), y=(-0.010, 0.013), z=(-0.011, 0.010)].[0m
+[38;5;226m[Genesis] [16:25:32] [WARNING] Link 'Link2B' has dubious center of mass [x=0.005, y=0.016, z=-0.014] compared to the bounding box from geometry [x=(-0.009, 0.050), y=(-0.013, 0.010), z=(-0.010, 0.011)].[0m
