@@ -338,6 +338,8 @@ def main():
     ap.add_argument("--profile", default="coarse-arm", choices=sorted(PROFILES))
     ap.add_argument("--no-prune", action="store_true")
     ap.add_argument("--bury-tol", type=float, default=0.001, help="m; see step 2 (0 = exact burial only)")
+    ap.add_argument("--budget", action="append", default=[], metavar="STEM=K,GAIN",
+                    help="override one mesh's budget, e.g. --budget forearm=4,0.1 (repeatable)")
     ap.add_argument("--require-same-visual", action="store_true")
     a = ap.parse_args()
     src = Path(a.urdf_in)
@@ -348,7 +350,11 @@ def main():
     visuals = {l.get("name"): [(origin_T(v)[1], v.find("geometry/mesh").get("filename"))
                                for v in l.findall("visual") if v.find("geometry/mesh") is not None]
                for l in robot.findall("link")}
-    budgets = PROFILES[a.profile]
+    budgets = dict(PROFILES[a.profile])
+    for spec_ in a.budget:
+        stem, kg = spec_.split("=")
+        k, gain = kg.split(",")
+        budgets[stem.lower()] = (int(k), float(gain))
 
     # 1) fit
     matches = list(COLLISION_RE.finditer(text))
